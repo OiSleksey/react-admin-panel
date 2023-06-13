@@ -1,0 +1,26 @@
+@import '../../sass/variables/colors';
+.MuiAccordionSummary-content {
+  margin: 0.5rem !important;
+}
+
+.MuiAccordionSummary-root {
+  min-height: 1rem !important;
+}
+
+.MuiAccordionSummary-root {
+  background: $background-accordion-title !important;
+  color: $color-accordion-title !important;
+}
+
+.MuiTypography-root {
+  font-size: 1.5rem !important;
+}
+
+.MuiAccordionSummary {
+  padding: 0.3rem 1.6rem !important;
+  min-height: 1rem !important;
+}
+
+.MuiAccordionDetails-root {
+  background-color: $background-accordion-panel !important;
+}

@@ -1,0 +1,45 @@
+@mixin respond ($breakpoint)
+    @if $breakpoint == phone-third
+        @media only screen and (max-width: 505px)
+            @content
+
+    @if $breakpoint == phone-second
+        @media only screen and (max-width: 568px)
+            @content
+
+    @if $breakpoint == phone-first
+        @media only screen and (max-width: 664px)
+            @content
+
+    @if $breakpoint == tab-port-third
+        @media only screen and (max-width: 756px)
+            @content
+
+    @if $breakpoint == tab-port-second
+        @media only screen and (max-width: 951px)
+            @content
+
+    @if $breakpoint == tab-port-first
+        @media only screen and (max-width: 1182px)
+            @content
+
+    @if $breakpoint == tab-land
+        @media only screen and (max-width: 1330px)
+            @content
+
+    @if $breakpoint == big-screen
+        @media only screen and (max-width: 1800px)
+            @content
+
+    // html
+    //     font-size: 62.5%
+    // @include respond(tab-port-first)
+    //     font-size: 50%
+    // @include respond(tab-port-second)
+    //     font-size: 40%
+    // @include respond(tab-port-third)
+    //     font-size: 35%
+    // @include respond(phone-first)
+    //     font-size: 30%
+    // @include respond(phone-second)
+    //     font-size: 30%
