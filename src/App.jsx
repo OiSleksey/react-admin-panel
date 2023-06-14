@@ -7,6 +7,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import LoginPage from './views/LoginPage/LoginPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <div className="container">
           <div className="container__main">App</div>
+          <LoginPage />
         </div>
       </PersistGate>
     </Provider>
