@@ -25,6 +25,7 @@ export default function Email({ width, label, ...props }) {
     type: 'email',
     variant: 'filled',
     info: null,
+    color: 'primary',
     // focused: false,
   };
 
@@ -33,10 +34,12 @@ export default function Email({ width, label, ...props }) {
   const changeProperties = (touched, error) => {
     if ((touched && error) === false) {
       setProperties({
-        ...properties,
-        error: null,
+        sx: { m: 1, width: `${width}ch` },
+        id: 'filled-search',
+        label: 'Email',
+        type: 'email',
+        variant: 'filled',
         info: null,
-        // focused: false,
       });
     }
     if ((touched && error) === undefined) {
@@ -47,22 +50,21 @@ export default function Email({ width, label, ...props }) {
         color: 'success',
         focused: true,
       });
-      console.log('green');
     }
     if (touched && error) {
       setProperties({
         ...properties,
         error: true,
         info: error,
-        // focused: false,
       });
     }
   };
+
   React.useEffect(() => {
     setTimeout(() => {
       changeProperties(meta.touched, meta.error);
     }, 500);
-  }, [meta.touched && meta.error && meta.value]);
+  }, [meta.touched && meta.error]);
 
   return (
     <div className="input-box">

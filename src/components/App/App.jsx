@@ -6,6 +6,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import LoginPage from '../../views/LoginPage/LoginPage';
 import PanelPage from '../../views/PanelPage/PanelPage';
+import NotFoundPage from '../../views/NotFoundPage/NotFoundPage';
+import ErrorServerPage from '../../views/ErrorServerPage/ErrorServerPage';
 import * as React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
@@ -13,6 +15,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
+import SnakeBar from '../ui/SnakeBar/SnakeBar';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -47,9 +50,12 @@ function App() {
       </div>
       <Router>
         <div className="container">
+          <SnakeBar />
           <Routes>
             <Route exact path="/" element={<PanelPage />} />
             <Route exact path="/login" element={<LoginPage />} />
+            <Route exact path="/error" element={<ErrorServerPage />} />
+            <Route exact path="/*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </Router>

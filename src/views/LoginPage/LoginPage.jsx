@@ -1,6 +1,8 @@
 import React from 'react';
 import './LoginPage.scss';
 import LoginForm from '../../components/forms/LoginForm/LoginForm';
+import SnakeBar from '../../components/ui/SnakeBar/SnakeBar';
+import { connect } from 'react-redux';
 
 const LoginPage = () => {
   return (
@@ -12,4 +14,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default connect(null)(LoginPage);

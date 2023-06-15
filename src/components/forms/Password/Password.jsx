@@ -35,8 +35,11 @@ export default function Password({ label, width, ...props }) {
   const changeProperties = (touched, error) => {
     if ((touched && error) === false) {
       setProperties({
-        ...properties,
-        error: null,
+        sx: { m: 1, width: `${width}ch` },
+        id: 'filled-search',
+        label: 'Email',
+        type: 'email',
+        variant: 'filled',
         info: null,
       });
     }

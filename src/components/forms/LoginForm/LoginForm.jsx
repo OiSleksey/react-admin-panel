@@ -10,13 +10,30 @@ import { connect } from 'react-redux';
 import { getTokenDispatch } from '../../../store/middleware/requestServerThunk';
 import { rememberAuthorized } from '../../../store/actions/requestsServer.actions';
 
-export let beAutorized = true;
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import SnakeBar from '../../ui/SnakeBar/SnakeBar';
+import { useNavigate } from 'react-router-dom';
 
-const LoginForm = ({ logIn, setRememberToken }) => {
+// export let beAutorized = true;
+
+const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    if (loggedIn) {
+      navigate('/');
+    }
+  };
+
+  React.useEffect(() => {
+    handleRedirect();
+  }, [loggedIn]);
+
   const initialValues = {
     email: '',
     password: '',
-    acceptedTerms: true, // added for our checkbox
+    acceptedTerms: true,
   };
   const userSchema = Yup.object().shape({
     email: Yup.string()
@@ -44,6 +61,7 @@ const LoginForm = ({ logIn, setRememberToken }) => {
     logIn(user);
     setRememberToken(beAutorized);
     // dispatch(logIn(user));
+    console.log('LoginPage ', loggedIn);
     resetForm();
   };
   const widthEmail = 35;
@@ -52,41 +70,52 @@ const LoginForm = ({ logIn, setRememberToken }) => {
   const widthBtn = 25;
 
   return (
-    <div className="login-form">
-      <h1 className="login-form__header">Sign In</h1>
-      <Formik
-        validateOnBlur={true}
-        validateOnChange={false}
-        initialValues={initialValues}
-        validationSchema={userSchema}
-        onSubmit={onSubmit}
-      >
-        <Form>
-          <Email
-            label="Email Address"
-            name="email"
-            type="email"
-            width={widthEmail}
-          />
-          <Password
-            label="Password"
-            name="password"
-            type="password"
-            width={widthPassword}
-          />
-          <CheckboxLabels name="acceptedTerms" width={widthCheked} />
-          <div className="login-form__submit">
-            <Btn
-              variant="contained"
-              type="submit"
-              text="Log In"
-              width={widthBtn}
-            />
-          </div>
-        </Form>
-      </Formik>
-    </div>
+    <Box sx={{ minWidth: 275 }}>
+      <Card elevation={10}>
+        <div className="login-form">
+          <SnakeBar />
+          <h1 className="login-form__header">Sign In</h1>
+          <Formik
+            validateOnBlur={true}
+            validateOnChange={false}
+            initialValues={initialValues}
+            validationSchema={userSchema}
+            onSubmit={onSubmit}
+          >
+            <Form>
+              <Email
+                label="Email Address"
+                name="email"
+                type="email"
+                width={widthEmail}
+              />
+              <Password
+                label="Password"
+                name="password"
+                type="password"
+                width={widthPassword}
+              />
+              <CheckboxLabels name="acceptedTerms" width={widthCheked} />
+              <div className="login-form__submit">
+                <Btn
+                  variant="contained"
+                  type="submit"
+                  text="Log In"
+                  width={widthBtn}
+                />
+              </div>
+            </Form>
+          </Formik>
+        </div>
+      </Card>
+    </Box>
   );
+};
+
+const mapState = state => {
+  return {
+    loggedIn: state.adminPanel.loggedIn,
+  };
 };
 
 const mapDispath = {
@@ -94,4 +123,4 @@ const mapDispath = {
   setRememberToken: rememberAuthorized,
 };
 
-export default connect(null, mapDispath)(LoginForm);
+export default connect(mapState, mapDispath)(LoginForm);
