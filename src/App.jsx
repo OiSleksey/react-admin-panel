@@ -14,7 +14,7 @@ function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <div className="container">
-          <div className="container__main">App</div>
+          <div className="container__main"></div>
           <LoginPage />
         </div>
       </PersistGate>

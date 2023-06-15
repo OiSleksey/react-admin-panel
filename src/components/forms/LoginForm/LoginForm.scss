@@ -1,11 +1,40 @@
 .login-form {
   border: 1px solid black;
   display: flex;
-  justify-content: center;
-  min-height: 100vh;
+  flex-direction: column;
   align-items: center;
+  // min-height: 100vh;
+  padding: 1rem;
+  align-items: center;
+  max-width: 30rem;
+  &__header {
+    text-transform: uppercase;
+  }
   &__submit {
     padding: 8px;
     text-align: center;
   }
+}
+
+.error-validation {
+  height: 25px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  &__message {
+    text-align: justify;
+    position: relative;
+    top: -10px;
+    font-size: 0.8rem;
+    color: #d32f2f;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }

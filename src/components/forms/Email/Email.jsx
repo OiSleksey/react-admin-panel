@@ -11,25 +11,65 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Formik, Form, useField } from 'formik';
+import * as Yup from 'yup';
 
-export default function Email() {
+export default function Email({ width, label, ...props }) {
   //controled
-  const [email, setEmail] = React.useState('');
+  const [field, meta] = useField(props);
+  const defaultProperties = {
+    error: null,
+    sx: { m: 1, width: `${width}ch` },
+    id: 'filled-search',
+    label: 'Email',
+    type: 'email',
+    variant: 'filled',
+    info: null,
+    // focused: false,
+  };
+
+  const [properties, setProperties] = React.useState(defaultProperties);
+
+  const changeProperties = (touched, error) => {
+    if ((touched && error) === false) {
+      setProperties({
+        ...properties,
+        error: null,
+        info: null,
+        // focused: false,
+      });
+    }
+    if ((touched && error) === undefined) {
+      setProperties({
+        ...properties,
+        error: null,
+        info: null,
+        color: 'success',
+        focused: true,
+      });
+      console.log('green');
+    }
+    if (touched && error) {
+      setProperties({
+        ...properties,
+        error: true,
+        info: error,
+        // focused: false,
+      });
+    }
+  };
+  React.useEffect(() => {
+    setTimeout(() => {
+      changeProperties(meta.touched, meta.error);
+    }, 500);
+  }, [meta.touched && meta.error && meta.value]);
 
   return (
-    <div>
-      <TextField
-        sx={{ m: 1, width: '35ch' }}
-        id="filled-search"
-        label="Email"
-        type="email"
-        variant="filled"
-        value={email}
-        onChange={event => {
-          console.log(email);
-          setEmail(event.target.value);
-        }}
-      />
+    <div className="input-box">
+      <TextField {...properties} {...field} {...props} />
+      <div className="error-validation" style={{ width: `${width}ch` }}>
+        <p className="error-validation__message">{properties.info}</p>
+      </div>
     </div>
   );
 }
