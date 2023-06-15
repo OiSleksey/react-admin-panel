@@ -10,13 +10,13 @@ export default function CheckboxLabels({ children, width, ...props }) {
   return (
     <div>
       <FormControlLabel
-        sx={{ margin: '8px', width: `${width}ch` }}
+        sx={{ margin: '8px', width: `${width}ch`, marginTop: 0 }}
         control={<Checkbox {...field} {...props} />}
         label="Keep me logged in"
       />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
+      {/* <div className="error-validation" style={{ width: `${width}ch` }}>
+        <p className="error-validation__message">{meta.info}</p>
+      </div> */}
     </div>
   );
 }
