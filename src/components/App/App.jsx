@@ -5,7 +5,9 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import LoginPage from '../../views/LoginPage/LoginPage';
+import PanelPage from '../../views/PanelPage/PanelPage';
 import * as React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -14,22 +16,21 @@ import Box from '@mui/material/Box';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
+const styleBody = {
+  // display: 'flex',
+  width: '100%',
+  // alignItems: 'center',
+  // justifyContent: 'center',
+  bgcolor: 'background.default',
+  color: 'text.primary',
+  borderRadius: 1,
+};
+
 function App() {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        bgcolor: 'background.default',
-        color: 'text.primary',
-        borderRadius: 1,
-        p: 3,
-      }}
-    >
+    <Box sx={styleBody}>
       <div className="change-theme">
         {theme.palette.mode} mode
         <IconButton
@@ -44,11 +45,14 @@ function App() {
           )}
         </IconButton>
       </div>
-
-      <div className="container">
-        <div className="container__main"></div>
-        <LoginPage />
-      </div>
+      <Router>
+        <div className="container">
+          <Routes>
+            <Route exact path="/" element={<PanelPage />} />
+            <Route exact path="/login" element={<LoginPage />} />
+          </Routes>
+        </div>
+      </Router>
     </Box>
   );
 }

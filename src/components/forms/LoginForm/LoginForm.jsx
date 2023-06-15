@@ -1,26 +1,18 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Email from '../Email/Email';
 import Password from '../Password/Password';
 import CheckboxLabels from '../ChackboxLabel/ChackboxLabel';
 import Btn from '../Btn/Btn';
-import { Formik, Form, Field, ErrorMessage, useField } from 'formik';
+import { Formik, Form } from 'formik';
 import './LoginForm.scss';
-// import Button from '@mui/material/Button';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
+import { getTokenDispatch } from '../../../store/middleware/requestServerThunk';
+import { rememberAuthorized } from '../../../store/actions/requestsServer.actions';
 
-export default function LoginForm() {
+export let beAutorized = true;
+
+const LoginForm = ({ logIn, setRememberToken }) => {
   const initialValues = {
     email: '',
     password: '',
@@ -42,10 +34,15 @@ export default function LoginForm() {
       .required('Password is a required field'),
   });
   const onSubmit = (values, { resetForm }) => {
+    // beAutorized = values.acceptedTerms;
+    const beAutorized = values.acceptedTerms;
+
     const user = {
       email: values.email,
       password: values.password,
     };
+    logIn(user);
+    setRememberToken(beAutorized);
     // dispatch(logIn(user));
     resetForm();
   };
@@ -90,4 +87,11 @@ export default function LoginForm() {
       </Formik>
     </div>
   );
-}
+};
+
+const mapDispath = {
+  logIn: getTokenDispatch,
+  setRememberToken: rememberAuthorized,
+};
+
+export default connect(null, mapDispath)(LoginForm);
