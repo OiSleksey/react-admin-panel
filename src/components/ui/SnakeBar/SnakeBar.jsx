@@ -4,17 +4,41 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { connect } from 'react-redux';
+import {
+  errorMessage,
+  positiveMessage,
+} from '../../../store/actions/ui.actions';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const SnakeBar = () => {
-  const [open, setOpen] = React.useState(false);
+const openMessageTime = 3000;
 
-  const handleClick = () => {
+const SnakeBar = ({
+  resErrorMessage,
+  resPositiveMessage,
+  typeSnake,
+  message,
+}) => {
+  const openSnakeBar = () => {
     setOpen(true);
   };
+
+  const closeSnakeBar = () => {
+    resErrorMessage(null);
+    resPositiveMessage(null);
+    setOpen(false);
+  };
+
+  React.useEffect(() => {
+    if (typeSnake === undefined && message === undefined) return;
+    openSnakeBar();
+    setTimeout(() => {
+      closeSnakeBar();
+    }, openMessageTime);
+  }, [typeSnake, message]);
+  const [open, setOpen] = React.useState(false);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -25,12 +49,20 @@ const SnakeBar = () => {
 
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>
-      {/* <Button variant="outlined" onClick={handleClick}>
+      {/* <Button variant="outlined" onClick={openSnakeBar}>
         Open success snackbar
       </Button> */}
-      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
-          This is a success message!
+      <Snackbar
+        open={open}
+        autoHideDuration={openMessageTime}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleClose}
+          severity={typeSnake}
+          sx={{ width: '100%' }}
+        >
+          {message}
         </Alert>
       </Snackbar>
       {/* <Alert severity="error">This is an error message!</Alert>
@@ -41,8 +73,13 @@ const SnakeBar = () => {
   );
 };
 
-const mapState = state => {
-  return {};
+// const mapState = state => {
+//   return {};
+// };
+
+const mapDispath = {
+  resErrorMessage: errorMessage,
+  resPositiveMessage: positiveMessage,
 };
 
-export default connect(mapState)(SnakeBar);
+export default connect(null, mapDispath)(SnakeBar);

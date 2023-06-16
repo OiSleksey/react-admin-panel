@@ -26,8 +26,8 @@ export const getTokenDispatch = data => {
           return;
         }
         dispatch(uiActions.incorrectFunction(null));
-        dispatch(uiActions.positiveMessage('Hello Admin'));
-        dispatch(authActions.tokenAuth(res));
+        dispatch(uiActions.positiveMessage(`Hello ${res.name}`));
+        dispatch(authActions.tokenAuth(res.code));
         dispatch(uiActions.loggedIn(true));
         dispatch(uiActions.serverWork(true));
       })

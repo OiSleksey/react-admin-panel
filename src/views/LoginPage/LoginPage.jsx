@@ -15,7 +15,6 @@ const LoginPage = ({ loggedIn }) => {
   };
 
   React.useEffect(() => {
-    console.log(loggedIn);
     handleRedirect();
   }, [loggedIn]);
 
