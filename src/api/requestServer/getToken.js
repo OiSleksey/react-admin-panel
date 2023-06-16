@@ -40,9 +40,9 @@ export const getToken = data => {
   console.log(data);
   return new Promise(function (res, rej) {
     //good token
-    // setTimeout(() => res('fmplementatio09of325432hatGpt234response'), 500);
+    setTimeout(() => res('fmplementatio09of325432hatGpt234response'), 500);
     // //status 400
-    setTimeout(() => res('status 400'), 500);
+    // setTimeout(() => res('status 400'), 500);
     //catch 1
     // if (count === 0)
     //   setTimeout(() => {

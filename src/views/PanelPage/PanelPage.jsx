@@ -1,20 +1,22 @@
 import * as React from 'react';
 import './PanelPage.scss';
 import { connect } from 'react-redux';
+import { getLoggedIn } from '../../store/selectors/getTokenLocalStorage.selector';
 import { useNavigate } from 'react-router-dom';
-import { getTokenLocalStorage } from '../../store/selectors/getTokenLocalStorage.selector';
-const PanelPage = ({ code }) => {
+
+const PanelPage = ({ loggedIn }) => {
   const navigate = useNavigate();
 
-  const handleRedirect = value => {
-    if (!value) {
+  const handleRedirect = () => {
+    if (!loggedIn) {
       navigate('/login');
     }
   };
 
   React.useEffect(() => {
-    handleRedirect(code);
-  }, []);
+    console.log(loggedIn);
+    handleRedirect();
+  }, [loggedIn]);
 
   return (
     <section className="panel-page">
@@ -25,11 +27,8 @@ const PanelPage = ({ code }) => {
 
 const mapState = state => {
   return {
-    code: getTokenLocalStorage(state),
+    loggedIn: getLoggedIn(state),
   };
 };
 
-// const mapDispath = {
-//   logIn: getTokenDispatch,
-// }
 export default connect(mapState, null)(PanelPage);

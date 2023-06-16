@@ -9,27 +9,12 @@ import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { getTokenDispatch } from '../../../store/middleware/requestsServer.middleware';
 import { rememberAuthorized } from '../../../store/actions/authorization.actions';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import SnakeBar from '../../ui/SnakeBar/SnakeBar';
-import { useNavigate } from 'react-router-dom';
 
 // export let beAutorized = true;
 
 const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
-  const navigate = useNavigate();
-
-  const handleRedirect = () => {
-    if (loggedIn) {
-      navigate('/');
-    }
-  };
-
-  React.useEffect(() => {
-    handleRedirect();
-  }, [loggedIn]);
-
   const initialValues = {
     email: '',
     password: '',
@@ -61,7 +46,6 @@ const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
     logIn(user);
     setRememberToken(beAutorized);
     // dispatch(logIn(user));
-    console.log('LoginPage ', loggedIn);
     resetForm();
   };
   const widthEmail = 35;
@@ -73,7 +57,6 @@ const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
     <Box sx={{ minWidth: 275 }}>
       <Card elevation={10}>
         <div className="login-form">
-          <SnakeBar />
           <h1 className="login-form__header">Sign In</h1>
           <Formik
             validateOnBlur={true}
