@@ -16,11 +16,18 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { requestsServer } from './reducers/requestsServer.reducer';
+import { authorizationReducer } from './reducers/authorization.reducer';
+import { uiReducer } from './reducers/ui.reducer';
+import { dataUsersReducer } from './reducers/dataUsers.reducer';
 // import { beAutorized } from '../components/forms/LoginForm/LoginForm';
 // console.log(beAutorized);
+// const allReducers = combineReducers({
+//   adminPanel: requestsServer,
+// });
 const allReducers = combineReducers({
-  adminPanel: requestsServer,
+  authorization: authorizationReducer,
+  ui: uiReducer,
+  dataUsers: dataUsersReducer,
 });
 
 const persistConfig = {

@@ -1,6 +1,8 @@
 import { getToken } from '../../api/requestServer/getToken';
 // import { getDateCurrency } from '../../api/getTime';
-import * as actions from '../actions/requestsServer.actions';
+import * as authActions from '../actions/authorization.actions';
+import * as uiActions from '../actions/ui.actions';
+import * as dataUsersActions from '../actions/dataUsers.actions';
 
 let countError = 0;
 
@@ -12,31 +14,33 @@ export const getTokenDispatch = data => {
       .then(res => {
         countError = 0;
         if (res === 'status 400') {
-          dispatch(actions.loggedIn(false));
-          dispatch(actions.serverWork(true));
-          dispatch(actions.wrongGetTokenCode(false));
+          dispatch(uiActions.loggedIn(false));
+          dispatch(uiActions.serverWork(true));
+          dispatch(uiActions.errorMessage('getToken status 400'));
           return;
         }
         if (res === 'status 0') {
-          dispatch(actions.serverWork(true));
-          dispatch(actions.wrongGetTokenCode(true));
+          dispatch(uiActions.serverWork(true));
+          dispatch(uiActions.errorMessage('getToken status 0'));
+          dispatch(uiActions.incorrectFunction('Incorrect getToken'));
           return;
         }
-        dispatch(actions.wrongGetTokenCode(false));
-        dispatch(actions.tokenAuth(res));
-        dispatch(actions.loggedIn(true));
-        dispatch(actions.serverWork(true));
+        dispatch(uiActions.incorrectFunction(null));
+        dispatch(uiActions.positiveMessage('Hello Admin'));
+        dispatch(authActions.tokenAuth(res));
+        dispatch(uiActions.loggedIn(true));
+        dispatch(uiActions.serverWork(true));
       })
       .catch(rej => {
         if (countError === 0) {
-          dispatch(actions.serverWork(true));
-          dispatch(actions.wrongGetTokenCode(true));
+          dispatch(uiActions.serverWork(true));
+          dispatch(uiActions.incorrectFunction('Error in getToken'));
           countError++;
           dispatch(getTokenDispatch(data, noCors));
         }
         if (countError === 1) {
-          dispatch(actions.wrongGetTokenCode(false));
-          dispatch(actions.serverWork(false));
+          dispatch(uiActions.incorrectFunction(null));
+          dispatch(uiActions.serverWork(false));
           countError++;
         }
       });

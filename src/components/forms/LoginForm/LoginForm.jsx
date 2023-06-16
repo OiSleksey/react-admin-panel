@@ -7,8 +7,8 @@ import { Formik, Form } from 'formik';
 import './LoginForm.scss';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
-import { getTokenDispatch } from '../../../store/middleware/requestServerThunk';
-import { rememberAuthorized } from '../../../store/actions/requestsServer.actions';
+import { getTokenDispatch } from '../../../store/middleware/requestsServer.middleware';
+import { rememberAuthorized } from '../../../store/actions/authorization.actions';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -114,7 +114,7 @@ const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
 
 const mapState = state => {
   return {
-    loggedIn: state.adminPanel.loggedIn,
+    loggedIn: state.ui.loggedIn,
   };
 };
 
