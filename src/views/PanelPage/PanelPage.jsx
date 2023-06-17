@@ -4,8 +4,14 @@ import { connect } from 'react-redux';
 import { getLoggedIn } from '../../store/selectors/getTokenLocalStorage.selector';
 import { useNavigate } from 'react-router-dom';
 import { getAllUsersDispath } from '../../store/middleware/requestsServer.middleware';
+import { activePanel } from '../../store/actions/ui.actions';
 
-const PanelPage = ({ loggedIn, getAllUserChallenge, token }) => {
+const PanelPage = ({
+  loggedIn,
+  getAllUserChallenge,
+  token,
+  setActivePanel,
+}) => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
@@ -15,6 +21,7 @@ const PanelPage = ({ loggedIn, getAllUserChallenge, token }) => {
   };
 
   React.useEffect(() => {
+    setActivePanel('users');
     console.log(loggedIn);
     handleRedirect();
   }, [loggedIn]);
@@ -40,6 +47,7 @@ const mapState = state => {
 };
 
 const mapDispatch = {
+  setActivePanel: activePanel,
   getAllUserChallenge: getAllUsersDispath,
 };
 

@@ -5,6 +5,7 @@ import {
   ERROR_ANSWER,
   POSITIVE_ANSWER,
   ACTIVE_PANEL,
+  SET_THEME_MODE,
 } from '../actions/ui.actions';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
   errorAnswer: null,
   positiveAnswer: null,
   incorrectFunction: null,
-  activePanel: 'users',
+  activePanel: 'login',
+  themeMode: 'dark',
 };
 
 export const uiReducer = (state = initialState, action) => {
@@ -52,6 +54,12 @@ export const uiReducer = (state = initialState, action) => {
       return {
         ...state,
         activePanel: action.payload.data,
+      };
+    }
+    case SET_THEME_MODE: {
+      return {
+        ...state,
+        themeMode: action.payload.data,
       };
     }
     default:

@@ -4,6 +4,7 @@ export const INCORRECT_FUNCTION = 'INCORRECT_FUNCTION';
 export const ERROR_ANSWER = 'ERROR_ANSWER';
 export const POSITIVE_ANSWER = 'POSITIVE_ANSWER';
 export const ACTIVE_PANEL = 'ACTIVE_PANEL';
+export const SET_THEME_MODE = 'SET_THEME_MODE';
 
 export const loggedIn = data => {
   return {
@@ -50,6 +51,14 @@ export const positiveMessage = data => {
 export const activePanel = data => {
   return {
     type: ACTIVE_PANEL,
+    payload: {
+      data,
+    },
+  };
+};
+export const setThemeMode = data => {
+  return {
+    type: SET_THEME_MODE,
     payload: {
       data,
     },

@@ -8,21 +8,40 @@ import PanelPage from '../../views/PanelPage/PanelPage';
 import NotFoundPage from '../../views/NotFoundPage/NotFoundPage';
 import ErrorServerPage from '../../views/ErrorServerPage/ErrorServerPage';
 import './Main.scss';
+import ToggleColorBtn from '../ui/ToggleColorBtn/ToggleColorBtn';
 
-const Main = ({ propsSnake }) => {
+import Box from '@mui/material/Box';
+import SettingPage from '../../views/SettingPage/SettingPage';
+import AvatarPage from '../../views/AvatarPage/AvatarPage';
+
+const Main = ({ propsSnake, handleClick, stateMode }) => {
   return (
     <div className="main">
-      <Router>
-        <div className="container">
-          <SnakeBar {...propsSnake} />
-          <Routes>
-            <Route exact path="/" element={<PanelPage />} />
-            <Route exact path="/login" element={<LoginPage />} />
-            <Route exact path="/error" element={<ErrorServerPage />} />
-            <Route exact path="/*" element={<NotFoundPage />} />
-          </Routes>
-        </div>
-      </Router>
+      <Box
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          height: { xs: '4rem', sm: '0' },
+          width: { xs: '100%', sm: '0' },
+        }}
+      ></Box>
+
+      <div className="container">
+        <SnakeBar {...propsSnake} />
+        <Routes>
+          <Route exact path="/" element={<PanelPage />} />
+          <Route exact path="/login" element={<LoginPage />} />
+          <Route exact path="/error" element={<ErrorServerPage />} />
+          <Route
+            exact
+            path="/setting"
+            element={
+              <SettingPage handleClick={handleClick} stateMode={stateMode} />
+            }
+          />
+          <Route exact path="/avatar" element={<AvatarPage />} />
+          <Route exact path="/*" element={<NotFoundPage />} />
+        </Routes>
+      </div>
     </div>
   );
 };

@@ -4,8 +4,9 @@ import LoginForm from '../../components/forms/LoginForm/LoginForm';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getLoggedIn } from '../../store/selectors/getTokenLocalStorage.selector';
+import { activePanel } from '../../store/actions/ui.actions';
 
-const LoginPage = ({ loggedIn }) => {
+const LoginPage = ({ loggedIn, setActivePanel }) => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
@@ -15,6 +16,7 @@ const LoginPage = ({ loggedIn }) => {
   };
 
   React.useEffect(() => {
+    setActivePanel('login');
     handleRedirect();
   }, [loggedIn]);
 
@@ -33,4 +35,8 @@ const mapState = state => {
   };
 };
 
-export default connect(mapState)(LoginPage);
+const mapDispatch = {
+  setActivePanel: activePanel,
+};
+
+export default connect(mapState, mapDispatch)(LoginPage);

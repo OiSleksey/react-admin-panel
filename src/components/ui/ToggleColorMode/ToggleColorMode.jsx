@@ -5,18 +5,20 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import * as React from 'react';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
-import Main from '../Main/Main';
+import Main from '../../Main/Main';
 import './ToggleColorMode.scss';
-import DrawerAppBar from '../AppBar/DrawerAppBar';
+import DrawerAppBar from '../DrawerAppBar/DrawerAppBar';
+import { getThemeMode } from '../../../store/selectors/ui.selector';
+import { setThemeMode } from '../../../store/actions/ui.actions';
+import './ToggleColorMode.scss';
+
+import { connect } from 'react-redux';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 const styleBody = {
-  // display: 'flex',
+  display: 'flex',
   width: '100%',
   // alignItems: 'center',
   // justifyContent: 'center',
@@ -28,34 +30,25 @@ const styleBody = {
 function Component() {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
+
+  const handleClick = () => {
+    colorMode.toggleColorMode();
+  };
   return (
     <Box sx={styleBody}>
       <DrawerAppBar />
-      <div className="change-theme">
-        {theme.palette.mode} mode
-        <IconButton
-          sx={{ ml: 1 }}
-          onClick={colorMode.toggleColorMode}
-          color="inherit"
-        >
-          {theme.palette.mode === 'dark' ? (
-            <Brightness7Icon />
-          ) : (
-            <Brightness4Icon />
-          )}
-        </IconButton>
-      </div>
-      <Main />
+      <Main handleClick={handleClick} stateMode={theme.palette.mode} />
     </Box>
   );
 }
 
-export default function ToggleColorMode() {
-  const [mode, setMode] = React.useState('light');
+const ToggleColorMode = ({ themeModeColor, setThemeModeColor }) => {
+  const [mode, setMode] = React.useState(themeModeColor);
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
         setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+        setThemeModeColor(mode === 'light' ? 'dark' : 'light');
       },
     }),
     []
@@ -78,4 +71,16 @@ export default function ToggleColorMode() {
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
-}
+};
+
+const mapState = state => {
+  return {
+    themeModeColor: getThemeMode(state),
+  };
+};
+
+const mapDispath = {
+  setThemeModeColor: setThemeMode,
+};
+
+export default connect(mapState, mapDispath)(ToggleColorMode);
