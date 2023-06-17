@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Main from '../Main/Main';
 import './ToggleColorMode.scss';
+import DrawerAppBar from '../AppBar/DrawerAppBar';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -29,6 +30,7 @@ function Component() {
   const colorMode = React.useContext(ColorModeContext);
   return (
     <Box sx={styleBody}>
+      <DrawerAppBar />
       <div className="change-theme">
         {theme.palette.mode} mode
         <IconButton

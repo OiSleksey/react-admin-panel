@@ -37,3 +37,9 @@ export const setPropsSnake = state => {
   }
   return null;
 };
+
+export const getActivePanel = state => {
+  if (!state || !state.ui || !state.ui.activePanel) return null;
+  const activePanel = state.ui.activePanel;
+  return activePanel;
+};

@@ -3,6 +3,7 @@ export const SERVER_WORK = 'SERVER_WORK';
 export const INCORRECT_FUNCTION = 'INCORRECT_FUNCTION';
 export const ERROR_ANSWER = 'ERROR_ANSWER';
 export const POSITIVE_ANSWER = 'POSITIVE_ANSWER';
+export const ACTIVE_PANEL = 'ACTIVE_PANEL';
 
 export const loggedIn = data => {
   return {
@@ -41,6 +42,14 @@ export const errorMessage = data => {
 export const positiveMessage = data => {
   return {
     type: POSITIVE_ANSWER,
+    payload: {
+      data,
+    },
+  };
+};
+export const activePanel = data => {
+  return {
+    type: ACTIVE_PANEL,
     payload: {
       data,
     },

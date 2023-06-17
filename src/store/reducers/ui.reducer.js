@@ -4,6 +4,7 @@ import {
   INCORRECT_FUNCTION,
   ERROR_ANSWER,
   POSITIVE_ANSWER,
+  ACTIVE_PANEL,
 } from '../actions/ui.actions';
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   errorAnswer: null,
   positiveAnswer: null,
   incorrectFunction: null,
+  activePanel: 'users',
 };
 
 export const uiReducer = (state = initialState, action) => {
@@ -44,6 +46,12 @@ export const uiReducer = (state = initialState, action) => {
       return {
         ...state,
         positiveAnswer: action.payload.data,
+      };
+    }
+    case ACTIVE_PANEL: {
+      return {
+        ...state,
+        activePanel: action.payload.data,
       };
     }
     default:
