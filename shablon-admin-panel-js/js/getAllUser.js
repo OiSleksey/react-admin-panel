@@ -110,7 +110,7 @@ async function getTokenLocalStorage() {
 // Через фетч.
 function getAllUsers(code, isCorse) {
   console.log('get request');
-  const url = 'http://91.196.52.62:8080/api_v1/Admin/All';
+  const url = 'http://91.196.52.61:8080/api_v1/Admin/All';
   const authorizationCode = `Bearer ${code}`;
   return fetch(url, {
     mode: isCorse ? 'cors' : 'no-cors',

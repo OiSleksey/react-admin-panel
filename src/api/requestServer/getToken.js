@@ -1,8 +1,9 @@
 import axios from 'axios';
 const url = 'http://91.196.52.61:8080/api_v1/Security/Login';
 
-export function getToken(formData) {
+export function getToken(formData, cors) {
   return fetch(url, {
+    mode: cors,
     method: 'POST',
     headers: { 'Content-Type': 'application/json;utc-8' },
     body: JSON.stringify(formData),
@@ -16,6 +17,11 @@ export function getToken(formData) {
         const message = 'status 400';
         return message;
       }
+      if (res.status === 404) {
+        console.error('status - 404');
+        const message = 'status 404';
+        return message;
+      }
       if (res.status === 0) {
         const message = 'status 0';
         return message;
@@ -24,6 +30,7 @@ export function getToken(formData) {
     })
     .catch(err => {
       console.error(err);
+      return null;
     });
 }
 

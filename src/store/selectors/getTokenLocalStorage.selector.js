@@ -21,7 +21,7 @@ export const setPropsSnake = state => {
       typeSnake,
       message,
     };
-    console.log(propsSnake);
+    // console.log(propsSnake);
     return propsSnake;
   }
 
@@ -32,7 +32,7 @@ export const setPropsSnake = state => {
       typeSnake,
       message,
     };
-    console.log(propsSnake);
+    // console.log(propsSnake);
     return propsSnake;
   }
   return null;
