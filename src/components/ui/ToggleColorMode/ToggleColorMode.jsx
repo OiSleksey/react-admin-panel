@@ -8,7 +8,7 @@ import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Main from '../../Main/Main';
 import './ToggleColorMode.scss';
-import DrawerAppBar from '../DrawerAppBar/DrawerAppBar';
+import DrawerAppBar from '../../drawerBar/DrawerAppBar/DrawerAppBar';
 import { getThemeMode } from '../../../store/selectors/ui.selector';
 import { setThemeMode } from '../../../store/actions/ui.actions';
 import './ToggleColorMode.scss';
@@ -48,7 +48,9 @@ const ToggleColorMode = ({ themeModeColor, setThemeModeColor }) => {
     () => ({
       toggleColorMode: () => {
         setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
-        setThemeModeColor(mode === 'light' ? 'dark' : 'light');
+        console.log(mode);
+        // console.log(typeof mode);
+        // setThemeModeColor(mode);
       },
     }),
     []

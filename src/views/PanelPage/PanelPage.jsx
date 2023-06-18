@@ -5,15 +5,10 @@ import { getLoggedIn } from '../../store/selectors/getTokenLocalStorage.selector
 import { useNavigate } from 'react-router-dom';
 import { getAllUsersDispath } from '../../store/middleware/requestsServer.middleware';
 import { activePanel } from '../../store/actions/ui.actions';
-import DrawerPanelBar from '../../components/ui/DrawerPanelBar/DrawerPanelBar';
+import DrawerPanelBar from '../../components/drawerBar/DrawerPanelBar/DrawerPanelBar';
 import EnhancedTable from '../../components/table/EnhancedTable/EnhancedTable';
 
-const PanelPage = ({
-  loggedIn,
-  getAllUserChallenge,
-  token,
-  setActivePanel,
-}) => {
+const PanelPage = ({ loggedIn, getAllUser, token, setActivePanel }) => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
@@ -24,20 +19,20 @@ const PanelPage = ({
 
   React.useEffect(() => {
     setActivePanel('users');
-    console.log(loggedIn);
+    // console.log(loggedIn);
     handleRedirect();
   }, [loggedIn]);
 
-  const handleClick = () => {
-    getAllUserChallenge(token);
-  };
+  // const handleClick = () => {
+  //   getAllUser(token);
+  // };
   return (
     <section className="panel-page">
       <DrawerPanelBar />
       <EnhancedTable />
-      <button onClick={handleClick} type="button">
+      {/* <button onClick={handleClick} type="button">
         Get all user
-      </button>
+      </button> */}
     </section>
   );
 };
@@ -51,7 +46,7 @@ const mapState = state => {
 
 const mapDispatch = {
   setActivePanel: activePanel,
-  getAllUserChallenge: getAllUsersDispath,
+  getAllUser: getAllUsersDispath,
 };
 
 export default connect(mapState, mapDispatch)(PanelPage);

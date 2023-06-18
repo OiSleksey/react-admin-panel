@@ -120,7 +120,15 @@ export default function EnhancedTableHead(props) {
   const createSortHandler = property => event => {
     onRequestSort(event, property);
   };
-
+  const styleTableCell = (width, padding) => {
+    const minWidth = width ? `${width}px` : null;
+    const paddingRight = padding ? `${padding}px` : null;
+    const style = {
+      minWidth,
+      paddingRight,
+    };
+    return style;
+  };
   return (
     <TableHead>
       <TableRow>
@@ -140,7 +148,7 @@ export default function EnhancedTableHead(props) {
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
-            sx={`min-width:${headCell.minWidth}px;padding-right: ${headCell.paddingRight}px`}
+            sx={styleTableCell(headCell.minWidth, headCell.paddingRight)}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel

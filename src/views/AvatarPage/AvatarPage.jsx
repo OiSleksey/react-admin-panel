@@ -13,7 +13,7 @@ const AvatarPage = ({ loggedIn }) => {
     }
   };
   React.useEffect(() => {
-    console.log(loggedIn);
+    // console.log(loggedIn);
     handleRedirect();
   }, [loggedIn]);
 

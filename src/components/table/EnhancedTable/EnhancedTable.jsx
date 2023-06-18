@@ -10,11 +10,12 @@ import Switch from '@mui/material/Switch';
 import './EnhancedTable.scss';
 import EnhancedTableHead from '../EnhancedTableHead/EnhancedTableHead';
 import EnhancedTableToolbar from '../EnhancedTableToolbar/EnhancedTableToolbar';
-import EnhancedTableBody, {
-  rows,
-} from '../EnhancedTableBody/EnhancedTableBody';
+import EnhancedTableBody from '../EnhancedTableBody/EnhancedTableBody';
+import { getAllUsersArr } from '../../../store/selectors/dataUsers.selectror';
+import { connect } from 'react-redux';
 
-export default function EnhancedTable() {
+const EnhancedTable = ({ allUsersArray }) => {
+  const rows = allUsersArray;
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
@@ -53,7 +54,7 @@ export default function EnhancedTable() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
+      <Paper sx={{ width: '100%', mb: 2, position: 'relative' }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer sx={{ maxHeight: 1440, overflowX: 'auto' }}>
           <Table
@@ -82,6 +83,11 @@ export default function EnhancedTable() {
             />
           </Table>
         </TableContainer>
+        {/* <FormControlLabel
+          control={<Switch checked={dense} onChange={handleChangeDense} />}
+          label="Dense padding"
+          sx={{ position: 'absolute', bottom: '0' }}
+        /> */}
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
@@ -90,12 +96,17 @@ export default function EnhancedTable() {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          sx={{ alignItems: 'center' }}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </Box>
   );
-}
+};
+
+// flex-shrink: 0;
+const mapState = state => {
+  return {
+    allUsersArray: getAllUsersArr(state),
+  };
+};
+export default connect(mapState)(EnhancedTable);

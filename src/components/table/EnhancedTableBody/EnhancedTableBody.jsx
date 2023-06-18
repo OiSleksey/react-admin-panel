@@ -4,244 +4,36 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
+import { getAllUsersArr } from '../../../store/selectors/dataUsers.selectror';
+import { connect } from 'react-redux';
 
-function createData(
-  id,
-  createdAt,
-  name,
-  email,
-  phone,
-  homePhone,
-  hireDate,
-  dateOfBirth,
-  lastLoginAt,
-  blocked,
-  role
-) {
-  return {
-    id,
-    createdAt,
-    name,
-    email,
-    phone,
-    homePhone,
-    hireDate,
-    dateOfBirth,
-    lastLoginAt,
-    blocked,
-    role,
-  };
-}
-export const rows = [
-  createData(
-    1,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + true,
-    'admin'
-  ),
-  createData(
-    2,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    3,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    4,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    5,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    6,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    7,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    8,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    9,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    10,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    11,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    12,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    13,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    14,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    15,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-  createData(
-    16,
-    '2023-04-30T21:02:22.4526204',
-    'Admin admiN',
-    'admin@admin.com',
-    '+10961111144',
-    '+380777744345',
-    '2023-04-30T21:02:22.4545659',
-    '0001-01-01T00:00:00',
-    '2023-06-18T10:40:27.355031',
-    '' + false,
-    'admin'
-  ),
-];
+// function createData(
+//   id,
+//   createdAt,
+//   name,
+//   email,
+//   phone,
+//   homePhone,
+//   hireDate,
+//   dateOfBirth,
+//   lastLoginAt,
+//   blocked,
+//   role
+// ) {
+//   return {
+//     id,
+//     createdAt,
+//     name,
+//     email,
+//     phone,
+//     homePhone,
+//     hireDate,
+//     dateOfBirth,
+//     lastLoginAt,
+//     blocked,
+//     role,
+//   };
+// }
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -271,10 +63,23 @@ function stableSort(array, comparator) {
   return stabilizedThis.map(el => el[0]);
 }
 
-export default function EnhancedTableBody(props) {
-  const { selected, setSelected, order, orderBy, page, dense, rowsPerPage } =
-    props;
+const EnhancedTableBody = props => {
+  const {
+    selected,
+    setSelected,
+    order,
+    orderBy,
+    page,
+    dense,
+    rowsPerPage,
+    allUsersArray,
+  } = props;
 
+  // React.useEffect(() => {
+  //   console.log(allUsersArray);
+  // }, [allUsersArray]);
+
+  const rows = allUsersArray;
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
@@ -367,4 +172,223 @@ export default function EnhancedTableBody(props) {
       )}
     </TableBody>
   );
-}
+};
+
+const mapState = state => {
+  return {
+    allUsersArray: getAllUsersArr(state),
+  };
+};
+
+export default connect(mapState)(EnhancedTableBody);
+
+// export const rows = [
+//   createData(
+//     1,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + true,
+//     'admin'
+//   ),
+//   createData(
+//     2,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     3,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     4,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     5,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     6,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     7,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     8,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     9,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     10,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     11,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     12,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     13,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     14,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     15,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+//   createData(
+//     16,
+//     '2023-04-30T21:02:22.4526204',
+//     'Admin admiN',
+//     'admin@admin.com',
+//     '+10961111144',
+//     '+380777744345',
+//     '2023-04-30T21:02:22.4545659',
+//     '0001-01-01T00:00:00',
+//     '2023-06-18T10:40:27.355031',
+//     '' + false,
+//     'admin'
+//   ),
+// ];

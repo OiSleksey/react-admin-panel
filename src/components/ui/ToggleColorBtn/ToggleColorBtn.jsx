@@ -3,9 +3,14 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import IconButton from '@mui/material/IconButton';
 import './ToggleColorBtn.scss';
+import { connect } from 'react-redux';
+import { setThemeMode } from '../../../store/actions/ui.actions';
 
-const ToggleColorBtn = ({ handleClick, stateMode }) => {
-  console.log(stateMode);
+const ToggleColorBtn = ({ handleClick, stateMode, setThemeModeColor }) => {
+  React.useEffect(() => {
+    setThemeModeColor(stateMode);
+  }, [stateMode]);
+
   return (
     <div className="change-theme">
       {stateMode} mode
@@ -16,4 +21,8 @@ const ToggleColorBtn = ({ handleClick, stateMode }) => {
   );
 };
 
-export default ToggleColorBtn;
+const mapDispath = {
+  setThemeModeColor: setThemeMode,
+};
+
+export default connect(null, mapDispath)(ToggleColorBtn);
