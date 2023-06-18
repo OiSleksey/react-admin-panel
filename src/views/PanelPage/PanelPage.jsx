@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAllUsersDispath } from '../../store/middleware/requestsServer.middleware';
 import { activePanel } from '../../store/actions/ui.actions';
 import DrawerPanelBar from '../../components/ui/DrawerPanelBar/DrawerPanelBar';
-import EnhancedTable from '../../components/ui/EnhancedTable/EnhancedTable';
+import EnhancedTable from '../../components/table/EnhancedTable/EnhancedTable';
 
 const PanelPage = ({
   loggedIn,

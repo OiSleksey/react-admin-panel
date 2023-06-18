@@ -61,6 +61,7 @@ export default function DrawerPanelBar() {
       sx={{
         flexGrow: 1,
         display: 'flex',
+        marginBottom: '1rem',
       }}
     >
       <AppBar position="static">

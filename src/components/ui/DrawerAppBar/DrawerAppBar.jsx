@@ -216,6 +216,7 @@ const DrawerAppBar = ({ activePanel, setActivePanel, isLoggin, window }) => {
           >
             <Link to="/">
               <PeopleAltIcon
+                hover
                 sx={{
                   fontSize: '50px',
                   // display: { sm: 'none' },
