@@ -5,6 +5,8 @@ import { getLoggedIn } from '../../store/selectors/getTokenLocalStorage.selector
 import { useNavigate } from 'react-router-dom';
 import { getAllUsersDispath } from '../../store/middleware/requestsServer.middleware';
 import { activePanel } from '../../store/actions/ui.actions';
+import DrawerPanelBar from '../../components/ui/DrawerPanelBar/DrawerPanelBar';
+import EnhancedTable from '../../components/ui/EnhancedTable/EnhancedTable';
 
 const PanelPage = ({
   loggedIn,
@@ -31,7 +33,8 @@ const PanelPage = ({
   };
   return (
     <section className="panel-page">
-      <h1>Panel</h1>
+      <DrawerPanelBar />
+      <EnhancedTable />
       <button onClick={handleClick} type="button">
         Get all user
       </button>

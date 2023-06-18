@@ -25,7 +25,7 @@ const Main = ({ propsSnake, handleClick, stateMode }) => {
         }}
       ></Box>
 
-      <div className="container">
+      <Box>
         <SnakeBar {...propsSnake} />
         <Routes>
           <Route exact path="/" element={<PanelPage />} />
@@ -41,7 +41,7 @@ const Main = ({ propsSnake, handleClick, stateMode }) => {
           <Route exact path="/avatar" element={<AvatarPage />} />
           <Route exact path="/*" element={<NotFoundPage />} />
         </Routes>
-      </div>
+      </Box>
     </div>
   );
 };

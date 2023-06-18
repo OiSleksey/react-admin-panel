@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 export default function Btn(props) {
   const { text, width, ...otherProp } = props;
   return (
-    <Button {...otherProp} sx={{ m: 1, width: `${width}ch`, marginTop: 0 }}>
+    <Button {...otherProp} sx={{ m: 1, width: `${width}ch`, margin: 0 }}>
       {text}
     </Button>
   );
