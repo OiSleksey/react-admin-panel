@@ -65,6 +65,7 @@ const DrawerAppBar = ({
           height: { sm: '100%' },
           width: { sm: '4rem' },
           left: { sm: '0' },
+          paddingRight: { sm: '0 !important' },
         }}
       >
         <DesktopAppBar

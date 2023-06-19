@@ -15,6 +15,7 @@ const headCells = [
     label: 'Id',
     numeric: true,
     disablePadding: true,
+    sorted: true,
     paddingRight: 10,
     // minWidth: 170
   },
@@ -23,6 +24,7 @@ const headCells = [
     label: 'Created',
     numeric: true,
     disablePadding: false,
+    sorted: true,
     // minWidth: 100
   },
   {
@@ -30,6 +32,7 @@ const headCells = [
     label: 'Name',
     numeric: true,
     disablePadding: false,
+    sorted: true,
     // minWidth: 170,
     // align: 'right',
     // format: value => value.toLocaleString('en-US'),
@@ -39,6 +42,7 @@ const headCells = [
     label: 'Email',
     numeric: true,
     disablePadding: false,
+    sorted: true,
     // minWidth: 170,
     // align: 'right',
     // format: value => value.toLocaleString('en-US'),
@@ -48,6 +52,7 @@ const headCells = [
     label: 'Phone',
     numeric: true,
     disablePadding: false,
+    sorted: true,
     // minWidth: 170,
     // align: 'right',
     // format: value => value.toFixed(2),
@@ -58,6 +63,7 @@ const headCells = [
     numeric: true,
     disablePadding: false,
     minWidth: 150,
+    sorted: true,
     // align: 'right',
     // format: value => value.toFixed(2),
   },
@@ -66,7 +72,8 @@ const headCells = [
     label: 'Date of hire',
     numeric: true,
     disablePadding: false,
-    // minWidth: 170,
+    minWidth: 150,
+    sorted: true,
     // align: 'right',
     // format: value => value.toFixed(2),
   },
@@ -75,6 +82,7 @@ const headCells = [
     label: 'Birthday',
     numeric: true,
     disablePadding: false,
+    sorted: true,
     // minWidth: 170,
     // align: 'right',
     // format: value => value.toFixed(2),
@@ -84,7 +92,8 @@ const headCells = [
     label: 'Last entry',
     numeric: true,
     disablePadding: false,
-    // minWidth: 170,
+    minWidth: 130,
+    sorted: true,
     // align: 'right',
     // format: value => value.toFixed(2),
   },
@@ -93,6 +102,7 @@ const headCells = [
     label: 'Blocked',
     numeric: true,
     disablePadding: false,
+    sorted: true,
     // minWidth: 170,
     // align: 'right',
     // format: value => value.toFixed(2),
@@ -102,6 +112,17 @@ const headCells = [
     label: 'Role',
     numeric: true,
     disablePadding: false,
+    sorted: true,
+    // minWidth: 170,
+    // align: 'right',
+    // format: value => value.toFixed(2),
+  },
+  {
+    id: 'change',
+    label: 'Change',
+    numeric: true,
+    disablePadding: false,
+    sorted: false,
     // minWidth: 170,
     // align: 'right',
     // format: value => value.toFixed(2),
@@ -130,7 +151,9 @@ export default function EnhancedTableHead(props) {
     return style;
   };
   return (
-    <TableHead>
+    <TableHead
+    // sx={{ position: 'sticky', top: '20px' }}
+    >
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
@@ -154,7 +177,7 @@ export default function EnhancedTableHead(props) {
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
+              onClick={headCell.sorted ? createSortHandler(headCell.id) : null}
             >
               {headCell.label}
               {orderBy === headCell.id ? (

@@ -7,6 +7,7 @@ import { getAllUsersDispath } from '../../store/middleware/requestsServer.middle
 import { activePanel } from '../../store/actions/ui.actions';
 import DrawerPanelBar from '../../components/drawerBar/DrawerPanelBar/DrawerPanelBar';
 import EnhancedTable from '../../components/table/EnhancedTable/EnhancedTable';
+import ModalWindow from '../../components/ui/ModalWindow/ModalWindow';
 
 const PanelPage = ({ loggedIn, getAllUser, token, setActivePanel }) => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const PanelPage = ({ loggedIn, getAllUser, token, setActivePanel }) => {
     <section className="panel-page">
       <DrawerPanelBar />
       <EnhancedTable />
+      <ModalWindow />
       {/* <button onClick={handleClick} type="button">
         Get all user
       </button> */}

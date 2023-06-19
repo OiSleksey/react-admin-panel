@@ -5,6 +5,7 @@ export const ERROR_ANSWER = 'ERROR_ANSWER';
 export const POSITIVE_ANSWER = 'POSITIVE_ANSWER';
 export const ACTIVE_PANEL = 'ACTIVE_PANEL';
 export const SET_THEME_MODE = 'SET_THEME_MODE';
+export const OPEN_MODAL_WINDOW = 'OPEN_MODAL_WINDOW';
 
 export const loggedIn = data => {
   return {
@@ -59,6 +60,15 @@ export const activePanel = data => {
 export const setThemeMode = data => {
   return {
     type: SET_THEME_MODE,
+    payload: {
+      data,
+    },
+  };
+};
+
+export const openModalWindow = data => {
+  return {
+    type: OPEN_MODAL_WINDOW,
     payload: {
       data,
     },

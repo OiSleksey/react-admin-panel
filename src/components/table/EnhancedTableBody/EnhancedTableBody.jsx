@@ -6,6 +6,8 @@ import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import { getAllUsersArr } from '../../../store/selectors/dataUsers.selectror';
 import { connect } from 'react-redux';
+import EditBtn from '../EditBtn/EditBtn';
+import MenuBtn from '../MenuBtn/MenuBtn';
 
 // function createData(
 //   id,
@@ -78,8 +80,17 @@ const EnhancedTableBody = props => {
   // React.useEffect(() => {
   //   console.log(allUsersArray);
   // }, [allUsersArray]);
+  const handleClickEdit = event => {
+    console.log(event.target.dataset.id);
+  };
 
-  const rows = allUsersArray;
+  const rows = allUsersArray.map(obj => {
+    return {
+      ...obj,
+      edit: <MenuBtn id={obj.id} handleClickEdit={handleClickEdit} />,
+    };
+  });
+  // console.log(rows);
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
@@ -158,6 +169,7 @@ const EnhancedTableBody = props => {
             <TableCell align="right">{row.lastLoginAt}</TableCell>
             <TableCell align="right">{row.blocked}</TableCell>
             <TableCell align="right">{row.role}</TableCell>
+            <TableCell align="right">{row.edit}</TableCell>
           </TableRow>
         );
       })}
