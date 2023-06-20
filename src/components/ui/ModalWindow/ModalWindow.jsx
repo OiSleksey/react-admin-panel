@@ -9,15 +9,21 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import './ModalWindow.scss';
+
 import { connect } from 'react-redux';
 import { openModalWindow } from '../../../store/actions/ui.actions';
+import ChangeUserDataForm from '../../forms/ChangeUserDataForm/ChangeUserDataForm';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
+    maxWidth: '100%',
   },
   '& .MuiDialogActions-root': {
     padding: theme.spacing(1),
+    maxWidth: '100%',
   },
 }));
 
@@ -50,7 +56,12 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const ModalWindow = ({ openModalWindow, setOpenModalWindow, children }) => {
+const ModalWindow = ({
+  openModalWindow,
+  setOpenModalWindow,
+  children,
+  titleModal,
+}) => {
   //   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -61,10 +72,10 @@ const ModalWindow = ({ openModalWindow, setOpenModalWindow, children }) => {
   };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+    <Box elevation={10} sx={{ color: '#08c' }}>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         Open dialog
-      </Button>
+      </Button> */}
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -74,19 +85,20 @@ const ModalWindow = ({ openModalWindow, setOpenModalWindow, children }) => {
           id="customized-dialog-title"
           onClose={handleClose}
         >
-          Modal title
+          {titleModal}
         </BootstrapDialogTitle>
         <DialogContent dividers>
           {children}
-          <Button autoFocus onClick={handleClose}>
+          {/* <ChangeUserDataForm /> */}
+          {/* <Button autoFocus onClick={handleClose}>
             Save changes
-          </Button>
+          </Button> */}
         </DialogContent>
         {/* <DialogActions>
      
         </DialogActions> */}
       </BootstrapDialog>
-    </div>
+    </Box>
   );
 };
 

@@ -13,23 +13,22 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
-import './Password.scss';
 
-export default function Password({ label, width, ...props }) {
-  //Password
-  const [showPassword, setShowPassword] = React.useState(false);
-  const handleClickShowPassword = () => setShowPassword(show => !show);
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
-
-  const [field, meta] = useField(props);
-
+export default function InputTextField({ width, label, ...props }) {
   //controled
+  const [field, meta] = useField(props);
   const defaultProperties = {
     error: null,
+    sx: { m: 1, width: `${width}ch` },
+    id: 'filled-search',
+    label,
+    type: 'text',
+    variant: 'filled',
     info: null,
+    color: 'primary',
+    // focused: false,
   };
+
   const [properties, setProperties] = React.useState(defaultProperties);
 
   const changeProperties = (touched, error) => {
@@ -37,8 +36,8 @@ export default function Password({ label, width, ...props }) {
       setProperties({
         sx: { m: 1, width: `${width}ch` },
         id: 'filled-search',
-        label: 'Email',
-        type: 'email',
+        label,
+        type: 'text',
         variant: 'filled',
         info: null,
       });
@@ -58,43 +57,18 @@ export default function Password({ label, width, ...props }) {
         error: true,
         info: error,
       });
-      console.log(error);
     }
   };
+
   React.useEffect(() => {
     setTimeout(() => {
       changeProperties(meta.touched, meta.error);
     }, 500);
-  }, [meta.touched && meta.error && meta.value]);
+  }, [meta.touched && meta.error]);
 
   return (
     <div className="input-box">
-      <FormControl
-        sx={{ m: 1, width: `${width}ch` }}
-        variant="filled"
-        defaultValue="Normal"
-        {...properties}
-      >
-        <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
-        <FilledInput
-          {...field}
-          {...props}
-          id="filled-adornment-password"
-          type={showPassword ? 'text' : 'password'}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
-        />
-      </FormControl>
+      <TextField {...properties} {...field} {...props} />
       <div className="error-validation" style={{ width: `${width}ch` }}>
         <p className="error-validation__message">{properties.info}</p>
       </div>

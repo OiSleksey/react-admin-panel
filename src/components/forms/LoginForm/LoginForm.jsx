@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Email from '../Email/Email';
-import Password from '../Password/Password';
+import EmailField from '../EmailField/EmailField';
+import PasswordField from '../PasswordField/PasswordField';
 import CheckboxLabels from '../ChackboxLabel/ChackboxLabel';
 import Btn from '../Btn/Btn';
 import { Formik, Form } from 'formik';
@@ -66,13 +66,13 @@ const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
             onSubmit={onSubmit}
           >
             <Form>
-              <Email
+              <EmailField
                 label="Email Address"
                 name="email"
                 type="email"
                 width={widthEmail}
               />
-              <Password
+              <PasswordField
                 label="Password"
                 name="password"
                 type="password"

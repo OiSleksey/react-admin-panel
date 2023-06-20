@@ -4,10 +4,11 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
-import { getAllUsersArr } from '../../../store/selectors/dataUsers.selectror';
+import { getAllUsersArr } from '../../../store/selectors/dataUsers.selector';
 import { connect } from 'react-redux';
 import EditBtn from '../EditBtn/EditBtn';
 import MenuBtn from '../MenuBtn/MenuBtn';
+import { сhangeDataUserId } from '../../../store/actions/dataUsers.actions';
 
 // function createData(
 //   id,
@@ -75,21 +76,26 @@ const EnhancedTableBody = props => {
     dense,
     rowsPerPage,
     allUsersArray,
+    setChangeDataUserId,
   } = props;
 
   // React.useEffect(() => {
   //   console.log(allUsersArray);
   // }, [allUsersArray]);
   const handleClickEdit = event => {
-    console.log(event.target.dataset.id);
+    const idUpdateUser = parseInt(event.target.dataset.id);
+    // console.log(idUpdateUser);
+    setChangeDataUserId(idUpdateUser);
   };
 
-  const rows = allUsersArray.map(obj => {
-    return {
-      ...obj,
-      edit: <MenuBtn id={obj.id} handleClickEdit={handleClickEdit} />,
-    };
-  });
+  const rows = allUsersArray
+    ? allUsersArray.map(obj => {
+        return {
+          ...obj,
+          edit: <MenuBtn id={obj.id} handleClickEdit={handleClickEdit} />,
+        };
+      })
+    : [];
   // console.log(rows);
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -191,8 +197,10 @@ const mapState = state => {
     allUsersArray: getAllUsersArr(state),
   };
 };
-
-export default connect(mapState)(EnhancedTableBody);
+const mapDispath = {
+  setChangeDataUserId: сhangeDataUserId,
+};
+export default connect(mapState, mapDispath)(EnhancedTableBody);
 
 // export const rows = [
 //   createData(

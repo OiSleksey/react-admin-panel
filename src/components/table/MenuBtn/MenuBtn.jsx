@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { connect } from 'react-redux';
 import { openModalWindow } from '../../../store/actions/ui.actions';
+// import { сhangeDataUserId } from '../../../store/actions/dataUsers.actions';
 
 const options = ['Edit'];
 
@@ -19,8 +20,9 @@ const MenuBtn = ({ id, handleClickEdit, setOpenModalWindow }) => {
     setAnchorEl(null);
   };
 
-  const handleClickOpen = () => {
+  const handleClickOpen = event => {
     setOpenModalWindow(true);
+    // console.log(event.target.dataset.id);
   };
 
   return (
@@ -59,7 +61,7 @@ const MenuBtn = ({ id, handleClickEdit, setOpenModalWindow }) => {
             onClick={event => {
               handleClose();
               handleClickEdit(event);
-              handleClickOpen();
+              handleClickOpen(event);
             }}
           >
             {option}
@@ -72,5 +74,6 @@ const MenuBtn = ({ id, handleClickEdit, setOpenModalWindow }) => {
 
 const mapDispath = {
   setOpenModalWindow: openModalWindow,
+  // setChangeDataUserId: сhangeDataUserId
 };
 export default connect(null, mapDispath)(MenuBtn);

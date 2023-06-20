@@ -11,11 +11,11 @@ import './EnhancedTable.scss';
 import EnhancedTableHead from '../EnhancedTableHead/EnhancedTableHead';
 import EnhancedTableToolbar from '../EnhancedTableToolbar/EnhancedTableToolbar';
 import EnhancedTableBody from '../EnhancedTableBody/EnhancedTableBody';
-import { getAllUsersArr } from '../../../store/selectors/dataUsers.selectror';
+import { getAllUsersArr } from '../../../store/selectors/dataUsers.selector';
 import { connect } from 'react-redux';
 
 const EnhancedTable = ({ allUsersArray }) => {
-  const rows = allUsersArray;
+  const rows = allUsersArray ? allUsersArray : [];
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);

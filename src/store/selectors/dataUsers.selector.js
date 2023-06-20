@@ -3,12 +3,28 @@ const convertDate = date => {
   const options = {
     day: '2-digit',
     month: '2-digit',
-    year: '2-digit',
+    year: 'numeric',
   };
   const locale = navigator.language;
   const intlDate = new Intl.DateTimeFormat(locale, options).format(dateData);
   // console.log(new Date(date));
-  return intlDate;
+  const parts = intlDate.split('.');
+  const correctFormat = `${parts[0]}.${parts[1]}.${parts[2].padStart(4, '0')}`;
+  return correctFormat;
+};
+
+const convertDateMui = date => {
+  console.log(date); // Виведе: '2022-07-17'
+  const parts = date.split('.');
+  console.log(parts);
+  const dateForMui = `${parts[2]}-${parts[1]}-${parts[0]}`;
+  console.log(dateForMui); // Виведе: '2022-07-17'
+};
+
+const convertIsoMui = date => {
+  const displayDate = convertDate(date);
+  const muiDate = convertDateMui(displayDate);
+  return muiDate;
 };
 
 export const getAllUsersArr = state => {
@@ -26,6 +42,30 @@ export const getAllUsersArr = state => {
     return readyObject;
   });
   return outputArrUsers;
+};
+
+export const getChangeUserDataObj = state => {
+  if (!state || !state.dataUsers || !state.dataUsers.changeUserData)
+    return null;
+  const inputChangeUserData = state.dataUsers.changeUserData;
+  const isoDate = inputChangeUserData.dateOfBirth;
+  const displayDate = convertDate(isoDate);
+  const muiDate = convertDateMui(displayDate);
+
+  // const
+  console.log(muiDate);
+  // const outputArrUsers = inputArrUsers.map((obj, index) => {
+  //   const readyObject = {
+  //     ...obj,
+  //     createdAt: convertDate(obj.createdAt),
+  //     hireDate: convertDate(obj.hireDate),
+  //     dateOfBirth: convertDate(obj.dateOfBirth),
+  //     lastLoginAt: convertDate(obj.lastLoginAt),
+  //     blocked: obj.blocked + '',
+  //   };
+  //   return readyObject;
+  // });
+  // return outputArrUsers;
 };
 
 // const createDataUser = (data, i) => {
