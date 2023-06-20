@@ -17,6 +17,7 @@ import CalendarField from '../CalendarField/CalendarField';
 import InputRadioGroup from '../InputRadioGroup/InputRadioGroup';
 import ModalWindow from '../../ui/ModalWindow/ModalWindow';
 import { openModalWindow } from '../../../store/actions/ui.actions';
+import { putUserDispath } from '../../../store/middleware/requestsServer.middleware';
 // import Box from '@mui/material/Box';
 //  <Box sx={{ width: '100%' }}></Box>
 
@@ -31,6 +32,8 @@ const ChangeUserDataForm = ({
   setOpenModalWindow,
   openModalWindow,
   changeUserData,
+  setPutUserDispath,
+  token,
 }) => {
   console.log(changeUserData);
   const checkOutValue = (obj, value) => {
@@ -91,12 +94,13 @@ const ChangeUserDataForm = ({
       roleId,
       dateOfBirth,
       hireDate,
+      departmentId: 0,
+      driverCategory: 'string',
+      id: checkOutValue(changeUserData, 'id'),
     };
-    console.log(user);
-    // logIn(user);
-    // setRememberToken(beAutorized);
-    // dispatch(logIn(user));
-    // resetForm();
+    setPutUserDispath(user, token);
+    setOpenModalWindow(false);
+    resetForm();
   };
   const widthEmail = 35;
   const widthPassword = 35;
@@ -204,6 +208,7 @@ const ChangeUserDataForm = ({
 const mapState = state => {
   return {
     loggedIn: state.ui.loggedIn,
+    token: state.authorization.code,
     openModalWindow: state.ui.openModalWindow,
   };
 };
@@ -212,6 +217,7 @@ const mapDispath = {
   logIn: getTokenDispatch,
   setRememberToken: rememberAuthorized,
   setOpenModalWindow: openModalWindow,
+  setPutUserDispath: putUserDispath,
 };
 
 export default connect(mapState, mapDispath)(ChangeUserDataForm);

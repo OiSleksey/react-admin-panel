@@ -1,5 +1,6 @@
 import { getToken } from '../../api/requestServer/getToken';
 import { getAllUsers } from '../../api/requestServer/getAllUsers';
+import { putUser } from '../../api/requestServer/putUser';
 // import { getDateCurrency } from '../../api/getTime';
 import * as authActions from '../actions/authorization.actions';
 import * as uiActions from '../actions/ui.actions';
@@ -74,6 +75,32 @@ export const getAllUsersDispath = code => {
         dispatch(dataUsersActions.dataUsers(res.data));
         dispatch(uiActions.incorrectFunction(null));
         dispatch(uiActions.positiveMessage(`Get all users data`));
+        dispatch(uiActions.serverWork(true));
+      })
+      .catch(rej => {
+        dispatch(uiActions.serverWork(true));
+        dispatch(uiActions.loggedIn(false));
+        dispatch(authActions.tokenAuth(null));
+      });
+  };
+};
+export const putUserDispath = (userData, code) => {
+  return function (dispatch, getState) {
+    const state = getState();
+    const errGetAllUsers = state.ui.incorrectFunction;
+    console.log(errGetAllUsers);
+    putUser(userData, code)
+      .then(res => {
+        if (res === 'status 404') {
+          // dispatch(uiActions.loggedIn(false));
+          dispatch(uiActions.serverWork(true));
+          dispatch(uiActions.errorMessage('putUser status 404'));
+          dispatch(uiActions.incorrectFunction('Incorrect putUser'));
+          return;
+        }
+        dispatch(getAllUsersDispath(code));
+        dispatch(uiActions.incorrectFunction(null));
+        dispatch(uiActions.positiveMessage(`Change user data`));
         dispatch(uiActions.serverWork(true));
       })
       .catch(rej => {

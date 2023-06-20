@@ -24,9 +24,9 @@ const convertDateMui = date => {
 
 const convertIsoMui = date => {
   const displayDate = convertDate(date);
-  console.log(displayDate);
+  // console.log(displayDate);
   const muiDate = convertDateMui(displayDate);
-  console.log(muiDate);
+  // console.log(muiDate);
   return muiDate;
 };
 
@@ -51,7 +51,7 @@ export const getChangeUserDataObj = state => {
   if (!state || !state.dataUsers || !state.dataUsers.changeUserData)
     return null;
   const changeUserData = state.dataUsers.changeUserData;
-  console.log(changeUserData.dateOfBirth);
+  // console.log(changeUserData.dateOfBirth);
   const correctDataUser = {
     ...changeUserData,
     dateOfBirth: convertIsoMui(changeUserData.dateOfBirth),
@@ -63,7 +63,7 @@ export const getChangeUserDataObj = state => {
   // const muiDate = convertDateMui(displayDate);
   // convertIsoMui;
   // // const
-  console.log(correctDataUser);
+  // console.log(correctDataUser);
   // const outputArrUsers = inputArrUsers.map((obj, index) => {
   //   const readyObject = {
   //     ...obj,
