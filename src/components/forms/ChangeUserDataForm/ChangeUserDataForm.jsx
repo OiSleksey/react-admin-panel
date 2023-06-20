@@ -30,16 +30,42 @@ const ChangeUserDataForm = ({
   loggedIn,
   setOpenModalWindow,
   openModalWindow,
+  changeUserData,
 }) => {
+  console.log(changeUserData);
+  const checkOutValue = (obj, value) => {
+    if (!obj) return '';
+    const correctValue = obj[value] ? obj[value] : '';
+    return correctValue;
+  };
+  const [dateOfBirth, setDateOfBiryh] = React.useState(
+    checkOutValue(changeUserData, 'dateOfBirth')
+  );
+  const [hireDate, setHireDate] = React.useState(
+    checkOutValue(changeUserData, 'hireDate')
+  );
+
   const initialValues = {
-    name: '',
-    email: '',
-    phone: '',
-    homePhone: '',
-    dateOfBirth: '',
-    hireDate: '',
+    name: checkOutValue(changeUserData, 'name'),
+    email: checkOutValue(changeUserData, 'email'),
+    phone: checkOutValue(changeUserData, 'phone'),
+    homePhone: checkOutValue(changeUserData, 'homePhone'),
+    dateOfBirth: checkOutValue(changeUserData, 'dateOfBirth'),
+    hireDate: checkOutValue(changeUserData, 'hireDate'),
+    role: checkOutValue(changeUserData, 'role'),
+
     // acceptedTerms: true,
   };
+
+  //   const initialValues = {
+  //     name: '',
+  //     email: '',
+  //     phone: '',
+  //     homePhone: '',
+  //     dateOfBirth: '',
+  //     hireDate: '',
+  //     // acceptedTerms: true,
+  //   };
   const userSchema = Yup.object().shape({
     email: Yup.string()
       .matches(
@@ -53,17 +79,24 @@ const ChangeUserDataForm = ({
     homePhone: Yup.string().required('Is a required field'),
   });
   const onSubmit = (values, { resetForm }) => {
-    // beAutorized = values.acceptedTerms;
-    const beAutorized = values.acceptedTerms;
-
+    const roleId = values.role === 'admin' ? 1 : 2;
     const user = {
       email: values.email,
-      password: values.password,
+      name: values.name,
+      phone: values.phone,
+      homePhone: values.homePhone,
+      dateOfBirth: values.dateOfBirth,
+      hireDate: values.hireDate,
+      role: values.role,
+      roleId,
+      dateOfBirth,
+      hireDate,
     };
-    logIn(user);
-    setRememberToken(beAutorized);
+    console.log(user);
+    // logIn(user);
+    // setRememberToken(beAutorized);
     // dispatch(logIn(user));
-    resetForm();
+    // resetForm();
   };
   const widthEmail = 35;
   const widthPassword = 35;
@@ -131,14 +164,14 @@ const ChangeUserDataForm = ({
             >
               <CalendarField
                 label="Birthday"
-                name="dateOfBirth"
-                // type="date"
+                dateValue={dateOfBirth}
+                setDateValue={setDateOfBiryh}
                 width={widthEmail}
               />
               <CalendarField
                 label="Hire date"
-                name="hireDate"
-                // type="date"
+                dateValue={hireDate}
+                setDateValue={setHireDate}
                 width={widthEmail}
               />
             </Box>
@@ -149,7 +182,7 @@ const ChangeUserDataForm = ({
                 marginBottom: '15px',
               }}
             >
-              <InputRadioGroup />
+              <InputRadioGroup label="Role" name="role" type="checkbox" />
             </Box>
 
             {/* <CheckboxLabels name="acceptedTerms" width={widthCheked} /> */}

@@ -11,20 +11,45 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
+import { Formik, Form, useField } from 'formik';
 import Box from '@mui/material/Box';
 //  <Box sx={{ width: '100%' }}></Box>
 
-export default function ResponsiveDatePickers({ label, width }) {
+export default function ResponsiveDatePickers({
+  label,
+  width,
+  dateValue,
+  setDateValue,
+}) {
   //   const [properties, setProperties] = React.useState(defaultProperties);
+
+  //controled
+  // const [field, meta] = useField(props);
+  // console.log(field);
+  // console.log(meta);
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     // changeProperties(meta.touched, meta.error);
+  //   }, 500);
+  // }, [meta.touched && meta.error]);
 
   const handleChange = value => {
     const date = value.$D;
     const month = value.$M;
-    console.log(value);
+    // console.log(value);
     const now = new Date();
     // const nowIso = now.toISOString()
     // console.log(value.$d.toISOString());
-    console.log(value.$d);
+    const fakeEvent = {
+      target: {
+        value: value.$d.toISOString(),
+      },
+    };
+    setDateValue(value.$d.toISOString());
+    // console.log(value.$d.toISOString());
+    // field.onChange(fakeEvent);
+    // // console.log(field.onChange);
+    // // console.log(field.onChange());
   };
   return (
     <div className="input-box">
@@ -34,7 +59,7 @@ export default function ResponsiveDatePickers({ label, width }) {
           sx={{ paddingTop: '0' }}
         >
           <DatePicker
-            defaultValue={dayjs('2022-07-17')}
+            defaultValue={dayjs(dateValue)}
             sx={{ m: 1, width: `${width}ch` }}
             label={label}
             slotProps={{

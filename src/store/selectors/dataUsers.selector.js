@@ -14,16 +14,19 @@ const convertDate = date => {
 };
 
 const convertDateMui = date => {
-  console.log(date); // Виведе: '2022-07-17'
+  // console.log(date); // Виведе: '2022-07-17'
   const parts = date.split('.');
-  console.log(parts);
+  // console.log(parts);
   const dateForMui = `${parts[2]}-${parts[1]}-${parts[0]}`;
-  console.log(dateForMui); // Виведе: '2022-07-17'
+  // console.log(dateForMui); // Виведе: '2022-07-17'
+  return dateForMui;
 };
 
 const convertIsoMui = date => {
   const displayDate = convertDate(date);
+  console.log(displayDate);
   const muiDate = convertDateMui(displayDate);
+  console.log(muiDate);
   return muiDate;
 };
 
@@ -47,13 +50,20 @@ export const getAllUsersArr = state => {
 export const getChangeUserDataObj = state => {
   if (!state || !state.dataUsers || !state.dataUsers.changeUserData)
     return null;
-  const inputChangeUserData = state.dataUsers.changeUserData;
-  const isoDate = inputChangeUserData.dateOfBirth;
-  const displayDate = convertDate(isoDate);
-  const muiDate = convertDateMui(displayDate);
-
-  // const
-  console.log(muiDate);
+  const changeUserData = state.dataUsers.changeUserData;
+  console.log(changeUserData.dateOfBirth);
+  const correctDataUser = {
+    ...changeUserData,
+    dateOfBirth: convertIsoMui(changeUserData.dateOfBirth),
+    hireDate: convertIsoMui(changeUserData.hireDate),
+  };
+  // const inputChangeUserData = state.dataUsers.changeUserData;
+  // const isoDate = inputChangeUserData.dateOfBirth;
+  // const displayDate = convertDate(isoDate);
+  // const muiDate = convertDateMui(displayDate);
+  // convertIsoMui;
+  // // const
+  console.log(correctDataUser);
   // const outputArrUsers = inputArrUsers.map((obj, index) => {
   //   const readyObject = {
   //     ...obj,
@@ -66,6 +76,7 @@ export const getChangeUserDataObj = state => {
   //   return readyObject;
   // });
   // return outputArrUsers;
+  return changeUserData;
 };
 
 // const createDataUser = (data, i) => {

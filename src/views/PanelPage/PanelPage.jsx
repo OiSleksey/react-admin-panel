@@ -19,7 +19,6 @@ const PanelPage = ({
   getChangeUserData,
 }) => {
   const navigate = useNavigate();
-  console.log(getChangeUserData);
   const handleRedirect = () => {
     if (!loggedIn) {
       navigate('/login');
@@ -40,7 +39,7 @@ const PanelPage = ({
       <DrawerPanelBar />
       <EnhancedTable />
       <ModalWindow titleModal={'Change user data'}>
-        <ChangeUserDataForm />
+        <ChangeUserDataForm changeUserData={getChangeUserData} />
       </ModalWindow>
       {/* <button onClick={handleClick} type="button">
         Get all user
