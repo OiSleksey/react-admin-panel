@@ -7,6 +7,7 @@ import {
   ACTIVE_PANEL,
   SET_THEME_MODE,
   OPEN_MODAL_WINDOW,
+  TYPE_MODAL_WINDOW,
 } from '../actions/ui.actions';
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   activePanel: 'login',
   themeMode: 'dark',
   openModalWindow: false,
+  typeModalWindow: 'changeUserData',
 };
 
 export const uiReducer = (state = initialState, action) => {
@@ -68,6 +70,12 @@ export const uiReducer = (state = initialState, action) => {
       return {
         ...state,
         openModalWindow: action.payload.data,
+      };
+    }
+    case TYPE_MODAL_WINDOW: {
+      return {
+        ...state,
+        typeModalWindow: action.payload.data,
       };
     }
     default:

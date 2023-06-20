@@ -12,8 +12,41 @@ import DrawerAppBar from '../../drawerBar/DrawerAppBar/DrawerAppBar';
 import { getThemeMode } from '../../../store/selectors/ui.selector';
 import { setThemeMode } from '../../../store/actions/ui.actions';
 import './ToggleColorMode.scss';
-
 import { connect } from 'react-redux';
+import { purple, amber, grey, deepOrange } from '@mui/material/colors';
+
+const getDesignTokens = mode => ({
+  palette: {
+    mode,
+    ...(mode === 'light'
+      ? {
+          // palette values for light mode
+          primary: amber,
+          divider: amber[200],
+          background: {
+            default: deepOrange[900],
+            paper: deepOrange[900],
+          },
+          text: {
+            primary: grey[900],
+            secondary: grey[800],
+          },
+        }
+      : {
+          // palette values for dark mode
+          primary: deepOrange,
+          divider: deepOrange[700],
+          background: {
+            default: deepOrange[900],
+            paper: deepOrange[900],
+          },
+          text: {
+            primary: '#fff',
+            secondary: grey[500],
+          },
+        }),
+  },
+});
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -55,6 +88,22 @@ const ToggleColorMode = ({ themeModeColor, setThemeModeColor }) => {
     }),
     []
   );
+
+  //  const [mode, setMode] = React.useState<PaletteMode>('light');
+  //   const colorMode = React.useMemo(
+  //     () => ({
+  //       // The dark mode switch would invoke this method
+  //       toggleColorMode: () => {
+  //         setMode((prevMode: PaletteMode) =>
+  //           prevMode === 'light' ? 'dark' : 'light',
+  //         );
+  //       },
+  //     }),
+  //     [],
+  //   );
+
+  // Update the theme only if the mode changes
+  // const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   const theme = React.useMemo(
     () =>

@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 const EnhancedTable = ({ allUsersArray }) => {
   const rows = allUsersArray ? allUsersArray : [];
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('id');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -27,10 +27,10 @@ const EnhancedTable = ({ allUsersArray }) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
+    console.log(orderBy);
   };
 
   const handleSelectAllClick = event => {
-    console.log(event.target.checked);
     if (event.target.checked) {
       const newSelected = rows.map(n => n.id);
       setSelected(newSelected);

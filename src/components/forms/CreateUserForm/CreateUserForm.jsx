@@ -17,39 +17,32 @@ import CalendarField from '../CalendarField/CalendarField';
 import InputRadioGroup from '../InputRadioGroup/InputRadioGroup';
 import ModalWindow from '../../ui/ModalWindow/ModalWindow';
 import { openModalWindow } from '../../../store/actions/ui.actions';
-import { putUserDispath } from '../../../store/middleware/requestsServer.middleware';
+import { createUserDispath } from '../../../store/middleware/requestsServer.middleware';
 
-const ChangeUserDataForm = ({
+const CreateUserForm = ({
   logIn,
   setRememberToken,
   loggedIn,
   setOpenModalWindow,
   openModalWindow,
   changeUserData,
-  setPutUserDispath,
+  setCreateUserDispath,
   token,
 }) => {
-  console.log(changeUserData);
-  const checkOutValue = (obj, value) => {
-    if (!obj) return '';
-    const correctValue = obj[value] ? obj[value] : '';
-    return correctValue;
-  };
-  const [dateOfBirth, setDateOfBiryh] = React.useState(
-    checkOutValue(changeUserData, 'dateOfBirth')
-  );
-  const [hireDate, setHireDate] = React.useState(
-    checkOutValue(changeUserData, 'hireDate')
-  );
+  // console.log(changeUserData);
+  // const checkOutValue = (obj, value) => {
+  //   if (!obj) return '';
+  //   const correctValue = obj[value] ? obj[value] : '';
+  //   return correctValue;
+  // };
+  const [dateOfBirth, setDateOfBiryh] = React.useState('');
 
   const initialValues = {
-    name: checkOutValue(changeUserData, 'name'),
-    email: checkOutValue(changeUserData, 'email'),
-    phone: checkOutValue(changeUserData, 'phone'),
-    homePhone: checkOutValue(changeUserData, 'homePhone'),
-    dateOfBirth: checkOutValue(changeUserData, 'dateOfBirth'),
-    hireDate: checkOutValue(changeUserData, 'hireDate'),
-    role: checkOutValue(changeUserData, 'role'),
+    name: '',
+    email: '',
+    phone: '',
+    homePhone: '',
+    role: 'manager',
   };
   const userSchema = Yup.object().shape({
     email: Yup.string()
@@ -68,23 +61,24 @@ const ChangeUserDataForm = ({
       .required('Is a required field'),
   });
   const onSubmit = (values, { resetForm }) => {
+    console.log(dateOfBirth);
+    if (dateOfBirth === '') return;
     const roleId = values.role === 'admin' ? 1 : 2;
+    const nowDate = new Date();
+    const isoDate = nowDate.toISOString();
     const user = {
       email: values.email,
       name: values.name,
       phone: values.phone,
       homePhone: values.homePhone,
-      dateOfBirth: values.dateOfBirth,
-      hireDate: values.hireDate,
-      role: values.role,
       roleId,
+      hireDate: isoDate,
       dateOfBirth,
-      hireDate,
-      departmentId: 0,
       driverCategory: 'string',
-      id: checkOutValue(changeUserData, 'id'),
     };
-    setPutUserDispath(user, token);
+
+    console.log(user);
+    setCreateUserDispath(user, token);
     setOpenModalWindow(false);
     resetForm();
   };
@@ -93,9 +87,9 @@ const ChangeUserDataForm = ({
   // const widthCheked = 35;
   const widthBtn = 25;
 
-  const handleClickOpen = () => {
-    setOpenModalWindow(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpenModalWindow(true);
+  // };
   return (
     <Box sx={{ minWidth: 275 }}>
       <div className="change-data-user">
@@ -158,12 +152,6 @@ const ChangeUserDataForm = ({
                 setDateValue={setDateOfBiryh}
                 width={widthInput}
               />
-              <CalendarField
-                label="Hire date"
-                dateValue={hireDate}
-                setDateValue={setHireDate}
-                width={widthInput}
-              />
             </Box>
             <Box
               sx={{
@@ -203,7 +191,7 @@ const mapDispath = {
   logIn: getTokenDispatch,
   setRememberToken: rememberAuthorized,
   setOpenModalWindow: openModalWindow,
-  setPutUserDispath: putUserDispath,
+  setCreateUserDispath: createUserDispath,
 };
 
-export default connect(mapState, mapDispath)(ChangeUserDataForm);
+export default connect(mapState, mapDispath)(CreateUserForm);

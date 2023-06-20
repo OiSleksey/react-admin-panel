@@ -1,27 +1,27 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Formik, Form, useField } from 'formik';
-import * as Yup from 'yup';
+// import Box from '@mui/material/Box';
+// import IconButton from '@mui/material/IconButton';
+// import Input from '@mui/material/Input';
+// import FilledInput from '@mui/material/FilledInput';
+// import OutlinedInput from '@mui/material/OutlinedInput';
+// import InputLabel from '@mui/material/InputLabel';
+// import InputAdornment from '@mui/material/InputAdornment';
+// import FormHelperText from '@mui/material/FormHelperText';
+// import FormControl from '@mui/material/FormControl';
+// import Visibility from '@mui/icons-material/Visibility';
+// import VisibilityOff from '@mui/icons-material/VisibilityOff';
+// import * as Yup from 'yup';
 
-export default function Email({ width, label, ...props }) {
+export default function InputEmailField({ width, label, ...props }) {
   //controled
   const [field, meta] = useField(props);
   const defaultProperties = {
     error: null,
     sx: { m: 1, width: `${width}ch` },
     id: 'filled-search',
-    label: 'Email',
+    label,
     type: 'email',
     variant: 'filled',
     info: null,
@@ -36,7 +36,7 @@ export default function Email({ width, label, ...props }) {
       setProperties({
         sx: { m: 1, width: `${width}ch` },
         id: 'filled-search',
-        label: 'Email',
+        label,
         type: 'email',
         variant: 'filled',
         info: null,

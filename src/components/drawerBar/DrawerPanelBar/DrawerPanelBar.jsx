@@ -11,7 +11,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import Btn from '../../forms/Btn/Btn';
 import './DrawerPanelBar.scss';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import CreateBtn from '../../ui/CreateBtn/CreateBtn';
+import {
+  typeModalWindow,
+  openModalWindow,
+} from '../../../store/actions/ui.actions';
+import { connect } from 'react-redux';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,7 +60,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 const widthBtn = 12;
-export default function DrawerPanelBar() {
+
+const DrawerPanelBar = ({ setTypeModalWindow, setOpenModalWindow }) => {
+  const handleClickCreate = () => {
+    setTypeModalWindow('createUser');
+    setOpenModalWindow(true);
+  };
   return (
     <Box
       sx={{
@@ -90,19 +100,7 @@ export default function DrawerPanelBar() {
               <MenuIcon />
             </AutorenewIcon>
 
-            <PersonAddIcon
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{
-                fontSize: '35px',
-                mr: 2,
-                //   flexGrow: 1,
-                //   display: { xs: 'none', sm: 'block' },
-                justifySelf: 'end',
-              }}
-            />
+            <CreateBtn handleClickCreate={handleClickCreate} />
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -120,4 +118,11 @@ export default function DrawerPanelBar() {
       </AppBar>
     </Box>
   );
-}
+};
+
+const mapDispath = {
+  setTypeModalWindow: typeModalWindow,
+  setOpenModalWindow: openModalWindow,
+};
+
+export default connect(null, mapDispath)(DrawerPanelBar);

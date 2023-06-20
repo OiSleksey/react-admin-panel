@@ -6,6 +6,7 @@ export const POSITIVE_ANSWER = 'POSITIVE_ANSWER';
 export const ACTIVE_PANEL = 'ACTIVE_PANEL';
 export const SET_THEME_MODE = 'SET_THEME_MODE';
 export const OPEN_MODAL_WINDOW = 'OPEN_MODAL_WINDOW';
+export const TYPE_MODAL_WINDOW = 'TYPE_MODAL_WINDOW';
 
 export const loggedIn = data => {
   return {
@@ -69,6 +70,15 @@ export const setThemeMode = data => {
 export const openModalWindow = data => {
   return {
     type: OPEN_MODAL_WINDOW,
+    payload: {
+      data,
+    },
+  };
+};
+
+export const typeModalWindow = data => {
+  return {
+    type: TYPE_MODAL_WINDOW,
     payload: {
       data,
     },

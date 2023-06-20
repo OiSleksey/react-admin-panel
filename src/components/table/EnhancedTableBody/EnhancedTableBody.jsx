@@ -96,7 +96,7 @@ const EnhancedTableBody = props => {
         };
       })
     : [];
-  // console.log(rows);
+
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
@@ -126,9 +126,8 @@ const EnhancedTableBody = props => {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
-    [order, orderBy, page, rowsPerPage]
+    [rows, order, orderBy, page, rowsPerPage]
   );
-
   return (
     <TableBody>
       {visibleRows.map((row, index) => {

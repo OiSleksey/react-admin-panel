@@ -1,5 +1,5 @@
 import * as React from 'react';
-import EmailField from '../EmailField/EmailField';
+import InputEmailField from '../InputEmailField/InputEmailField';
 import PasswordField from '../PasswordField/PasswordField';
 import CheckboxLabels from '../ChackboxLabel/ChackboxLabel';
 import Btn from '../Btn/Btn';
@@ -48,7 +48,7 @@ const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
     // dispatch(logIn(user));
     resetForm();
   };
-  const widthEmail = 35;
+  const widthInput = 35;
   const widthPassword = 35;
   const widthCheked = 35;
   const widthBtn = 25;
@@ -66,17 +66,17 @@ const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
             onSubmit={onSubmit}
           >
             <Form>
-              <EmailField
-                label="Email Address"
+              <InputEmailField
+                label="Email"
                 name="email"
                 type="email"
-                width={widthEmail}
+                width={widthInput}
               />
               <PasswordField
                 label="Password"
                 name="password"
                 type="password"
-                width={widthPassword}
+                width={widthInput}
               />
               <CheckboxLabels name="acceptedTerms" width={widthCheked} />
               <div className="login-form__submit">
@@ -84,7 +84,7 @@ const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
                   variant="contained"
                   type="submit"
                   text="Log In"
-                  width={widthBtn}
+                  width={widthInput}
                 />
               </div>
             </Form>

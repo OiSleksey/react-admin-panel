@@ -1,6 +1,7 @@
 import { getToken } from '../../api/requestServer/getToken';
 import { getAllUsers } from '../../api/requestServer/getAllUsers';
 import { putUser } from '../../api/requestServer/putUser';
+import { createUser } from '../../api/requestServer/createUser';
 // import { getDateCurrency } from '../../api/getTime';
 import * as authActions from '../actions/authorization.actions';
 import * as uiActions from '../actions/ui.actions';
@@ -41,6 +42,7 @@ export const getTokenDispatch = data => {
         dispatch(authActions.tokenAuth(res.code));
         dispatch(uiActions.loggedIn(true));
         dispatch(uiActions.serverWork(true));
+        dispatch(getAllUsersDispath(res.code));
       })
       .catch(rej => {
         if (!errGetToken) {
@@ -84,6 +86,7 @@ export const getAllUsersDispath = code => {
       });
   };
 };
+
 export const putUserDispath = (userData, code) => {
   return function (dispatch, getState) {
     const state = getState();
@@ -101,6 +104,33 @@ export const putUserDispath = (userData, code) => {
         dispatch(getAllUsersDispath(code));
         dispatch(uiActions.incorrectFunction(null));
         dispatch(uiActions.positiveMessage(`Change user data`));
+        dispatch(uiActions.serverWork(true));
+      })
+      .catch(rej => {
+        dispatch(uiActions.serverWork(true));
+        dispatch(uiActions.loggedIn(false));
+        dispatch(authActions.tokenAuth(null));
+      });
+  };
+};
+
+export const createUserDispath = (userData, code) => {
+  return function (dispatch, getState) {
+    const state = getState();
+    const errGetAllUsers = state.ui.incorrectFunction;
+    console.log(errGetAllUsers);
+    createUser(userData, code)
+      .then(res => {
+        if (res === 'status 404') {
+          // dispatch(uiActions.loggedIn(false));
+          dispatch(uiActions.serverWork(true));
+          dispatch(uiActions.errorMessage('createUser status 404'));
+          dispatch(uiActions.incorrectFunction('Incorrect createUser'));
+          return;
+        }
+        dispatch(getAllUsersDispath(code));
+        dispatch(uiActions.incorrectFunction(null));
+        dispatch(uiActions.positiveMessage(`Create new user`));
         dispatch(uiActions.serverWork(true));
       })
       .catch(rej => {

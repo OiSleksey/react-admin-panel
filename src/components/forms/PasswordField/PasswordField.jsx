@@ -58,7 +58,7 @@ export default function Password({ label, width, ...props }) {
         error: true,
         info: error,
       });
-      console.log(error);
+      // console.log(error);
     }
   };
   React.useEffect(() => {
