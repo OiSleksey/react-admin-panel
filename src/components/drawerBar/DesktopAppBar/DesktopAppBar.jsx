@@ -20,6 +20,7 @@ import {
 import { activePanel } from '../../../store/actions/ui.actions';
 import { Link } from 'react-router-dom';
 import MobileAppBar from '../MobileAppBar/MobileAppBar';
+import StorageIcon from '@mui/icons-material/Storage';
 
 const drawerWidth = '4rem';
 
@@ -29,7 +30,7 @@ const DesktopAppBar = ({
   setActivePanel,
   handleClick,
   handleDrawerToggle,
-  handleGetAllUsers,
+  // handleGetAllUsers,
 }) => {
   return (
     <Toolbar
@@ -74,7 +75,7 @@ const DesktopAppBar = ({
         className="sidebar-icons"
         data-value="users"
         onClick={event => {
-          handleGetAllUsers();
+          // handleGetAllUsers();
           handleClick(event);
         }}
         sx={{
@@ -86,7 +87,7 @@ const DesktopAppBar = ({
         }}
       >
         <Link to="/">
-          <PeopleAltIcon
+          <StorageIcon
             sx={{
               fontSize: '50px',
               // display: { sm: 'none' },

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
-const CreateBtn = ({ handleClick }) => {
+const DisplayAllUsers = ({ handleClick }) => {
   return (
     <Box sx={{ cursor: 'pointer' }} onClick={handleClick}>
-      <PersonAddIcon
+      <PeopleAltIcon
         size="large"
         edge="start"
         color="inherit"
@@ -22,4 +23,4 @@ const CreateBtn = ({ handleClick }) => {
   );
 };
 
-export default CreateBtn;
+export default DisplayAllUsers;

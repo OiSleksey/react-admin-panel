@@ -12,11 +12,14 @@ import AutorenewIcon from '@mui/icons-material/Autorenew';
 import Btn from '../../forms/Btn/Btn';
 import './DrawerPanelBar.scss';
 import CreateBtn from '../../ui/CreateBtn/CreateBtn';
+import UpdateBtn from '../../ui/UpdateBtn/UpdateBtn';
 import {
   typeModalWindow,
   openModalWindow,
 } from '../../../store/actions/ui.actions';
 import { connect } from 'react-redux';
+import { getAllUsersDispath } from '../../../store/middleware/requestsServer.middleware';
+import DisplayAllUsers from '../../ui/DisplayAllUsers/DisplayAllUsers';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -61,11 +64,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 const widthBtn = 12;
 
-const DrawerPanelBar = ({ setTypeModalWindow, setOpenModalWindow }) => {
+const DrawerPanelBar = ({
+  setTypeModalWindow,
+  setOpenModalWindow,
+  getAllUser,
+  token,
+}) => {
   const handleClickCreate = () => {
     setTypeModalWindow('createUser');
     setOpenModalWindow(true);
   };
+
+  const handleClickUpdate = () => {
+    getAllUser(token);
+  };
+
   return (
     <Box
       sx={{
@@ -76,31 +89,15 @@ const DrawerPanelBar = ({ setTypeModalWindow, setOpenModalWindow }) => {
     >
       <AppBar position="static">
         <Toolbar>
-          <Btn
-            variant="contained"
-            type="button"
-            text="Filter"
-            width={widthBtn}
-            // sx={{ marginRight: '35px' }}
-          />
-
           <Box
             sx={{
               //   flexGrow: 1,
               display: 'flex',
             }}
           >
-            <AutorenewIcon
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ fontSize: '35px', mr: 2, ml: 2 }}
-            >
-              <MenuIcon />
-            </AutorenewIcon>
-
-            <CreateBtn handleClickCreate={handleClickCreate} />
+            <DisplayAllUsers handleClick={handleClickUpdate} />
+            <UpdateBtn handleClick={handleClickUpdate} />
+            <CreateBtn handleClick={handleClickCreate} />
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -120,9 +117,16 @@ const DrawerPanelBar = ({ setTypeModalWindow, setOpenModalWindow }) => {
   );
 };
 
+const mapState = state => {
+  return {
+    token: state.authorization.code,
+  };
+};
+
 const mapDispath = {
   setTypeModalWindow: typeModalWindow,
   setOpenModalWindow: openModalWindow,
+  getAllUser: getAllUsersDispath,
 };
 
-export default connect(null, mapDispath)(DrawerPanelBar);
+export default connect(mapState, mapDispath)(DrawerPanelBar);

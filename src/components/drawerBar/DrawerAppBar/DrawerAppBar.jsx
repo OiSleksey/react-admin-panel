@@ -47,9 +47,9 @@ const DrawerAppBar = ({
     const dataset = activeParent.dataset.value;
     setActivePanel(dataset);
   };
-  const handleGetAllUsers = () => {
-    getAllUser(token);
-  };
+  // const handleGetAllUsers = () => {
+  //   getAllUser(token);
+  // };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -71,7 +71,7 @@ const DrawerAppBar = ({
         <DesktopAppBar
           handleDrawerToggle={handleDrawerToggle}
           handleClick={handleClick}
-          handleGetAllUsers={handleGetAllUsers}
+          // handleGetAllUsers={handleGetAllUsers}
         />
       </AppBar>
       <Box component="nav">
@@ -93,8 +93,8 @@ const DrawerAppBar = ({
         >
           <MobileAppBar
             handleDrawerToggle={handleDrawerToggle}
-            handleClick={handleClick}
-            handleGetAllUsers={handleGetAllUsers}
+            // handleClick={handleClick}
+            // handleGetAllUsers={handleGetAllUsers}
             // isLoggin={isLoggin}
           />
         </Drawer>

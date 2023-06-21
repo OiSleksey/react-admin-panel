@@ -18,6 +18,7 @@ import InputRadioGroup from '../InputRadioGroup/InputRadioGroup';
 import ModalWindow from '../../ui/ModalWindow/ModalWindow';
 import { openModalWindow } from '../../../store/actions/ui.actions';
 import { putUserDispath } from '../../../store/middleware/requestsServer.middleware';
+import { isoInIsoPlusOneDay } from '../../../utils/convertDate';
 
 const ChangeUserDataForm = ({
   logIn,
@@ -70,19 +71,17 @@ const ChangeUserDataForm = ({
   const onSubmit = (values, { resetForm }) => {
     const roleId = values.role === 'admin' ? 1 : 2;
     const user = {
+      id: checkOutValue(changeUserData, 'id'),
       email: values.email,
       name: values.name,
       phone: values.phone,
       homePhone: values.homePhone,
-      dateOfBirth: values.dateOfBirth,
-      hireDate: values.hireDate,
       role: values.role,
       roleId,
       dateOfBirth,
       hireDate,
       departmentId: 0,
       driverCategory: 'string',
-      id: checkOutValue(changeUserData, 'id'),
     };
     setPutUserDispath(user, token);
     setOpenModalWindow(false);

@@ -12,6 +12,7 @@ import {
 } from '../../../store/selectors/getTokenLocalStorage.selector';
 import { activePanel } from '../../../store/actions/ui.actions';
 import { Link } from 'react-router-dom';
+import StorageIcon from '@mui/icons-material/Storage';
 
 // const drawerWidth = '4rem';
 
@@ -21,7 +22,7 @@ const MobileAppBar = ({
   activePanel,
   isLoggin,
   setActivePanel,
-  handleGetAllUsers,
+  // handleGetAllUsers,
 }) => {
   return (
     <Box
@@ -39,7 +40,7 @@ const MobileAppBar = ({
           className="sidebar-icons"
           data-value="users"
           onClick={event => {
-            handleGetAllUsers();
+            // handleGetAllUsers();
             handleClick(event);
           }}
           sx={{
@@ -50,7 +51,7 @@ const MobileAppBar = ({
               : { xs: 'none', sm: 'none' },
           }}
         >
-          <PeopleAltIcon
+          <StorageIcon
             sx={{
               fontSize: '50px',
               // display: { sm: 'none' },

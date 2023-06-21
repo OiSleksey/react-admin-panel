@@ -39,14 +39,9 @@ const PanelPage = ({
 
   React.useEffect(() => {
     setActivePanel('users');
-    // console.log(loggedIn);
     handleRedirect();
   }, [loggedIn]);
 
-  // const handleClick = () => {
-  //   setTypeModalWindow('createUser');
-  //   setOpenModalWindow(true);
-  // };
   return (
     <section className="panel-page">
       <DrawerPanelBar />
@@ -59,15 +54,6 @@ const PanelPage = ({
           <CreateUserForm changeUserData={getChangeUserData} />
         )}
       </ModalWindow>
-      {/* <ModalWindow titleModal={'Change user data'}>
-        <ChangeUserDataForm changeUserData={getChangeUserData} />
-      </ModalWindow>
-      <ModalWindow titleModal={'Create user'}>
-        <CreateUserForm changeUserData={getChangeUserData} />
-      </ModalWindow> */}
-      {/* <button onClick={handleClick} type="button">
-        Get all user
-      </button> */}
     </section>
   );
 };
