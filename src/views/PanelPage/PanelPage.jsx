@@ -29,7 +29,7 @@ const PanelPage = ({
 }) => {
   const titleModal =
     modalType === 'createUser' ? 'Create user' : 'Change user data';
-  console.log(modalType);
+  // console.log(modalType);
   const navigate = useNavigate();
   const handleRedirect = () => {
     if (!loggedIn) {

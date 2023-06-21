@@ -6,6 +6,7 @@ import { createUser } from '../../api/requestServer/createUser';
 import * as authActions from '../actions/authorization.actions';
 import * as uiActions from '../actions/ui.actions';
 import * as dataUsersActions from '../actions/dataUsers.actions';
+
 // import { quantityErr } from '../../utils/globalVariable';
 
 const cors = 'cors';
@@ -63,8 +64,11 @@ export const getTokenDispatch = data => {
 export const getAllUsersDispath = code => {
   return function (dispatch, getState) {
     const state = getState();
+    const activeBtnDisplay = state.dataUsers.activeBtnDisplay;
+    const prevActiveBtnDisplay = state.dataUsers.prevActiveBtnDisplay;
     const errGetAllUsers = state.ui.incorrectFunction;
-    console.log(errGetAllUsers);
+    console.log(activeBtnDisplay);
+    console.log(prevActiveBtnDisplay);
     getAllUsers(code, cors)
       .then(res => {
         if (res === 'status 404') {
@@ -78,6 +82,8 @@ export const getAllUsersDispath = code => {
         dispatch(uiActions.incorrectFunction(null));
         dispatch(uiActions.positiveMessage(`Get all users data`));
         dispatch(uiActions.serverWork(true));
+        if (activeBtnDisplay === 'updateData')
+          dispatch(dataUsersActions.activeBtnDisplay(prevActiveBtnDisplay));
       })
       .catch(rej => {
         dispatch(uiActions.serverWork(true));
@@ -140,6 +146,10 @@ export const createUserDispath = (userData, code) => {
       });
   };
 };
+
+// if ((activeBtnDisplay = 'updateData'))
+//   console.log('prevActiveBtnDisplay');
+// // dispatch(dataUsersActions.activeBtnDisplay(prevActiveBtnDisplay));
 
 // if (res === 'status 0') {
 //   dispatch(uiActions.serverWork(true));

@@ -22,6 +22,7 @@
     "cors": "^2.8.5",
     "dayjs": "^1.11.8",
     "formik": "^2.4.1",
+    "framer-motion": "^10.12.16",
     "openai": "^3.2.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
