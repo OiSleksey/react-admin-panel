@@ -103,6 +103,7 @@ const UserDisplayControl = ({
   const nameBtn = ['updateData', 'allUser', 'usersFound'];
 
   const handleOptions = value => {
+    if (value === activeBtnDisplay) return;
     console.log(value);
     setActiveBtnDisplay(value);
     if (value === nameBtn[0]) {
@@ -114,10 +115,15 @@ const UserDisplayControl = ({
       // console.log(nameBtn[1]);
     }
     if (value === nameBtn[2]) {
-      setDisplayDataUsers('Improved');
+      // setDisplayDataUsers('Improved');
       // console.log(nameBtn[2]);
     }
   };
+
+  // const handleChange = e => {
+  //   console.log(e.target.value);
+  // };
+
   return (
     <div className="kind-time">
       {nameKind.map((item, index) => (
@@ -126,6 +132,7 @@ const UserDisplayControl = ({
           item={item}
           isSelected={activeBtnDisplay === nameBtn[index]}
           handleClick={() => handleOptions(nameBtn[index])}
+          // handleChange={handleChange}
         />
       ))}
       {/* <UpdateBtn

@@ -11,11 +11,11 @@ import './EnhancedTable.scss';
 import EnhancedTableHead from '../EnhancedTableHead/EnhancedTableHead';
 import EnhancedTableToolbar from '../EnhancedTableToolbar/EnhancedTableToolbar';
 import EnhancedTableBody from '../EnhancedTableBody/EnhancedTableBody';
-import { getAllUsersArr } from '../../../store/selectors/dataUsers.selector';
+import { convertAllUsersArr } from '../../../store/selectors/dataUsers.selector';
 import { connect } from 'react-redux';
 
-const EnhancedTable = ({ allUsersArray }) => {
-  const rows = allUsersArray ? allUsersArray : [];
+const EnhancedTable = ({ displayUsers }) => {
+  const rows = displayUsers ? displayUsers : [];
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('id');
   const [selected, setSelected] = React.useState([]);
@@ -106,7 +106,7 @@ const EnhancedTable = ({ allUsersArray }) => {
 // flex-shrink: 0;
 const mapState = state => {
   return {
-    allUsersArray: getAllUsersArr(state),
+    displayUsers: convertAllUsersArr(state),
   };
 };
 export default connect(mapState)(EnhancedTable);

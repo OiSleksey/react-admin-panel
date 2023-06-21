@@ -11,6 +11,10 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
+import { connect } from 'react-redux';
+import { getAllUsersArr } from '../../../store/selectors/dataUsers.selector';
+import { getSearchUser } from '../../../utils/searchUser';
+import { displayDataUsers } from '../../../store/actions/dataUsers.actions';
 // import Btn from '../../forms/Btn/Btn';
 // import CreateBtn from '../../ui/CreateBtn/CreateBtn';
 // import UpdateBtn from '../../ui/UpdateBtn/UpdateBtn';
@@ -63,18 +67,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-const SearchField = ({ handleClicks }) => {
-  const handleClick = e => {
-    console.log(e.target.value);
-  };
+const SearchField = ({ handleClick, arrAllUsers, setDisplayDataUsers }) => {
+  // const handleClick = e => {
+  //   console.log(e.target.value);
+  // };
   const handleChange = e => {
-    console.log(e.target.value);
+    const value = e.target.value;
+    if (value === '') return;
+    const displayUsers = getSearchUser(arrAllUsers, value);
+    console.log(displayUsers);
+    setDisplayDataUsers(displayUsers);
   };
 
   return (
     <Box
       sx={{ cursor: 'pointer' }}
-      onClick={handleClick}
+      // onClick={handleClick}
       onChange={handleChange}
     >
       <Search>
@@ -94,4 +102,14 @@ const SearchField = ({ handleClicks }) => {
   );
 };
 
-export default SearchField;
+const mapState = state => {
+  return {
+    arrAllUsers: getAllUsersArr(state),
+  };
+};
+
+const mapDispath = {
+  setDisplayDataUsers: displayDataUsers,
+};
+
+export default connect(mapState, mapDispath)(SearchField);

@@ -32,7 +32,14 @@ const convertIsoMui = date => {
 
 export const getAllUsersArr = state => {
   if (!state || !state.dataUsers || !state.dataUsers.arrAllUsers) return null;
-  const inputArrUsers = state.dataUsers.arrAllUsers;
+  const arrAllUsers = state.dataUsers.arrAllUsers;
+  return arrAllUsers;
+};
+
+export const convertAllUsersArr = state => {
+  if (!state || !state.dataUsers || !state.dataUsers.displayDataUsers)
+    return null;
+  const inputArrUsers = state.dataUsers.displayDataUsers;
   const outputArrUsers = inputArrUsers.map((obj, index) => {
     const readyObject = {
       ...obj,
