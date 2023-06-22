@@ -25,10 +25,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './UserDisplayControl.scss';
 import {
   displayDataUsers,
-  showAllUsers,
+  // showAllUsers,
   activeBtnDisplay,
 } from '../../../store/actions/dataUsers.actions';
-import { getAllUsersArr } from '../../../store/selectors/dataUsers.selector';
+import { getArrConvertedAllUsers } from '../../../store/selectors/dataUsers.selector';
 
 const nameKind = [<UpdateBtn />, <DisplayUsersBtn />, <SearchField />];
 // const nameKind = ['hours', 'time of day'];
@@ -142,13 +142,13 @@ const mapState = state => {
     token: state.authorization.code,
     activeBtnDisplay: state.dataUsers.activeBtnDisplay,
     prevActiveBtnDisplay: state.dataUsers.prevActiveBtnDisplay,
-    arrAllUsers: getAllUsersArr(state),
+    arrAllUsers: getArrConvertedAllUsers(state),
   };
 };
 
 const mapDispath = {
   setDisplayDataUsers: displayDataUsers,
-  setShowAllUsers: showAllUsers,
+  // setShowAllUsers: showAllUsers,
   setActiveBtnDisplay: activeBtnDisplay,
 
   setTypeModalWindow: typeModalWindow,

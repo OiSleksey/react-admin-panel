@@ -12,7 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { connect } from 'react-redux';
-import { getAllUsersArr } from '../../../store/selectors/dataUsers.selector';
+import { getArrConvertedAllUsers } from '../../../store/selectors/dataUsers.selector';
 import { getSearchUser } from '../../../utils/searchUser';
 import { displayDataUsers } from '../../../store/actions/dataUsers.actions';
 // import Btn from '../../forms/Btn/Btn';
@@ -111,7 +111,7 @@ const SearchField = ({ handleClick, arrAllUsers, setDisplayDataUsers }) => {
 
 const mapState = state => {
   return {
-    arrAllUsers: getAllUsersArr(state),
+    arrAllUsers: getArrConvertedAllUsers(state),
   };
 };
 

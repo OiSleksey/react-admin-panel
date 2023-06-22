@@ -18,7 +18,7 @@ import InputRadioGroup from '../InputRadioGroup/InputRadioGroup';
 import ModalWindow from '../../ui/ModalWindow/ModalWindow';
 import { openModalWindow } from '../../../store/actions/ui.actions';
 import { createUserDispath } from '../../../store/middleware/requestsServer.middleware';
-import { isoInIsoPlusOneDay } from '../../../utils/convertDate';
+import { isoInIsoPlusOneDay } from '../../../utils/convertData';
 
 const CreateUserForm = ({
   logIn,

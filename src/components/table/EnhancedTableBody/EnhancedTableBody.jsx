@@ -4,7 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
-import { convertAllUsersArr } from '../../../store/selectors/dataUsers.selector';
+import { getArrDisplayUsers } from '../../../store/selectors/dataUsers.selector';
 import { connect } from 'react-redux';
 import EditBtn from '../EditBtn/EditBtn';
 import MenuBtn from '../MenuBtn/MenuBtn';
@@ -195,7 +195,7 @@ const EnhancedTableBody = props => {
 
 const mapState = state => {
   return {
-    allUsersArray: convertAllUsersArr(state),
+    allUsersArray: getArrDisplayUsers(state),
   };
 };
 const mapDispath = {

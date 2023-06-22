@@ -11,7 +11,7 @@ import './EnhancedTable.scss';
 import EnhancedTableHead from '../EnhancedTableHead/EnhancedTableHead';
 import EnhancedTableToolbar from '../EnhancedTableToolbar/EnhancedTableToolbar';
 import EnhancedTableBody from '../EnhancedTableBody/EnhancedTableBody';
-import { convertAllUsersArr } from '../../../store/selectors/dataUsers.selector';
+import { getArrDisplayUsers } from '../../../store/selectors/dataUsers.selector';
 import { connect } from 'react-redux';
 
 const EnhancedTable = ({ displayUsers }) => {
@@ -106,7 +106,7 @@ const EnhancedTable = ({ displayUsers }) => {
 // flex-shrink: 0;
 const mapState = state => {
   return {
-    displayUsers: convertAllUsersArr(state),
+    displayUsers: getArrDisplayUsers(state),
   };
 };
 export default connect(mapState)(EnhancedTable);
