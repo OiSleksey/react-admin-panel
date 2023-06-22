@@ -48,15 +48,84 @@ const EnhancedTable = ({ displayUsers }) => {
     setPage(0);
   };
 
-  const handleChangeDense = event => {
-    setDense(event.target.checked);
+  //Horizontal scroll on table
+  const containerRef = React.useRef(null);
+
+  const handleWheel = event => {
+    if (event.altKey) {
+      event.stopPropagation();
+      event.preventDefault();
+
+      containerRef.current.scrollBy({
+        left: event.deltaY < 0 ? -40 : 40,
+      });
+    }
   };
+
+  React.useEffect(() => {
+    containerRef.current.addEventListener('wheel', handleWheel, {
+      passive: false,
+    });
+
+    return () => {
+      containerRef.current.removeEventListener('wheel', handleWheel, {
+        passive: false,
+      });
+    };
+  }, []);
+  // const handleScroll = event => {
+  //   event.preventDefault();
+  // };
+  // const body = document.querySelector('body');
+  // window.addEventListener('scroll', () => {
+  //   console.log(window.scrollY);
+  //   console.log(window.scrollX);
+  //   window.scrollTo(0, 0);
+  // });
+
+  // const handleWheel = event => {
+  //   const container = containerRef.current;
+  //   // console.log(verticalScroll);
+  //   if (event.altKey) {
+  //     window.scrollTo({
+  //       top: 0,
+  //       behavior: 'smooth',
+  //     });
+  //     const scrollAmount = event.deltaY;
+  //     container.scrollTo({
+  //       top: 0,
+  //       left: container.scrollLeft + scrollAmount,
+  //       behavior: 'smooth',
+  //     });
+  //   }
+  //   event.preventDefault();
+  //   // if (document.body.doScroll) {
+  //   //   containerRef.current.doScroll(event.wheelDelta > 0 ? 'left' : 'right');
+  //   // } else if ((event.wheelDelta || event.detail) > 0) {
+  //   //   containerRef.current.scrollLeft -= 10;
+  //   //   console.log('left');
+  //   // } else {
+  //   //   containerRef.current.scrollLeft += 10;
+  //   //   console.log('right');
+  //   // }
+
+  //   // return false;
+  // };
+  // const scrollToTop = () => {
+  //   console.log(window.scrollY);
+
+  // };
 
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2, position: 'relative' }}>
         <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer sx={{ maxHeight: 1440, overflowX: 'auto' }}>
+        <TableContainer
+          sx={{ maxHeight: 1440, overflowX: 'auto' }}
+          ref={containerRef}
+          onWheel={handleWheel}
+          // onClick={scrollToTop}
+        >
           <Table
             sx={{ minWidth: 750 }}
             // aria-labelledby="tableTitle"
