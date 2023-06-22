@@ -7,6 +7,9 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { visuallyHidden } from '@mui/utils';
+import { connect } from 'react-redux';
+import { getArrActiveColumns } from '../../../store/selectors/filterTable.selector';
+import { MapSharp } from '@mui/icons-material';
 // import './EnhancedTableHead.scss';
 
 const headCells = [
@@ -73,7 +76,7 @@ const headCells = [
     label: 'Date of hire',
     numeric: true,
     disablePadding: false,
-    minWidth: 150,
+    minWidth: 140,
     sorted: true,
     // align: 'right',
     // format: value => value.toFixed(2),
@@ -130,15 +133,22 @@ const headCells = [
   },
 ];
 
-export default function EnhancedTableHead(props) {
+const EnhancedTableHead = props => {
   const {
     onSelectAllClick,
     order,
     orderBy,
     numSelected,
-    rowCount,
+    rowsLength,
     onRequestSort,
+    activeHeadCell,
+    // arrActiveColumns,
   } = props;
+
+  // const activeHeadCell = headCells.filter(cell =>
+  //   arrActiveColumns.includes(cell.id)
+  // );
+
   const createSortHandler = property => event => {
     onRequestSort(event, property);
   };
@@ -159,15 +169,15 @@ export default function EnhancedTableHead(props) {
         <TableCell padding="checkbox">
           <Checkbox
             color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
+            indeterminate={numSelected > 0 && numSelected < rowsLength}
+            checked={rowsLength > 0 && numSelected === rowsLength}
             onChange={onSelectAllClick}
             inputProps={{
               'aria-label': 'select all desserts',
             }}
           />
         </TableCell>
-        {headCells.map(headCell => (
+        {activeHeadCell.map(headCell => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
@@ -192,4 +202,12 @@ export default function EnhancedTableHead(props) {
       </TableRow>
     </TableHead>
   );
-}
+};
+
+const mapState = state => {
+  return {
+    arrActiveColumns: getArrActiveColumns(state),
+  };
+};
+
+export default connect(mapState)(EnhancedTableHead);

@@ -39,10 +39,10 @@ const MobileAppBar = ({
         <Box
           className="sidebar-icons"
           data-value="users"
-          onClick={event => {
-            // handleGetAllUsers();
-            handleClick(event);
-          }}
+          // onClick={event => {
+          //   // handleGetAllUsers();
+          //   handleClick(event);
+          // }}
           sx={{
             width: { sm: '100%' },
             background: activePanel === 'users' ? 'grey' : '#08c',
@@ -65,7 +65,7 @@ const MobileAppBar = ({
         <Box
           className="sidebar-icons"
           data-value="login"
-          onClick={handleClick}
+          // onClick={handleClick}
           sx={{
             width: { sm: '100%' },
             background: activePanel === 'login' ? 'grey' : '#08c',
@@ -90,7 +90,7 @@ const MobileAppBar = ({
           <Box
             className="sidebar-icons"
             data-value="avatar"
-            onClick={handleClick}
+            // onClick={handleClick}
             sx={{
               background: activePanel === 'avatar' ? 'grey' : '#08c',
               width: { xs: '100%' },
@@ -115,7 +115,7 @@ const MobileAppBar = ({
           <Box
             className="sidebar-icons"
             data-value="setting"
-            onClick={handleClick}
+            // onClick={handleClick}
             sx={{
               background: activePanel === 'setting' ? 'grey' : '#08c',
               width: { xs: '100%' },

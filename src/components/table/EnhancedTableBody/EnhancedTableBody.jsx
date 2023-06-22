@@ -6,6 +6,7 @@ import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import { getArrDisplayUsers } from '../../../store/selectors/dataUsers.selector';
 import { connect } from 'react-redux';
+import { getArrActiveColumns } from '../../../store/selectors/filterTable.selector';
 import EditBtn from '../EditBtn/EditBtn';
 import MenuBtn from '../MenuBtn/MenuBtn';
 import { сhangeDataUserId } from '../../../store/actions/dataUsers.actions';
@@ -75,21 +76,43 @@ const EnhancedTableBody = props => {
     page,
     dense,
     rowsPerPage,
-    allUsersArray,
+    arrDisplayUsers,
     setChangeDataUserId,
+    arrActiveColumns,
+    activeHeadCell,
   } = props;
 
+  // const activeUsersArr = arrDisplayUsers.map(user =>
+  //   arrActiveColumns.reduce((obj, column) => {
+  //     obj[column] = user[column];
+  //     return obj;
+  //   }, {})
+  // );
+
   // React.useEffect(() => {
-  //   console.log(allUsersArray);
-  // }, [allUsersArray]);
+  //   console.log(arrDisplayUsers);
+  // }, [arrDisplayUsers]);
   const handleClickEdit = event => {
     const idUpdateUser = parseInt(event.target.dataset.id);
     // console.log(idUpdateUser);
     setChangeDataUserId(idUpdateUser);
   };
+  // arrActiveColumns
+  // const arrActiveItemInColumns = arrDisplayUsers.map((value,index)=>{
 
-  const rows = allUsersArray
-    ? allUsersArray.map(obj => {
+  // })
+  const arrDisplayBody = arrDisplayUsers.map(obj => {
+    const objDisplayBody = arrActiveColumns.reduce((newObj, key) => {
+      newObj[key] = obj[key];
+      return newObj;
+    }, {});
+    return objDisplayBody;
+  });
+
+  console.log(arrDisplayBody);
+  // <TableCell align="right">{row.id}</TableCell>
+  const rows = arrDisplayBody
+    ? arrDisplayBody.map(obj => {
         return {
           ...obj,
           edit: <MenuBtn id={obj.id} handleClickEdit={handleClickEdit} />,
@@ -130,6 +153,21 @@ const EnhancedTableBody = props => {
       ),
     [rows, order, orderBy, page, rowsPerPage]
   );
+
+  const setColumns = (obj, index) => {
+    let idKey = 0;
+    let arrColumns = [];
+    for (const prop in obj) {
+      arrColumns.push(
+        <TableCell key={idKey} align="right">
+          {obj[prop]}
+        </TableCell>
+      );
+      idKey++;
+    }
+    return arrColumns;
+  };
+
   return (
     <TableBody>
       {visibleRows.map((row, index) => {
@@ -157,26 +195,19 @@ const EnhancedTableBody = props => {
                 }}
               />
             </TableCell>
-            {/* <TableCell
-                      component="th"
-                      id={labelId}
-                      scope="row"
-                      padding="none"
-                    >
-                      {row.name}
-                    </TableCell> */}
-            <TableCell align="right">{row.id}</TableCell>
-            <TableCell align="right">{row.createdAt}</TableCell>
+            {setColumns(row, index)}
+            {/* <TableCell align="right">{row.id}</TableCell>
             <TableCell align="right">{row.name}</TableCell>
             <TableCell align="right">{row.email}</TableCell>
             <TableCell align="right">{row.phone}</TableCell>
             <TableCell align="right">{row.homePhone}</TableCell>
+            <TableCell align="right">{row.createdAt}</TableCell>
             <TableCell align="right">{row.hireDate}</TableCell>
             <TableCell align="right">{row.dateOfBirth}</TableCell>
             <TableCell align="right">{row.lastLoginAt}</TableCell>
             <TableCell align="right">{row.blocked}</TableCell>
             <TableCell align="right">{row.role}</TableCell>
-            <TableCell align="right">{row.edit}</TableCell>
+            <TableCell align="right">{row.edit}</TableCell> */}
           </TableRow>
         );
       })}
@@ -195,7 +226,8 @@ const EnhancedTableBody = props => {
 
 const mapState = state => {
   return {
-    allUsersArray: getArrDisplayUsers(state),
+    arrDisplayUsers: getArrDisplayUsers(state),
+    // arrActiveColumns: getArrActiveColumns(state),
   };
 };
 const mapDispath = {

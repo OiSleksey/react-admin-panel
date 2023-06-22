@@ -24,23 +24,23 @@ const convertDate = date => {
 //   return muiDate;
 // };
 
-export const convertAllUsersArr = state => {
-  if (!state || !state.dataUsers || !state.dataUsers.displayDataUsers)
-    return null;
-  const inputArrUsers = state.dataUsers.displayDataUsers;
-  const outputArrUsers = inputArrUsers.map((obj, index) => {
-    const readyObject = {
-      ...obj,
-      createdAt: convertDate(obj.createdAt),
-      hireDate: convertDate(obj.hireDate),
-      dateOfBirth: convertDate(obj.dateOfBirth),
-      lastLoginAt: convertDate(obj.lastLoginAt),
-      blocked: obj.blocked + '',
-    };
-    return readyObject;
-  });
-  return outputArrUsers;
-};
+// export const convertAllUsersArr = state => {
+//   if (!state || !state.dataUsers || !state.dataUsers.displayDataUsers)
+//     return null;
+//   const inputArrUsers = state.dataUsers.displayDataUsers;
+//   const outputArrUsers = inputArrUsers.map((obj, index) => {
+//     const readyObject = {
+//       ...obj,
+//       createdAt: convertDate(obj.createdAt),
+//       hireDate: convertDate(obj.hireDate),
+//       dateOfBirth: convertDate(obj.dateOfBirth),
+//       lastLoginAt: convertDate(obj.lastLoginAt),
+//       blocked: obj.blocked + '',
+//     };
+//     return readyObject;
+//   });
+//   return outputArrUsers;
+// };
 
 //Correct arrAllUsers
 export const getArrAllUsers = state => {

@@ -7,9 +7,17 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import FilterMenu from '../FilterMenu/FilterMenu';
 // import './EnhancedTable.scss';
 
 export default function EnhancedTableToolbar({ numSelected }) {
+  const buttonRef = React.useRef(null);
+
+  const handleClick = () => {
+    if (buttonRef.current) {
+      buttonRef.current.click();
+    }
+  };
   return (
     <Toolbar
       sx={{
@@ -43,11 +51,15 @@ export default function EnhancedTableToolbar({ numSelected }) {
           Users
         </Typography>
       )}
-      <Tooltip title="Filter list">
+      <Tooltip
+        onClick={handleClick}
+        // title="Filter list"
+      >
         <IconButton>
           <FilterListIcon />
         </IconButton>
       </Tooltip>
+      <FilterMenu buttonRef={buttonRef} />
       {/* {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>

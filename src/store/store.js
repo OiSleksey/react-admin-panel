@@ -19,6 +19,7 @@ import storage from 'redux-persist/lib/storage';
 import { authorizationReducer } from './reducers/authorization.reducer';
 import { uiReducer } from './reducers/ui.reducer';
 import { dataUsersReducer } from './reducers/dataUsers.reducer';
+import { filterTableReducer } from './reducers/filterTable.reducer';
 // import { beAutorized } from '../components/forms/LoginForm/LoginForm';
 // console.log(beAutorized);
 // const allReducers = combineReducers({
@@ -28,6 +29,7 @@ const allReducers = combineReducers({
   authorization: authorizationReducer,
   ui: uiReducer,
   dataUsers: dataUsersReducer,
+  varFilterTable: filterTableReducer,
 });
 
 const persistConfig = {

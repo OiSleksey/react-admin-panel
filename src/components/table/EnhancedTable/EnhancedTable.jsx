@@ -13,8 +13,145 @@ import EnhancedTableToolbar from '../EnhancedTableToolbar/EnhancedTableToolbar';
 import EnhancedTableBody from '../EnhancedTableBody/EnhancedTableBody';
 import { getArrDisplayUsers } from '../../../store/selectors/dataUsers.selector';
 import { connect } from 'react-redux';
+import { getArrActiveColumns } from '../../../store/selectors/filterTable.selector';
 
-const EnhancedTable = ({ displayUsers }) => {
+const headCells = [
+  {
+    id: 'id',
+    label: 'Id',
+    numeric: true,
+    disablePadding: true,
+    sorted: true,
+    paddingRight: 10,
+    // minWidth: 170
+  },
+
+  {
+    id: 'name',
+    label: 'Name',
+    numeric: true,
+    disablePadding: false,
+    sorted: true,
+    // minWidth: 170,
+    // align: 'right',
+    // format: value => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'email',
+    label: 'Email',
+    numeric: true,
+    disablePadding: false,
+    sorted: true,
+    // minWidth: 170,
+    // align: 'right',
+    // format: value => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'phone',
+    label: 'Phone',
+    numeric: true,
+    disablePadding: false,
+    sorted: true,
+    // minWidth: 170,
+    // align: 'right',
+    // format: value => value.toFixed(2),
+  },
+  {
+    id: 'homePhone',
+    label: 'Home phone',
+    numeric: true,
+    disablePadding: false,
+    minWidth: 150,
+    sorted: true,
+    // align: 'right',
+    // format: value => value.toFixed(2),
+  },
+  {
+    id: 'createdAt',
+    label: 'Created',
+    numeric: true,
+    disablePadding: false,
+    sorted: true,
+    // minWidth: 100
+  },
+  {
+    id: 'hireDate',
+    label: 'Date of hire',
+    numeric: true,
+    disablePadding: false,
+    minWidth: 140,
+    sorted: true,
+    // align: 'right',
+    // format: value => value.toFixed(2),
+  },
+  {
+    id: 'dateOfBirth',
+    label: 'Birthday',
+    numeric: true,
+    disablePadding: false,
+    sorted: true,
+    // minWidth: 170,
+    // align: 'right',
+    // format: value => value.toFixed(2),
+  },
+  {
+    id: 'lastLoginAt',
+    label: 'Last entry',
+    numeric: true,
+    disablePadding: false,
+    minWidth: 130,
+    sorted: true,
+    // align: 'right',
+    // format: value => value.toFixed(2),
+  },
+  {
+    id: 'blocked',
+    label: 'Blocked',
+    numeric: true,
+    disablePadding: false,
+    sorted: true,
+    // minWidth: 170,
+    // align: 'right',
+    // format: value => value.toFixed(2),
+  },
+  {
+    id: 'role',
+    label: 'Role',
+    numeric: true,
+    disablePadding: false,
+    sorted: true,
+    // minWidth: 170,
+    // align: 'right',
+    // format: value => value.toFixed(2),
+  },
+  {
+    id: 'change',
+    label: 'Change',
+    numeric: true,
+    disablePadding: false,
+    sorted: false,
+    // minWidth: 170,
+    // align: 'right',
+    // format: value => value.toFixed(2),
+  },
+];
+
+const EnhancedTable = ({ displayUsers, arrActiveColumns }) => {
+  const activeHeadCell = headCells.filter(cell =>
+    arrActiveColumns.includes(cell.id)
+  );
+
+  activeHeadCell.push(headCells[headCells.length - 1]);
+
+  // console.log(activeHeadCell);
+  // let orderActiveCell = [];
+
+  // for (const prop in activeHeadCell[0]) {
+  //   orderActiveCell.push(prop);
+  // }
+
+  // console.log(arrActiveColumns);
+
   const rows = displayUsers ? displayUsers : [];
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('id');
@@ -68,53 +205,12 @@ const EnhancedTable = ({ displayUsers }) => {
     });
 
     return () => {
+      if (!containerRef.current) return;
       containerRef.current.removeEventListener('wheel', handleWheel, {
         passive: false,
       });
     };
   }, []);
-  // const handleScroll = event => {
-  //   event.preventDefault();
-  // };
-  // const body = document.querySelector('body');
-  // window.addEventListener('scroll', () => {
-  //   console.log(window.scrollY);
-  //   console.log(window.scrollX);
-  //   window.scrollTo(0, 0);
-  // });
-
-  // const handleWheel = event => {
-  //   const container = containerRef.current;
-  //   // console.log(verticalScroll);
-  //   if (event.altKey) {
-  //     window.scrollTo({
-  //       top: 0,
-  //       behavior: 'smooth',
-  //     });
-  //     const scrollAmount = event.deltaY;
-  //     container.scrollTo({
-  //       top: 0,
-  //       left: container.scrollLeft + scrollAmount,
-  //       behavior: 'smooth',
-  //     });
-  //   }
-  //   event.preventDefault();
-  //   // if (document.body.doScroll) {
-  //   //   containerRef.current.doScroll(event.wheelDelta > 0 ? 'left' : 'right');
-  //   // } else if ((event.wheelDelta || event.detail) > 0) {
-  //   //   containerRef.current.scrollLeft -= 10;
-  //   //   console.log('left');
-  //   // } else {
-  //   //   containerRef.current.scrollLeft += 10;
-  //   //   console.log('right');
-  //   // }
-
-  //   // return false;
-  // };
-  // const scrollToTop = () => {
-  //   console.log(window.scrollY);
-
-  // };
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -139,7 +235,8 @@ const EnhancedTable = ({ displayUsers }) => {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowsLength={rows.length}
+              activeHeadCell={activeHeadCell}
             />
             <EnhancedTableBody
               selected={selected}
@@ -149,6 +246,7 @@ const EnhancedTable = ({ displayUsers }) => {
               page={page}
               dense={dense}
               rowsPerPage={rowsPerPage}
+              arrActiveColumns={arrActiveColumns}
             />
           </Table>
         </TableContainer>
@@ -176,6 +274,8 @@ const EnhancedTable = ({ displayUsers }) => {
 const mapState = state => {
   return {
     displayUsers: getArrDisplayUsers(state),
+    arrActiveColumns: getArrActiveColumns(state),
   };
 };
+
 export default connect(mapState)(EnhancedTable);
