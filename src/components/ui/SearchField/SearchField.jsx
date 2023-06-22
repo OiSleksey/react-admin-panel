@@ -72,18 +72,25 @@ const SearchField = ({ handleClick, arrAllUsers, setDisplayDataUsers }) => {
   //   console.log(e.target.value);
   // };
   const handleChange = e => {
+    console.log('handleChange', e.target.value);
     const value = e.target.value;
-    if (value === '') return;
+
+    if (value === '') return setDisplayDataUsers(arrAllUsers);
     const displayUsers = getSearchUser(arrAllUsers, value);
     console.log(displayUsers);
     setDisplayDataUsers(displayUsers);
   };
+  // const handleBlur = e => {
+  //   handleChange(e);
+  //   console.log('handleBlur', e.target.value);
+  // };
 
   return (
     <Box
       sx={{ cursor: 'pointer' }}
       // onClick={handleClick}
       onChange={handleChange}
+      onFocus={handleChange}
     >
       <Search>
         <SearchIconWrapper>

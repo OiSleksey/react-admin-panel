@@ -7,26 +7,20 @@ const convertDate = date => {
   };
   const locale = navigator.language;
   const intlDate = new Intl.DateTimeFormat(locale, options).format(dateData);
-  // console.log(new Date(date));
   const parts = intlDate.split('.');
   const correctFormat = `${parts[0]}.${parts[1]}.${parts[2].padStart(4, '0')}`;
   return correctFormat;
 };
 
 const convertDateMui = date => {
-  // console.log(date); // Виведе: '2022-07-17'
   const parts = date.split('.');
-  // console.log(parts);
   const dateForMui = `${parts[2]}-${parts[1]}-${parts[0]}`;
-  // console.log(dateForMui); // Виведе: '2022-07-17'
   return dateForMui;
 };
 
 const convertIsoMui = date => {
   const displayDate = convertDate(date);
-  // console.log(displayDate);
   const muiDate = convertDateMui(displayDate);
-  // console.log(muiDate);
   return muiDate;
 };
 
@@ -58,7 +52,6 @@ export const getChangeUserDataObj = state => {
   if (!state || !state.dataUsers || !state.dataUsers.changeUserData)
     return null;
   const changeUserData = state.dataUsers.changeUserData;
-  // console.log(changeUserData.dateOfBirth);
   const correctDataUser = {
     ...changeUserData,
     dateOfBirth: convertIsoMui(changeUserData.dateOfBirth),

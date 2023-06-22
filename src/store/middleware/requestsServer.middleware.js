@@ -16,7 +16,6 @@ export const getTokenDispatch = data => {
   return function (dispatch, getState) {
     const state = getState();
     const errGetToken = state.ui.incorrectFunction;
-    console.log(errGetToken);
     getToken(data, cors)
       .then(res => {
         if (res === 'status 400') {
@@ -44,6 +43,7 @@ export const getTokenDispatch = data => {
         dispatch(uiActions.loggedIn(true));
         dispatch(uiActions.serverWork(true));
         dispatch(getAllUsersDispath(res.code));
+        dispatch(dataUsersActions.activeBtnDisplay('allUsers'));
       })
       .catch(rej => {
         if (!errGetToken) {
@@ -67,8 +67,6 @@ export const getAllUsersDispath = code => {
     const activeBtnDisplay = state.dataUsers.activeBtnDisplay;
     const prevActiveBtnDisplay = state.dataUsers.prevActiveBtnDisplay;
     const errGetAllUsers = state.ui.incorrectFunction;
-    console.log(activeBtnDisplay);
-    console.log(prevActiveBtnDisplay);
     getAllUsers(code, cors)
       .then(res => {
         if (res === 'status 404') {
@@ -97,7 +95,6 @@ export const putUserDispath = (userData, code) => {
   return function (dispatch, getState) {
     const state = getState();
     const errGetAllUsers = state.ui.incorrectFunction;
-    console.log(errGetAllUsers);
     putUser(userData, code)
       .then(res => {
         if (res === 'status 404') {
@@ -124,7 +121,6 @@ export const createUserDispath = (userData, code) => {
   return function (dispatch, getState) {
     const state = getState();
     const errGetAllUsers = state.ui.incorrectFunction;
-    console.log(errGetAllUsers);
     createUser(userData, code)
       .then(res => {
         if (res === 'status 404') {

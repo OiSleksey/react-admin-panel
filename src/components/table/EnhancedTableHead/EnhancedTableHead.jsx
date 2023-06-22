@@ -19,14 +19,7 @@ const headCells = [
     paddingRight: 10,
     // minWidth: 170
   },
-  {
-    id: 'createdAt',
-    label: 'Created',
-    numeric: true,
-    disablePadding: false,
-    sorted: true,
-    // minWidth: 100
-  },
+
   {
     id: 'name',
     label: 'Name',
@@ -66,6 +59,14 @@ const headCells = [
     sorted: true,
     // align: 'right',
     // format: value => value.toFixed(2),
+  },
+  {
+    id: 'createdAt',
+    label: 'Created',
+    numeric: true,
+    disablePadding: false,
+    sorted: true,
+    // minWidth: 100
   },
   {
     id: 'hireDate',

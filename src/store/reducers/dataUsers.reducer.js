@@ -6,16 +6,14 @@ import {
   ACTIVE_BTN_DISPLAY,
 } from '../actions/dataUsers.actions';
 
-const initialState = [
-  {
-    arrAllUsers: [],
-    changeUserData: {},
-    displayDataUsers: [],
-    showAllUsers: true,
-    prevActiveBtnDisplay: null,
-    activeBtnDisplay: 'allUsers',
-  },
-];
+const initialState = {
+  arrAllUsers: null,
+  changeUserData: null,
+  displayDataUsers: null,
+  showAllUsers: true,
+  prevActiveBtnDisplay: null,
+  activeBtnDisplay: 'allUsers',
+};
 
 export const dataUsersReducer = (state = initialState, action) => {
   switch (action.type) {

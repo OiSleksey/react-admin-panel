@@ -97,6 +97,8 @@ const EnhancedTableBody = props => {
       })
     : [];
 
+  console.log(rows);
+
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];

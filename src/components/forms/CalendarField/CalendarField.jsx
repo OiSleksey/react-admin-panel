@@ -13,7 +13,6 @@ import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 import { Formik, Form, useField } from 'formik';
 import Box from '@mui/material/Box';
-//  <Box sx={{ width: '100%' }}></Box>
 
 export default function ResponsiveDatePickers({
   label,
@@ -21,35 +20,16 @@ export default function ResponsiveDatePickers({
   dateValue,
   setDateValue,
 }) {
-  //   const [properties, setProperties] = React.useState(defaultProperties);
-
-  //controled
-  // const [field, meta] = useField(props);
-  // console.log(field);
-  // console.log(meta);
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     // changeProperties(meta.touched, meta.error);
-  //   }, 500);
-  // }, [meta.touched && meta.error]);
-
   const handleChange = value => {
     const date = value.$D;
     const month = value.$M;
-    // console.log(value);
     const now = new Date();
-    // const nowIso = now.toISOString()
-    // console.log(value.$d.toISOString());
     const fakeEvent = {
       target: {
         value: value.$d.toISOString(),
       },
     };
     setDateValue(value.$d.toISOString());
-    // console.log(value.$d.toISOString());
-    // field.onChange(fakeEvent);
-    // // console.log(field.onChange);
-    // // console.log(field.onChange());
   };
   return (
     <div className="input-box">

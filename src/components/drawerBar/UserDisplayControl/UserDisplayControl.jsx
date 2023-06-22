@@ -100,29 +100,28 @@ const UserDisplayControl = ({
   arrAllUsers,
 }) => {
   // const [indexKindWeather, setIndexKindWeather] = React.useState(0);
-  const nameBtn = ['updateData', 'allUser', 'usersFound'];
+  const namesBtn = ['updateData', 'allUsers', 'usersFound'];
 
   const handleOptions = value => {
     if (value === activeBtnDisplay) return;
     console.log(value);
     setActiveBtnDisplay(value);
-    if (value === nameBtn[0]) {
+    if (value === namesBtn[0]) {
       getAllUser(token);
-      // console.log(nameBtn[0]);
+      // console.log(namesBtn[0]);
     }
-    if (value === nameBtn[1]) {
+    if (value === namesBtn[1]) {
       setDisplayDataUsers(arrAllUsers);
-      // console.log(nameBtn[1]);
+      // console.log(namesBtn[1]);
     }
-    if (value === nameBtn[2]) {
+    if (value === namesBtn[2]) {
       // setDisplayDataUsers('Improved');
-      // console.log(nameBtn[2]);
+      // console.log(namesBtn[2]);
     }
   };
-
-  // const handleChange = e => {
-  //   console.log(e.target.value);
-  // };
+  React.useEffect(() => {
+    if (activeBtnDisplay === namesBtn[1]) setDisplayDataUsers(arrAllUsers);
+  }, [arrAllUsers]);
 
   return (
     <div className="kind-time">
@@ -130,23 +129,10 @@ const UserDisplayControl = ({
         <ToggleItem
           key={index}
           item={item}
-          isSelected={activeBtnDisplay === nameBtn[index]}
-          handleClick={() => handleOptions(nameBtn[index])}
-          // handleChange={handleChange}
+          isSelected={activeBtnDisplay === namesBtn[index]}
+          handleClick={() => handleOptions(namesBtn[index])}
         />
       ))}
-      {/* <UpdateBtn
-          isSelected={indexKindWeather === index}
-          handleClick={toggleTimesOfDay(index === 0)}
-        />
-        <DisplayUsersBtn
-          handleClick={toggleTimesOfDay(index === 0)}
-          isSelected={indexKindWeather === index}
-        />
-        <SearchField
-          handleClick={toggleTimesOfDay(index === 0)}
-          isSelected={indexKindWeather === index}
-        /> */}
     </div>
   );
 };
@@ -171,22 +157,3 @@ const mapDispath = {
 };
 
 export default connect(mapState, mapDispath)(UserDisplayControl);
-// export default UserDisplayControl;
-
-// const mapStates = state => {
-//   return {
-//     isUI: state.isUI,
-//   };
-// };
-// const mapDispatchs = {
-//   toggleTimesOfDay: toggleTimesOfDay,
-// };
-
-// //   export default connect(mapState, mapDispatch)(KindTime);
-// const handleClickTEST = () => {
-//   console.log('test');
-// };
-
-// const handleClickUpdate = () => {
-//   getAllUser(token);
-// };
