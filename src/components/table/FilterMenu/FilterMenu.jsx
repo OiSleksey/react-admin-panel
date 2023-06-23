@@ -3,16 +3,13 @@ import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
-import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SwitchFilter from '../SwitchFilter/SwitchFilter';
 import { Box } from '@mui/material';
 import { filterSwitchState } from '../../../store/actions/filterTable.actions';
+import { getObjStateSwitch } from '../../../store/selectors/filterTable.selector';
 import { connect } from 'react-redux';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 const StyledMenu = styled(props => (
   <Menu
@@ -68,10 +65,6 @@ const FilterMenu = ({ buttonRef, objStateSwitch, setStateSwitch }) => {
     setAnchorEl(null);
   };
 
-  const [state, setState] = React.useState({
-    gilad: true,
-  });
-
   const handleChange = (event, nameSwitch) => {
     const isChecked = event.target.checked;
     setStateSwitch(nameSwitch, isChecked);
@@ -113,14 +106,10 @@ const FilterMenu = ({ buttonRef, objStateSwitch, setStateSwitch }) => {
         dataName={value}
         labelName={namesLabel[index]}
         handleChange={handleChange}
-        isChecked={objState[value]}
+        isChecked={objState?.[value]}
       />
     </MenuItem>
   ));
-
-  // const test = namesDataServer.map((value, index) => namesLabel[index]);
-
-  // console.log(test);
 
   return (
     <div>
@@ -144,13 +133,26 @@ const FilterMenu = ({ buttonRef, objStateSwitch, setStateSwitch }) => {
         open={open}
         onClose={handleClose}
       >
-        <Box sx={{ margin: '0 auto', textAlign: 'center' }}>
-          Show table columns
+        <Box sx={{ display: 'flex' }}>
+          <Box sx={{ margin: '0 auto', textAlign: 'center' }}>
+            Show table columns
+          </Box>
+          <Box>
+            <IconButton
+              onClick={handleClose}
+              aria-label="close"
+              sx={{
+                minWidth: '24px',
+                minHeight: '24px',
+                position: 'absolute',
+                right: 0,
+                top: '6px',
+                // color: theme => theme.palette.grey[500],
+              }}
+            />
+            <CloseIcon />
+          </Box>
         </Box>
-        {/* <MenuItem disableRipple>
-          <MoreHorizIcon />
-          More
-        </MenuItem> */}
         {items}
       </StyledMenu>
     </div>
@@ -159,7 +161,7 @@ const FilterMenu = ({ buttonRef, objStateSwitch, setStateSwitch }) => {
 
 const mapState = state => {
   return {
-    objStateSwitch: state.varFilterTable,
+    objStateSwitch: getObjStateSwitch(state),
   };
 };
 

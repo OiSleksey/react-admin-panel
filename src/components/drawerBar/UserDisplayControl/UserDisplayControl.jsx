@@ -26,8 +26,11 @@ import './UserDisplayControl.scss';
 import {
   displayDataUsers,
   // showAllUsers,
-  activeBtnDisplay,
 } from '../../../store/actions/dataUsers.actions';
+import {
+  activeBtnDisplay,
+  // showAllUsers,
+} from '../../../store/actions/filterTable.actions';
 import { getArrConvertedAllUsers } from '../../../store/selectors/dataUsers.selector';
 
 const nameKind = [<UpdateBtn />, <DisplayUsersBtn />, <SearchField />];
@@ -104,7 +107,7 @@ const UserDisplayControl = ({
 
   const handleOptions = value => {
     if (value === activeBtnDisplay) return;
-    console.log(value);
+    // console.log(value);
     setActiveBtnDisplay(value);
     if (value === namesBtn[0]) {
       getAllUser(token);
@@ -140,8 +143,8 @@ const UserDisplayControl = ({
 const mapState = state => {
   return {
     token: state.authorization.code,
-    activeBtnDisplay: state.dataUsers.activeBtnDisplay,
-    prevActiveBtnDisplay: state.dataUsers.prevActiveBtnDisplay,
+    activeBtnDisplay: state.filterTable.activeBtnDisplay,
+    prevActiveBtnDisplay: state.filterTable.prevActiveBtnDisplay,
     arrAllUsers: getArrConvertedAllUsers(state),
   };
 };

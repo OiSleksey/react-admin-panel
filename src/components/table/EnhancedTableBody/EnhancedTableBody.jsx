@@ -101,15 +101,17 @@ const EnhancedTableBody = props => {
   // const arrActiveItemInColumns = arrDisplayUsers.map((value,index)=>{
 
   // })
-  const arrDisplayBody = arrDisplayUsers.map(obj => {
-    const objDisplayBody = arrActiveColumns.reduce((newObj, key) => {
-      newObj[key] = obj[key];
-      return newObj;
-    }, {});
-    return objDisplayBody;
-  });
+  const arrDisplayBody = arrDisplayUsers
+    ? arrDisplayUsers.map(obj => {
+        const objDisplayBody = arrActiveColumns.reduce((newObj, key) => {
+          newObj[key] = obj[key];
+          return newObj;
+        }, {});
+        return objDisplayBody;
+      })
+    : [];
 
-  console.log(arrDisplayBody);
+  // console.log(arrDisplayBody);
   // <TableCell align="right">{row.id}</TableCell>
   const rows = arrDisplayBody
     ? arrDisplayBody.map(obj => {

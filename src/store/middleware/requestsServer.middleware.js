@@ -6,6 +6,7 @@ import { createUser } from '../../api/requestServer/createUser';
 import * as authActions from '../actions/authorization.actions';
 import * as uiActions from '../actions/ui.actions';
 import * as dataUsersActions from '../actions/dataUsers.actions';
+import * as filterTableActions from '../actions/filterTable.actions';
 
 // import { quantityErr } from '../../utils/globalVariable';
 
@@ -43,7 +44,7 @@ export const getTokenDispatch = data => {
         dispatch(uiActions.loggedIn(true));
         dispatch(uiActions.serverWork(true));
         dispatch(getAllUsersDispath(res.code));
-        dispatch(dataUsersActions.activeBtnDisplay('allUsers'));
+        dispatch(filterTableActions.activeBtnDisplay('allUsers'));
       })
       .catch(rej => {
         if (!errGetToken) {
@@ -64,8 +65,8 @@ export const getTokenDispatch = data => {
 export const getAllUsersDispath = code => {
   return function (dispatch, getState) {
     const state = getState();
-    const activeBtnDisplay = state.dataUsers.activeBtnDisplay;
-    const prevActiveBtnDisplay = state.dataUsers.prevActiveBtnDisplay;
+    const activeBtnDisplay = state.filterTable.activeBtnDisplay;
+    const prevActiveBtnDisplay = state.filterTable.prevActiveBtnDisplay;
     const errGetAllUsers = state.ui.incorrectFunction;
     getAllUsers(code, cors)
       .then(res => {
@@ -81,7 +82,7 @@ export const getAllUsersDispath = code => {
         dispatch(uiActions.positiveMessage(`Get all users data`));
         dispatch(uiActions.serverWork(true));
         if (activeBtnDisplay === 'updateData')
-          dispatch(dataUsersActions.activeBtnDisplay(prevActiveBtnDisplay));
+          dispatch(filterTableActions.activeBtnDisplay(prevActiveBtnDisplay));
       })
       .catch(rej => {
         dispatch(uiActions.serverWork(true));

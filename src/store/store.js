@@ -29,7 +29,7 @@ const allReducers = combineReducers({
   authorization: authorizationReducer,
   ui: uiReducer,
   dataUsers: dataUsersReducer,
-  varFilterTable: filterTableReducer,
+  filterTable: filterTableReducer,
 });
 
 const persistConfig = {

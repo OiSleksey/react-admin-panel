@@ -72,12 +72,12 @@ const SearchField = ({ handleClick, arrAllUsers, setDisplayDataUsers }) => {
   //   console.log(e.target.value);
   // };
   const handleChange = e => {
-    console.log('handleChange', e.target.value);
+    // console.log('handleChange', e.target.value);
     const value = e.target.value;
 
     if (value === '') return setDisplayDataUsers(arrAllUsers);
     const displayUsers = getSearchUser(arrAllUsers, value);
-    console.log(displayUsers);
+    // console.log(displayUsers);
     setDisplayDataUsers(displayUsers);
   };
   // const handleBlur = e => {
