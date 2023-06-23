@@ -198,3 +198,5 @@ const resWhenLogin = {
   role: 'admin',
   userId: 3,
 };
+
+// const examples =[ 'dateOfBirth', 'driverCategory' ,'createdAt', 'departmentId','department']

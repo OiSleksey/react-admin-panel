@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { getArrConvertedAllUsers } from '../../../store/selectors/dataUsers.selector';
 import { getSearchUser } from '../../../utils/searchUser';
 import { displayDataUsers } from '../../../store/actions/dataUsers.actions';
+import { valueSearch } from '../../../store/actions/filterTable.actions';
 // import Btn from '../../forms/Btn/Btn';
 // import CreateBtn from '../../ui/CreateBtn/CreateBtn';
 // import UpdateBtn from '../../ui/UpdateBtn/UpdateBtn';
@@ -67,23 +68,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-const SearchField = ({ handleClick, arrAllUsers, setDisplayDataUsers }) => {
-  // const handleClick = e => {
-  //   console.log(e.target.value);
-  // };
+const SearchField = ({
+  handleClick,
+  arrAllUsers,
+  setDisplayDataUsers,
+  setValueSearch,
+}) => {
   const handleChange = e => {
-    // console.log('handleChange', e.target.value);
     const value = e.target.value;
-
+    setValueSearch(value);
     if (value === '') return setDisplayDataUsers(arrAllUsers);
     const displayUsers = getSearchUser(arrAllUsers, value);
-    // console.log(displayUsers);
     setDisplayDataUsers(displayUsers);
   };
-  // const handleBlur = e => {
-  //   handleChange(e);
-  //   console.log('handleBlur', e.target.value);
-  // };
 
   return (
     <Box
@@ -117,6 +114,7 @@ const mapState = state => {
 
 const mapDispath = {
   setDisplayDataUsers: displayDataUsers,
+  setValueSearch: valueSearch,
 };
 
 export default connect(mapState, mapDispath)(SearchField);

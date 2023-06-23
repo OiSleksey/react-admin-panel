@@ -10,6 +10,8 @@ import { getArrActiveColumns } from '../../../store/selectors/filterTable.select
 import EditBtn from '../EditBtn/EditBtn';
 import MenuBtn from '../MenuBtn/MenuBtn';
 import { сhangeDataUserId } from '../../../store/actions/dataUsers.actions';
+import { getValueSearch } from '../../../store/selectors/filterTable.selector';
+import HighlightText from '../../ui/HighlightText/HighlightText';
 
 // function createData(
 //   id,
@@ -80,6 +82,7 @@ const EnhancedTableBody = props => {
     setChangeDataUserId,
     arrActiveColumns,
     activeHeadCell,
+    valueSearch,
   } = props;
 
   // const activeUsersArr = arrDisplayUsers.map(user =>
@@ -162,7 +165,7 @@ const EnhancedTableBody = props => {
     for (const prop in obj) {
       arrColumns.push(
         <TableCell key={idKey} align="right">
-          {obj[prop]}
+          <HighlightText higlight={valueSearch} value={obj[prop]} />
         </TableCell>
       );
       idKey++;
@@ -229,6 +232,7 @@ const EnhancedTableBody = props => {
 const mapState = state => {
   return {
     arrDisplayUsers: getArrDisplayUsers(state),
+    valueSearch: getValueSearch(state),
     // arrActiveColumns: getArrActiveColumns(state),
   };
 };

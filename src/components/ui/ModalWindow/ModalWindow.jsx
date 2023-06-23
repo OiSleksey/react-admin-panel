@@ -87,16 +87,7 @@ const ModalWindow = ({
         >
           {titleModal}
         </BootstrapDialogTitle>
-        <DialogContent dividers>
-          {children}
-          {/* <ChangeUserDataForm /> */}
-          {/* <Button autoFocus onClick={handleClose}>
-            Save changes
-          </Button> */}
-        </DialogContent>
-        {/* <DialogActions>
-     
-        </DialogActions> */}
+        <DialogContent dividers>{children}</DialogContent>
       </BootstrapDialog>
     </Box>
   );

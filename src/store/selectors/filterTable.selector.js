@@ -15,6 +15,7 @@ export const getArrActiveColumns = state => {
 
   return arrActiveColumns;
 };
+
 export const getObjStateSwitch = state => {
   if (
     !state ||
@@ -27,4 +28,13 @@ export const getObjStateSwitch = state => {
   const objStateSwitch = state.filterTable.showColumns;
 
   return objStateSwitch;
+};
+
+export const getValueSearch = state => {
+  if (!state || !state.filterTable || !state.filterTable.valueSearch)
+    return null;
+
+  const valueSearch = state.filterTable.valueSearch;
+
+  return valueSearch;
 };

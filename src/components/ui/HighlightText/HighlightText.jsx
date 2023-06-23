@@ -1,43 +1,37 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import * as React from 'react';
 
-const list = [
-  'This is the first text first',
-  'Second',
-  'Hi how are you hi!!!',
-  'QwiREE',
-];
-
-export default function HighlightText() {
-  const [text, setText] = useState('');
-
-  return (
-    <div className="App">
-      <input
-        label="Text"
-        value={text}
-        onChange={e => setText(e.target.value)}
-      />
-      {list.map(v => (
-        <Compo key={v} value={v} higlight={text} />
-      ))}
-    </div>
-  );
-}
-
-const Compo = ({ higlight, value }) => {
-  return <p>{getHighlightedText(value, higlight)}</p>;
+const escapeRegExp = string => {
+  return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
 };
 
-function getHighlightedText(text, higlight) {
-  // Split text on higlight term, include term itself into parts, ignore case
-  var parts = text.split(new RegExp(`(${higlight})`, 'gi'));
+const getCorrectVariableString = variable => {
+  const correctVariable = variable ? variable + '' : '';
+  return correctVariable;
+};
+
+const getHighlightedText = (text, higlight) => {
+  if (typeof text === 'object') return <React.Fragment>{text}</React.Fragment>;
+
+  const correctText = getCorrectVariableString(text);
+  const correctHiglight = getCorrectVariableString(higlight);
+
+  const escapedHighlight = escapeRegExp(correctHiglight);
+  const regex = new RegExp(`(${escapedHighlight})`, 'gi');
+  const parts = correctText.split(regex);
+
   return parts.map((part, index) => (
     <React.Fragment key={index}>
-      {part.toLowerCase() === higlight.toLowerCase() ? (
+      {part.toLowerCase() === correctHiglight.toLowerCase() ? (
         <b style={{ backgroundColor: '#e8bb49' }}>{part}</b>
       ) : (
         part
       )}
     </React.Fragment>
   ));
-}
+};
+
+const HighlightText = ({ higlight, value }) => {
+  return <React.Fragment>{getHighlightedText(value, higlight)}</React.Fragment>;
+};
+
+export default HighlightText;
