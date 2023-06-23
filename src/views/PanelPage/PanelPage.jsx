@@ -1,12 +1,12 @@
 import * as React from 'react';
 import './PanelPage.scss';
 import { connect } from 'react-redux';
-import { getLoggedIn } from '../../store/selectors/getTokenLocalStorage.selector';
 import { getChangeUserDataObj } from '../../store/selectors/dataUsers.selector';
 import { useNavigate } from 'react-router-dom';
 import { getAllUsersDispath } from '../../store/middleware/requestsServer.middleware';
+import { getLoggedIn } from '../../store/selectors/ui.selector';
 import { activePanel } from '../../store/actions/ui.actions';
-import DrawerPanelBar from '../../components/drawerBar/DrawerPanelBar/DrawerPanelBar';
+import DrawerPanelBar from '../../components/drawerBar/panelBar/DrawerPanelBar/DrawerPanelBar';
 import EnhancedTable from '../../components/table/EnhancedTable/EnhancedTable';
 import ModalWindow from '../../components/ui/ModalWindow/ModalWindow';
 import ChangeUserDataForm from '../../components/forms/ChangeUserDataForm/ChangeUserDataForm';

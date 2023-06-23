@@ -3,7 +3,7 @@ import './LoginPage.scss';
 import LoginForm from '../../components/forms/LoginForm/LoginForm';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getLoggedIn } from '../../store/selectors/getTokenLocalStorage.selector';
+import { getLoggedIn } from '../../store/selectors/ui.selector';
 import { activePanel } from '../../store/actions/ui.actions';
 
 const LoginPage = ({ loggedIn, setActivePanel }) => {

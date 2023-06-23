@@ -1,4 +1,4 @@
-import { getToken } from '../../api/requestServer/getToken';
+import { autorization } from '../../api/requestServer/autorization';
 import { getAllUsers } from '../../api/requestServer/getAllUsers';
 import { putUser } from '../../api/requestServer/putUser';
 import { createUser } from '../../api/requestServer/createUser';
@@ -13,29 +13,29 @@ import * as filterTableActions from '../actions/filterTable.actions';
 const cors = 'cors';
 const noCors = 'no-cors';
 
-export const getTokenDispatch = data => {
+export const autorizationDispatch = data => {
   return function (dispatch, getState) {
     const state = getState();
-    const errGetToken = state.ui.incorrectFunction;
-    getToken(data, cors)
+    const errAutorization = state.ui.incorrectFunction;
+    autorization(data, cors)
       .then(res => {
         if (res === 'status 400') {
           dispatch(uiActions.loggedIn(false));
           dispatch(uiActions.serverWork(true));
-          dispatch(uiActions.errorMessage('getToken status 400'));
+          dispatch(uiActions.errorMessage('autorization status 400'));
           return;
         }
         if (res === 'status 404') {
           dispatch(uiActions.loggedIn(false));
           dispatch(uiActions.serverWork(true));
-          dispatch(uiActions.errorMessage('getToken status 404'));
-          dispatch(uiActions.incorrectFunction('Incorrect getToken'));
+          dispatch(uiActions.errorMessage('autorization status 404'));
+          dispatch(uiActions.incorrectFunction('Incorrect autorization'));
           return;
         }
         if (res === 'status 0') {
           dispatch(uiActions.serverWork(true));
-          dispatch(uiActions.errorMessage('getToken status 0'));
-          dispatch(uiActions.incorrectFunction('Incorrect getToken'));
+          dispatch(uiActions.errorMessage('autorization status 0'));
+          dispatch(uiActions.incorrectFunction('Incorrect autorization'));
           return;
         }
         dispatch(uiActions.incorrectFunction(null));
@@ -47,12 +47,12 @@ export const getTokenDispatch = data => {
         dispatch(filterTableActions.activeBtnDisplay('allUsers'));
       })
       .catch(rej => {
-        if (!errGetToken) {
+        if (!errAutorization) {
           dispatch(uiActions.serverWork(true));
-          dispatch(uiActions.incorrectFunction('Error in getToken'));
-          dispatch(getTokenDispatch(data, noCors));
+          dispatch(uiActions.incorrectFunction('Error in autorization'));
+          dispatch(autorizationDispatch(data, noCors));
         }
-        if (errGetToken === 'Error in getToken') {
+        if (errAutorization === 'Error in autorization') {
           dispatch(uiActions.incorrectFunction(null));
           dispatch(uiActions.serverWork(false));
         }
@@ -143,37 +143,3 @@ export const createUserDispath = (userData, code) => {
       });
   };
 };
-
-// if ((activeBtnDisplay = 'updateData'))
-//   console.log('prevActiveBtnDisplay');
-// // dispatch(dataUsersActions.activeBtnDisplay(prevActiveBtnDisplay));
-
-// if (res === 'status 0') {
-//   dispatch(uiActions.serverWork(true));
-//   dispatch(uiActions.errorMessage('getToken status 0'));
-//   dispatch(uiActions.incorrectFunction('Incorrect getToken'));
-//   return;
-// }
-
-// import { postRequest } from '../../api/postOpenAi';
-// import { getDateCurrency } from '../../api/getTime';
-// import * as actions from '../actions/chatWithOpenAi.actions';
-
-// export const openAiDispatch = message => {
-//   return function (dispatch) {
-//     dispatch(actions.canEnterRequest(false));
-//     dispatch(actions.questionForChat(message));
-//     dispatch(actions.dateQuestionForChat(getDateCurrency()));
-//     postRequest(message)
-//       .then(data => {
-//         dispatch(actions.replyFromChat(data));
-//         dispatch(actions.canEnterRequest(true));
-//         dispatch(actions.dateReplyFromChat(getDateCurrency()));
-//       })
-//       .catch(data => {
-//         dispatch(actions.replyFromChat(data));
-//         dispatch(actions.canEnterRequest(true));
-//         dispatch(actions.dateReplyFromChat(getDateCurrency()));
-//       });
-//   };
-// };

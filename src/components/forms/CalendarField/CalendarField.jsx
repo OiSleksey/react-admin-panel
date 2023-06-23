@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/de';
 import 'dayjs/locale/en-gb';
 import 'dayjs/locale/zh-cn';
+import { deDE } from '@mui/x-date-pickers/locales';
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -24,12 +25,15 @@ export default function ResponsiveDatePickers({
     const date = value.$D;
     const month = value.$M;
     const now = new Date();
-    const fakeEvent = {
-      target: {
-        value: value.$d.toISOString(),
-      },
-    };
-    setDateValue(value.$d.toISOString());
+    // const fakeEvent = {
+    //   target: {
+    //     value: value.$d.toISOString(),
+    //   },
+    // };
+
+    const inputDate = value.$d;
+    if (inputDate == 'Invalid Date') return;
+    setDateValue(inputDate);
   };
   return (
     <div className="input-box">
@@ -38,7 +42,8 @@ export default function ResponsiveDatePickers({
           components={['DatePicker', 'DatePicker', 'DatePicker']}
           sx={{ paddingTop: '0' }}
         >
-          <DatePicker
+          <MobileDatePicker
+            format="M/D/YYYY"
             defaultValue={dayjs(dateValue)}
             sx={{ m: 1, width: `${width}ch` }}
             label={label}

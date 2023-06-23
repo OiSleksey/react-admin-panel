@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setPropsSnake } from '../../store/selectors/getTokenLocalStorage.selector';
+import { setPropsSnake } from '../../store/selectors/ui.selector';
 import SnakeBar from '../ui/SnakeBar/SnakeBar';
 import LoginPage from '../../views/LoginPage/LoginPage';
 import PanelPage from '../../views/PanelPage/PanelPage';

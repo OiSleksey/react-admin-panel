@@ -7,7 +7,7 @@ import { Formik, Form } from 'formik';
 // import './LoginForm.scss';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
-import { getTokenDispatch } from '../../../store/middleware/requestsServer.middleware';
+import { autorizationDispatch } from '../../../store/middleware/requestsServer.middleware';
 import { rememberAuthorized } from '../../../store/actions/authorization.actions';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -189,7 +189,7 @@ const mapState = state => {
 };
 
 const mapDispath = {
-  logIn: getTokenDispatch,
+  logIn: autorizationDispatch,
   setRememberToken: rememberAuthorized,
   setOpenModalWindow: openModalWindow,
   setCreateUserDispath: createUserDispath,

@@ -38,3 +38,16 @@ export const getValueSearch = state => {
 
   return valueSearch;
 };
+
+export const getActiveBtnDisplay = state => {
+  if (!state || !state.filterTable || !state.filterTable.activeBtnDisplay)
+    return null;
+  const activeBtnDisplay = state.filterTable.activeBtnDisplay;
+  return activeBtnDisplay;
+};
+export const getPrevActiveBtnDisplay = state => {
+  if (!state || !state.filterTable || !state.filterTable.prevActiveBtnDisplay)
+    return null;
+  const prevActiveBtnDisplay = state.filterTable.prevActiveBtnDisplay;
+  return prevActiveBtnDisplay;
+};

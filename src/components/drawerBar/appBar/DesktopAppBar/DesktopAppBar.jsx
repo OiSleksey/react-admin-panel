@@ -1,25 +1,19 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import HdrAutoIcon from '@mui/icons-material/HdrAuto';
 import SettingsIcon from '@mui/icons-material/Settings';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-// import './DrawerAppBar.scss';
 import LoginIcon from '@mui/icons-material/Login';
 import { connect } from 'react-redux';
 import {
   getActivePanel,
   getLoggedIn,
-} from '../../../store/selectors/getTokenLocalStorage.selector';
-import { activePanel } from '../../../store/actions/ui.actions';
+} from '../../../../store/selectors/ui.selector';
+import { activePanel } from '../../../../store/actions/ui.actions';
 import { Link } from 'react-router-dom';
-import MobileAppBar from '../MobileAppBar/MobileAppBar';
 import StorageIcon from '@mui/icons-material/Storage';
 
 const drawerWidth = '4rem';

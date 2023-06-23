@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
 import {
   getActivePanel,
   getLoggedIn,
-} from '../../../store/selectors/getTokenLocalStorage.selector';
-import { activePanel } from '../../../store/actions/ui.actions';
+} from '../../../../store/selectors/ui.selector';
+import { activePanel } from '../../../../store/actions/ui.actions';
 import { Link } from 'react-router-dom';
 import StorageIcon from '@mui/icons-material/Storage';
 

@@ -8,7 +8,7 @@ import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Main from '../../Main/Main';
 import './ToggleColorMode.scss';
-import DrawerAppBar from '../../drawerBar/DrawerAppBar/DrawerAppBar';
+import DrawerAppBar from '../../drawerBar/appBar/DrawerAppBar/DrawerAppBar';
 import { getThemeMode } from '../../../store/selectors/ui.selector';
 import { setThemeMode } from '../../../store/actions/ui.actions';
 import './ToggleColorMode.scss';

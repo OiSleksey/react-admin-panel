@@ -3,25 +3,17 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
-import HdrAutoIcon from '@mui/icons-material/HdrAuto';
-import SettingsIcon from '@mui/icons-material/Settings';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import './DrawerAppBar.scss';
-import LoginIcon from '@mui/icons-material/Login';
 import { connect } from 'react-redux';
+import { getToken } from '../../../../store/selectors/authorization.selector';
 import {
   getActivePanel,
   getLoggedIn,
-} from '../../../store/selectors/getTokenLocalStorage.selector';
-import { activePanel } from '../../../store/actions/ui.actions';
-import { Link } from 'react-router-dom';
+} from '../../../../store/selectors/ui.selector';
+import { activePanel } from '../../../../store/actions/ui.actions';
 import MobileAppBar from '../MobileAppBar/MobileAppBar';
 import DesktopAppBar from '../DesktopAppBar/DesktopAppBar';
-import { getAllUsersDispath } from '../../../store/middleware/requestsServer.middleware';
+import { getAllUsersDispath } from '../../../../store/middleware/requestsServer.middleware';
 
 const drawerWidth = '4rem';
 
@@ -113,7 +105,7 @@ const mapState = state => {
   return {
     activePanel: getActivePanel(state),
     isLoggin: getLoggedIn(state),
-    token: state.authorization.code,
+    token: getToken(state),
   };
 };
 

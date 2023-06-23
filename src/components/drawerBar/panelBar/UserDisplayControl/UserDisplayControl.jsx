@@ -1,37 +1,24 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AutorenewIcon from '@mui/icons-material/Autorenew';
-import Btn from '../../forms/Btn/Btn';
-// import './DrawerPanelBar.scss';
-import CreateBtn from '../../ui/CreateBtn/CreateBtn';
-import UpdateBtn from '../../ui/UpdateBtn/UpdateBtn';
+import UpdateBtn from '../UpdateBtn/UpdateBtn';
 import {
   typeModalWindow,
   openModalWindow,
-} from '../../../store/actions/ui.actions';
+} from '../../../../store/actions/ui.actions';
 import { connect } from 'react-redux';
-import { getAllUsersDispath } from '../../../store/middleware/requestsServer.middleware';
-import DisplayUsersBtn from '../../ui/DisplayUsersBtn/DisplayUsersBtn';
-import SearchField from '../../ui/SearchField/SearchField';
+import { getAllUsersDispath } from '../../../../store/middleware/requestsServer.middleware';
+import DisplayUsersBtn from '../DisplayUsersBtn/DisplayUsersBtn';
+import SearchField from '../SearchField/SearchField';
 import { motion, AnimatePresence } from 'framer-motion';
 import './UserDisplayControl.scss';
+import { displayDataUsers } from '../../../../store/actions/dataUsers.actions';
+import { activeBtnDisplay } from '../../../../store/actions/filterTable.actions';
+import { getArrConvertedAllUsers } from '../../../../store/selectors/dataUsers.selector';
+import { getToken } from '../../../../store/selectors/authorization.selector';
 import {
-  displayDataUsers,
-  // showAllUsers,
-} from '../../../store/actions/dataUsers.actions';
-import {
-  activeBtnDisplay,
-  // showAllUsers,
-} from '../../../store/actions/filterTable.actions';
-import { getArrConvertedAllUsers } from '../../../store/selectors/dataUsers.selector';
+  getActiveBtnDisplay,
+  getPrevActiveBtnDisplay,
+} from '../../../../store/selectors/filterTable.selector';
 
 const nameKind = [<UpdateBtn />, <DisplayUsersBtn />, <SearchField />];
 // const nameKind = ['hours', 'time of day'];
@@ -110,6 +97,7 @@ const UserDisplayControl = ({
     // console.log(value);
     setActiveBtnDisplay(value);
     if (value === namesBtn[0]) {
+      console.log(token);
       getAllUser(token);
       // console.log(namesBtn[0]);
     }
@@ -142,9 +130,9 @@ const UserDisplayControl = ({
 
 const mapState = state => {
   return {
-    token: state.authorization.code,
-    activeBtnDisplay: state.filterTable.activeBtnDisplay,
-    prevActiveBtnDisplay: state.filterTable.prevActiveBtnDisplay,
+    token: getToken(state),
+    activeBtnDisplay: getActiveBtnDisplay(state),
+    prevActiveBtnDisplay: getPrevActiveBtnDisplay(state),
     arrAllUsers: getArrConvertedAllUsers(state),
   };
 };

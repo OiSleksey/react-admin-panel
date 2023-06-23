@@ -1,7 +1,8 @@
 import axios from 'axios';
 const url = 'http://91.196.52.61:8080/api_v1/Security/Login';
 
-export function getToken(formData, cors) {
+export function autorization(formData, cors) {
+  console.trace();
   return fetch(url, {
     mode: cors,
     method: 'POST',

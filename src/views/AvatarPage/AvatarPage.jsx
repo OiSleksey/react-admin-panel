@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './AvatarPage.scss';
 import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
-import { getLoggedIn } from '../../store/selectors/getTokenLocalStorage.selector';
+import { getLoggedIn } from '../../store/selectors/ui.selector';
 
 const AvatarPage = ({ loggedIn }) => {
   const navigate = useNavigate();
