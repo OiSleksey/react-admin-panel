@@ -72,7 +72,7 @@ const ModalWindow = ({
   };
 
   return (
-    <Box elevation={10} sx={{ color: '#08c' }}>
+    <Box elevation={10}>
       {/* <Button variant="outlined" onClick={handleClickOpen}>
         Open dialog
       </Button> */}

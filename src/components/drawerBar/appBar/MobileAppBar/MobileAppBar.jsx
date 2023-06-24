@@ -101,7 +101,7 @@ const MobileAppBar = ({
           data-value="profile"
           onClick={handleClickSetModal}
           sx={{
-            background: activePanel === 'profile' ? 'grey' : '#08c',
+            cursor: 'pointer',
             width: { xs: '100%' },
             marginBottom: { xs: '20px ' },
             padding: { xs: '7px 0' },
@@ -125,7 +125,7 @@ const MobileAppBar = ({
           data-value="setting"
           onClick={handleClickSetModal}
           sx={{
-            background: activePanel === 'setting' ? 'grey' : '#08c',
+            cursor: 'pointer',
             width: { xs: '100%' },
             padding: { xs: '10px 0' },
           }}

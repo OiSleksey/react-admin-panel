@@ -41,13 +41,18 @@ const ProfileDescription = ({ roleProfile, nameProfile }) => {
       sx={{
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'column' },
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '20px',
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        textAlign: 'center',
+        padding: '20px 20px 0 20px',
       }}
     >
-      <Box>{nameProfile}</Box>
-      <Box>Role: {roleProfile}</Box>
+      <Box>
+        <h3>{nameProfile}</h3>
+      </Box>
+      <Box>
+        <p> Role: {roleProfile}</p>
+      </Box>
     </Box>
   );
 };

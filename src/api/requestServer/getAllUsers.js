@@ -1,9 +1,12 @@
 import axios from 'axios';
-const url = 'http://91.196.52.61:8080/api_v1/Admin/All';
+// const url = 'http://91.196.52.61:8080/api_v1/Admin/All';
+
+const url = process.env.REACT_APP_API_ALL;
+const bearer = process.env.REACT_APP_BEARER;
 
 export function getAllUsers(code, cors) {
   console.log('get request');
-  const authorizationCode = `Bearer ${code}`;
+  const authorizationCode = `${bearer} ${code}`;
   //   console.log(cors);
   return fetch(url, {
     //   mode: isCorse ? 'cors' : 'no-cors',

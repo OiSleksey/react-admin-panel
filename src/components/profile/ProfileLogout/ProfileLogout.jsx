@@ -40,21 +40,25 @@ const DescriptionOwn = ({ handleClickLogout }) => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', sm: 'column' },
-        justifyContent: 'center',
-        alignItems: 'center',
+        minWidth: '100%',
+        // display: 'flex',
+        // flexDirection: { xs: 'column', sm: 'column' },
+        // justifyContent: 'center',
+        // alignItems: 'center',
         padding: '20px',
       }}
     >
       <Box
         sx={{
-          display: 'flex',
+          display: 'inline-block',
+          justifyContent: 'start',
           cursor: 'pointer',
+          padding: '10px 20px',
+          bgcolor: 'background.paper',
         }}
         onClick={handleClickLogout}
       >
-        <p style={{ marginRight: '10px' }}>Log out</p>
+        <p style={{ margin: '0 10px 0 0', display: 'inline-block' }}>Log out</p>
         <LogoutSharpIcon />
       </Box>
     </Box>

@@ -17,35 +17,15 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import AvatarPicture from '../AvatarPicture/AvatarIcon';
 import ProfileDescription from '../ProfileDescription/ProfileDescription';
 import ProfileLogout from '../ProfileLogout/ProfileLogout';
-import DescriptionOwner from '../../ui/DescriptionOwner/DescriptionOwner';
+import DescriptionOwn from '../../ui/DescriptionOwn/DescriptionOwner';
 import ModalWindow from '../../ui/ModalWindow/ModalWindow';
-import { activePanel, loggedIn } from '../../../store/actions/ui.actions';
+import { activePanel } from '../../../store/actions/ui.actions';
 import {
   typeModalWindow,
   openModalWindow,
 } from '../../../store/actions/ui.actions';
-import {
-  getExpiredTime,
-  getName,
-  getRole,
-} from '../../../store/selectors/authorization.selector';
-import { authData } from '../../../store/actions/authorization.actions';
-import { getLoggedIn } from '../../../store/selectors/ui.selector';
 
-const ProfileControl = ({
-  name,
-  expiredTime,
-  role,
-  setLogout,
-  setLoggedIn,
-  setOpenModalWindow,
-}) => {
-  const handleClickLogout = () => {
-    setLogout(null);
-    setLoggedIn(false);
-    setOpenModalWindow(false);
-  };
-
+const ProfileControl = props => {
   return (
     <Box
       sx={{
@@ -53,13 +33,12 @@ const ProfileControl = ({
         flexDirection: { xs: 'column', sm: 'column' },
         justifyContent: 'center',
         alignItems: 'center',
-        minWidth: '300px',
       }}
     >
-      <AvatarPicture nameProfile={name} />
-      <ProfileDescription nameProfile={name} roleProfile={role} />
-      <ProfileLogout handleClickLogout={handleClickLogout} />
-      <DescriptionOwner />
+      <AvatarPicture />
+      <ProfileDescription />
+      <ProfileLogout />
+      <DescriptionOwn />
     </Box>
   );
 };
@@ -67,18 +46,12 @@ const ProfileControl = ({
 const mapState = state => {
   return {
     modalType: state.ui.typeModalWindow,
-    name: getName(state),
-    expiredTime: getExpiredTime(state),
-    role: getRole(state),
   };
 };
 
 const mapDispatch = {
   setActivePanel: activePanel,
   setTypeModalWindow: typeModalWindow,
-  setOpenModalWindow: openModalWindow,
-  setLogout: authData,
-  setLoggedIn: loggedIn,
   setOpenModalWindow: openModalWindow,
 };
 

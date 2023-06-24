@@ -15,6 +15,8 @@ import CardContent from '@mui/material/CardContent';
 // import { isoInIsoPlusOneDay } from '../../../utils/convertData';
 import useMediaQuery from '@mui/material/useMediaQuery';
 // import AvatarPicture from '../AvatarPicture/AvatarIcon';
+import './DescriptionOwner.scss';
+import Version from '../Version/Version';
 
 const DescriptionOwn = ({
   logIn,
@@ -50,12 +52,25 @@ const DescriptionOwn = ({
       sx={{
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'column' },
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '20px',
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        padding: '20px 20px 0 20px',
       }}
+      className="description-owner"
     >
-      <Box>Panel Oi version: 1.0.0</Box>
+      <Box className="owner-wrapper">
+        <p className="owner-wrapper__description">
+          This pet project was made to implement an admin control panel.
+        </p>
+        <p className="owner-wrapper__about">
+          Write to the e-mail address of{' '}
+          <a className="owner-wrapper__link" href="mailto:schokk8193@gmail.com">
+            Oleksii
+          </a>
+          .
+        </p>
+        <Version />
+      </Box>
     </Box>
   );
 };

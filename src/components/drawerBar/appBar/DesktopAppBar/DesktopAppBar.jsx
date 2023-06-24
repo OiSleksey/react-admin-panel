@@ -129,6 +129,7 @@ const DesktopAppBar = ({
           data-value="profile"
           onClick={handleClickSetModal}
           sx={{
+            cursor: 'pointer',
             background: activePanel === 'profile' ? 'grey' : 'transparent',
             width: { sm: '100%' },
             marginBottom: { sm: '10px ' },
@@ -154,6 +155,7 @@ const DesktopAppBar = ({
           data-value="setting"
           onClick={handleClickSetModal}
           sx={{
+            cursor: 'pointer',
             background: activePanel === 'setting' ? 'grey' : 'transparent',
             width: { sm: '100%' },
             padding: { sm: '10px 0' },

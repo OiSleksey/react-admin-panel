@@ -1,5 +1,6 @@
 import axios from 'axios';
-const url = 'http://91.196.52.61:8080/api_v1/Security/Login';
+// const url = 'http://91.196.52.61:8080/api_v1/Security/Login';
+const url = process.env.REACT_APP_API_LOGIN;
 
 export function autorization(formData, cors) {
   console.trace();

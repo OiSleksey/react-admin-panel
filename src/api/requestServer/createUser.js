@@ -1,6 +1,10 @@
+// const url = 'http://91.196.52.61:8080/api_v1/Admin/Create';
+
+const url = process.env.REACT_APP_API_CREATE;
+const bearer = process.env.REACT_APP_BEARER;
+
 export const createUser = (formData, code) => {
-  const url = 'http://91.196.52.61:8080/api_v1/Admin/Create';
-  const authorizationCode = `Bearer ${code}`;
+  const authorizationCode = `${bearer} ${code}`;
   return fetch(url, {
     method: 'POST',
     headers: {
