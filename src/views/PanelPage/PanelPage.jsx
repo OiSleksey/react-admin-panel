@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { getChangeUserDataObj } from '../../store/selectors/dataUsers.selector';
 import { useNavigate } from 'react-router-dom';
 import { getAllUsersDispath } from '../../store/middleware/requestsServer.middleware';
-import { getLoggedIn } from '../../store/selectors/ui.selector';
+import {
+  getLoggedIn,
+  getTypeModalWindow,
+} from '../../store/selectors/ui.selector';
 import { activePanel } from '../../store/actions/ui.actions';
 import DrawerPanelBar from '../../components/drawerBar/panelBar/DrawerPanelBar/DrawerPanelBar';
 import EnhancedTable from '../../components/table/EnhancedTable/EnhancedTable';
@@ -18,6 +21,7 @@ import {
 } from '../../store/actions/ui.actions';
 import ProfileControl from '../../components/profile/ProfileControl/ProfileControl';
 import SettingControl from '../../components/setting/SettingControl/SettingControl';
+import { getToken } from '../../store/selectors/authorization.selector';
 
 const PanelPage = ({
   loggedIn,
@@ -81,10 +85,10 @@ const PanelPage = ({
 
 const mapState = state => {
   return {
-    token: state.authorization.code,
+    token: getToken(state),
     loggedIn: getLoggedIn(state),
     getChangeUserData: getChangeUserDataObj(state),
-    modalType: state.ui.typeModalWindow,
+    modalType: getTypeModalWindow(state),
   };
 };
 

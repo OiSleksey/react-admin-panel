@@ -23,6 +23,7 @@ function stringToColor(string) {
 }
 
 function stringAvatar(name) {
+  if (!name) return;
   return {
     sx: {
       bgcolor: stringToColor(name),
@@ -31,11 +32,11 @@ function stringAvatar(name) {
   };
 }
 
-export default function AvatarPicture() {
+export default function AvatarPicture({ nameProfile }) {
   return (
     <Stack spacing={2}>
       <Avatar
-        {...stringAvatar('Kent Dodds')}
+        {...stringAvatar(nameProfile)}
         sx={{
           minWidth: { xs: '100px', sm: '100px' },
           minHeight: { xs: '100px', sm: '100px' },

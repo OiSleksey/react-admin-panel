@@ -15,7 +15,7 @@ import { Formik, Form, useField } from 'formik';
 // import * as Yup from 'yup';
 
 export default function InputEmailField({ width, label, ...props }) {
-  console.log(width);
+  // console.log(width);
   //controled
   const [field, meta] = useField(props);
   const defaultProperties = {

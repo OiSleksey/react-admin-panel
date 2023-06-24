@@ -16,16 +16,7 @@ import CardContent from '@mui/material/CardContent';
 import useMediaQuery from '@mui/material/useMediaQuery';
 // import AvatarPicture from '../AvatarPicture/AvatarIcon';
 
-const ProfileDescription = ({
-  logIn,
-  setRememberToken,
-  loggedIn,
-  setOpenModalWindow,
-  openModalWindow,
-  changeUserData,
-  setPutUserDispath,
-  token,
-}) => {
+const ProfileDescription = ({ roleProfile, nameProfile }) => {
   const [widthInput, setWidthInput] = React.useState(35);
   const matchesVerPhone = useMediaQuery('(min-width:0px)');
   const matchesHorPhone = useMediaQuery('(min-width:500px)');
@@ -55,8 +46,8 @@ const ProfileDescription = ({
         padding: '20px',
       }}
     >
-      <Box>Admin Admin</Box>
-      <Box>Role: admin</Box>
+      <Box>{nameProfile}</Box>
+      <Box>Role: {roleProfile}</Box>
     </Box>
   );
 };

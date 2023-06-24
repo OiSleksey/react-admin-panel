@@ -1,16 +1,28 @@
-import { TOKEN_AUTH, REMEBER_TOKEN } from '../actions/authorization.actions';
+import { AUTH_DATA, REMEBER_TOKEN } from '../actions/authorization.actions';
 
 const initialState = {
   code: null,
+  name: null,
+  expiredTime: null,
+  role: null,
   beAuthorized: true,
 };
 
 export const authorizationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case TOKEN_AUTH: {
+    case AUTH_DATA: {
+      const data = action.payload.data;
+      console.log(data);
+      if (!data)
+        return {
+          beAuthorized: true,
+        };
       return {
         ...state,
-        code: action.payload.data,
+        code: data.code,
+        name: data.name,
+        expiredTime: data.expiredTime,
+        role: data.role,
       };
     }
     case REMEBER_TOKEN: {

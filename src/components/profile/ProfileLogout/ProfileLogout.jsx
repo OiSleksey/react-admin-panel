@@ -14,18 +14,10 @@ import CardContent from '@mui/material/CardContent';
 // import { putUserDispath } from '../../../store/middleware/requestsServer.middleware';
 // import { isoInIsoPlusOneDay } from '../../../utils/convertData';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 // import AvatarPicture from '../AvatarPicture/AvatarIcon';
 
-const DescriptionOwn = ({
-  logIn,
-  setRememberToken,
-  loggedIn,
-  setOpenModalWindow,
-  openModalWindow,
-  changeUserData,
-  setPutUserDispath,
-  token,
-}) => {
+const DescriptionOwn = ({ handleClickLogout }) => {
   const [widthInput, setWidthInput] = React.useState(35);
   const matchesVerPhone = useMediaQuery('(min-width:0px)');
   const matchesHorPhone = useMediaQuery('(min-width:500px)');
@@ -55,7 +47,16 @@ const DescriptionOwn = ({
         padding: '20px',
       }}
     >
-      <Box>Log out</Box>
+      <Box
+        sx={{
+          display: 'flex',
+          cursor: 'pointer',
+        }}
+        onClick={handleClickLogout}
+      >
+        <p style={{ marginRight: '10px' }}>Log out</p>
+        <LogoutSharpIcon />
+      </Box>
     </Box>
   );
 };

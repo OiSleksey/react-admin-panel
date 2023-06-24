@@ -1,9 +1,9 @@
-export const TOKEN_AUTH = 'TOKEN_AUTH';
+export const AUTH_DATA = 'AUTH_DATA';
 export const REMEBER_TOKEN = 'REMEBER_TOKEN';
 
-export const tokenAuth = data => {
+export const authData = data => {
   return {
-    type: TOKEN_AUTH,
+    type: AUTH_DATA,
     payload: {
       data,
     },

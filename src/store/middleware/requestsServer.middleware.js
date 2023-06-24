@@ -40,7 +40,7 @@ export const autorizationDispatch = data => {
         }
         dispatch(uiActions.incorrectFunction(null));
         dispatch(uiActions.positiveMessage(`Hello ${res.name}`));
-        dispatch(authActions.tokenAuth(res.code));
+        dispatch(authActions.authData(res));
         dispatch(uiActions.loggedIn(true));
         dispatch(uiActions.serverWork(true));
         dispatch(getAllUsersDispath(res.code));
@@ -87,7 +87,7 @@ export const getAllUsersDispath = code => {
       .catch(rej => {
         dispatch(uiActions.serverWork(true));
         dispatch(uiActions.loggedIn(false));
-        dispatch(authActions.tokenAuth(null));
+        dispatch(authActions.authData(null));
       });
   };
 };
@@ -113,7 +113,7 @@ export const putUserDispath = (userData, code) => {
       .catch(rej => {
         dispatch(uiActions.serverWork(true));
         dispatch(uiActions.loggedIn(false));
-        dispatch(authActions.tokenAuth(null));
+        dispatch(authActions.authData(null));
       });
   };
 };
@@ -139,7 +139,7 @@ export const createUserDispath = (userData, code) => {
       .catch(rej => {
         dispatch(uiActions.serverWork(true));
         dispatch(uiActions.loggedIn(false));
-        dispatch(authActions.tokenAuth(null));
+        dispatch(authActions.authData(null));
       });
   };
 };
