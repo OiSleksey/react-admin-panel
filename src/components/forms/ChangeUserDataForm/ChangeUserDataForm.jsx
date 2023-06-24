@@ -19,6 +19,11 @@ import ModalWindow from '../../ui/ModalWindow/ModalWindow';
 import { openModalWindow } from '../../../store/actions/ui.actions';
 import { putUserDispath } from '../../../store/middleware/requestsServer.middleware';
 import { isoInIsoPlusOneDay } from '../../../utils/convertData';
+import { getToken } from '../../../store/selectors/authorization.selector';
+import {
+  getLoggedIn,
+  getOpenModalWindow,
+} from '../../../store/selectors/ui.selector';
 
 const ChangeUserDataForm = ({
   logIn,
@@ -191,9 +196,9 @@ const ChangeUserDataForm = ({
 
 const mapState = state => {
   return {
-    loggedIn: state.ui.loggedIn,
-    token: state.authorization.code,
-    openModalWindow: state.ui.openModalWindow,
+    loggedIn: getLoggedIn(state),
+    token: getToken(state),
+    openModalWindow: getOpenModalWindow(state),
   };
 };
 

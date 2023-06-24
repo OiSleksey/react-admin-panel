@@ -36,7 +36,7 @@ export default function Password({ label, width, ...props }) {
     if ((touched && error) === false) {
       setProperties({
         sx: { m: 1, width: `${width}ch` },
-        id: 'filled-search',
+        // id: 'filled-search',
         label,
         type: 'email',
         variant: 'filled',
@@ -79,7 +79,7 @@ export default function Password({ label, width, ...props }) {
         <FilledInput
           {...field}
           {...props}
-          id="filled-adornment-password"
+          // id="filled-adornment-password"
           type={showPassword ? 'text' : 'password'}
           endAdornment={
             <InputAdornment position="end">

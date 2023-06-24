@@ -8,7 +8,7 @@ const SettingPage = ({ handleClick, stateMode }) => {
   return (
     <div className="avatar-page">
       <h1> Setting Page</h1>
-      <ToggleColorBtn handleClick={handleClick} stateMode={stateMode} />
+      {/* <ToggleColorBtn handleClick={handleClick} stateMode={stateMode} /> */}
     </div>
   );
 };

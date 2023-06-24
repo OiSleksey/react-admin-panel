@@ -14,6 +14,10 @@ import { activePanel } from '../../../../store/actions/ui.actions';
 import MobileAppBar from '../MobileAppBar/MobileAppBar';
 import DesktopAppBar from '../DesktopAppBar/DesktopAppBar';
 import { getAllUsersDispath } from '../../../../store/middleware/requestsServer.middleware';
+import {
+  typeModalWindow,
+  openModalWindow,
+} from '../../../../store/actions/ui.actions';
 
 const drawerWidth = '4rem';
 
@@ -24,6 +28,8 @@ const DrawerAppBar = ({
   window,
   getAllUser,
   token,
+  setTypeModalWindow,
+  setOpenModalWindow,
 }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -33,6 +39,13 @@ const DrawerAppBar = ({
   };
 
   //active panel handler
+  const handleClickSetModal = event => {
+    const target = event.target;
+    const activeParent = target.closest('.sidebar-icons');
+    const dataset = activeParent.dataset.value;
+    setTypeModalWindow(dataset);
+    setOpenModalWindow(true);
+  };
   const handleClick = event => {
     const target = event.target;
     const activeParent = target.closest('.sidebar-icons');
@@ -63,6 +76,7 @@ const DrawerAppBar = ({
         <DesktopAppBar
           handleDrawerToggle={handleDrawerToggle}
           handleClick={handleClick}
+          handleClickSetModal={handleClickSetModal}
           // handleGetAllUsers={handleGetAllUsers}
         />
       </AppBar>
@@ -85,7 +99,8 @@ const DrawerAppBar = ({
         >
           <MobileAppBar
             handleDrawerToggle={handleDrawerToggle}
-            // handleClick={handleClick}
+            handleClick={handleClick}
+            handleClickSetModal={handleClickSetModal}
             // handleGetAllUsers={handleGetAllUsers}
             // isLoggin={isLoggin}
           />
@@ -110,6 +125,8 @@ const mapState = state => {
 };
 
 const mapDispath = {
+  setTypeModalWindow: typeModalWindow,
+  setOpenModalWindow: openModalWindow,
   setActivePanel: activePanel,
   getAllUser: getAllUsersDispath,
 };

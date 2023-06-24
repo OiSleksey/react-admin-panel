@@ -20,7 +20,7 @@ export default function InputTextField({ width, label, ...props }) {
   const defaultProperties = {
     error: null,
     sx: { m: 1, width: `${width}ch` },
-    id: 'filled-search',
+    // id: 'filled-search',
     label,
     type: 'text',
     variant: 'filled',

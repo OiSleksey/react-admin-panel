@@ -15,12 +15,13 @@ import { Formik, Form, useField } from 'formik';
 // import * as Yup from 'yup';
 
 export default function InputEmailField({ width, label, ...props }) {
+  console.log(width);
   //controled
   const [field, meta] = useField(props);
   const defaultProperties = {
     error: null,
     sx: { m: 1, width: `${width}ch` },
-    id: 'filled-search',
+    // id: 'filled-search',
     label,
     type: 'email',
     variant: 'filled',

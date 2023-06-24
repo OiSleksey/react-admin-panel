@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
@@ -9,8 +8,6 @@ import Checkbox from '@mui/material/Checkbox';
 import { visuallyHidden } from '@mui/utils';
 import { connect } from 'react-redux';
 import { getArrActiveColumns } from '../../../store/selectors/filterTable.selector';
-import { MapSharp } from '@mui/icons-material';
-// import './EnhancedTableHead.scss';
 
 const headCells = [
   {

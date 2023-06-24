@@ -6,6 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import HdrAutoIcon from '@mui/icons-material/HdrAuto';
 import SettingsIcon from '@mui/icons-material/Settings';
+import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences';
 import LoginIcon from '@mui/icons-material/Login';
 import { connect } from 'react-redux';
 import {
@@ -24,12 +25,13 @@ const DesktopAppBar = ({
   setActivePanel,
   handleClick,
   handleDrawerToggle,
+  handleClickSetModal,
   // handleGetAllUsers,
 }) => {
   return (
     <Toolbar
       sx={{
-        padding: { sm: '10px 0' },
+        padding: { sm: '10px 0 10px 0' },
         flexDirection: { sm: 'column' },
         alignItems: { sm: 'center' },
         justifyContent: { sm: 'space-between' },
@@ -83,7 +85,7 @@ const DesktopAppBar = ({
         <Link to="/">
           <StorageIcon
             sx={{
-              fontSize: '50px',
+              fontSize: '40px',
               // display: { sm: 'none' },
               display: { xs: 'none', sm: 'block' },
               margin: '10px auto',
@@ -107,7 +109,7 @@ const DesktopAppBar = ({
         >
           <LoginIcon
             sx={{
-              fontSize: '50px',
+              fontSize: '40px',
               // display: { sm: 'none' },
               display: { xs: 'none', sm: 'block' },
               margin: '10px auto',
@@ -121,52 +123,51 @@ const DesktopAppBar = ({
           width: { sm: '100%' },
         }}
       >
-        <Link to="/avatar">
-          <Box
-            className="sidebar-icons"
-            data-value="avatar"
-            onClick={handleClick}
+        {/* <Link to="/profile"> */}
+        <Box
+          className="sidebar-icons"
+          data-value="profile"
+          onClick={handleClickSetModal}
+          sx={{
+            background: activePanel === 'profile' ? 'grey' : 'transparent',
+            width: { sm: '100%' },
+            marginBottom: { sm: '10px ' },
+            padding: { sm: '7px 0' },
+            display: isLoggin
+              ? { xs: 'none', sm: 'block' }
+              : { xs: 'none', sm: 'none' },
+          }}
+        >
+          <HdrAutoIcon
             sx={{
-              background: activePanel === 'avatar' ? 'grey' : 'transparent',
-              width: { sm: '100%' },
-              marginBottom: { sm: '20px ' },
-              padding: { sm: '7px 0' },
-              display: isLoggin
-                ? { xs: 'none', sm: 'block' }
-                : { xs: 'none', sm: 'none' },
+              fontSize: '40px',
+              // display: { sm: 'none' },
+              display: { xs: 'none', sm: 'block' },
+              margin: { sm: '0 auto ' },
             }}
-          >
-            <HdrAutoIcon
-              sx={{
-                fontSize: '50px',
-                // display: { sm: 'none' },
-                display: { xs: 'none', sm: 'block' },
-                margin: { sm: '0 auto ' },
-              }}
-            />
-          </Box>
-        </Link>
-        <Link to="/setting">
-          <Box
-            className="sidebar-icons"
-            data-value="setting"
-            onClick={handleClick}
+          />
+        </Box>
+        {/* </Link> */}
+
+        <Box
+          className="sidebar-icons"
+          data-value="setting"
+          onClick={handleClickSetModal}
+          sx={{
+            background: activePanel === 'setting' ? 'grey' : 'transparent',
+            width: { sm: '100%' },
+            padding: { sm: '10px 0' },
+          }}
+        >
+          <RoomPreferencesIcon
             sx={{
-              background: activePanel === 'setting' ? 'grey' : 'transparent',
-              width: { sm: '100%' },
-              padding: { sm: '10px 0' },
+              fontSize: '40px',
+              // display: { sm: 'none' },
+              display: { xs: 'none', sm: 'block' },
+              margin: '0 auto',
             }}
-          >
-            <SettingsIcon
-              sx={{
-                fontSize: '40px',
-                // display: { sm: 'none' },
-                display: { xs: 'none', sm: 'block' },
-                margin: '0 auto',
-              }}
-            />
-          </Box>
-        </Link>
+          />
+        </Box>
       </Box>
     </Toolbar>
   );

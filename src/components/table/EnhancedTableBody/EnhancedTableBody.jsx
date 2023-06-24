@@ -85,25 +85,12 @@ const EnhancedTableBody = props => {
     valueSearch,
   } = props;
 
-  // const activeUsersArr = arrDisplayUsers.map(user =>
-  //   arrActiveColumns.reduce((obj, column) => {
-  //     obj[column] = user[column];
-  //     return obj;
-  //   }, {})
-  // );
-
-  // React.useEffect(() => {
-  //   console.log(arrDisplayUsers);
-  // }, [arrDisplayUsers]);
   const handleClickEdit = event => {
     const idUpdateUser = parseInt(event.target.dataset.id);
     // console.log(idUpdateUser);
     setChangeDataUserId(idUpdateUser);
   };
-  // arrActiveColumns
-  // const arrActiveItemInColumns = arrDisplayUsers.map((value,index)=>{
 
-  // })
   const arrDisplayBody = arrDisplayUsers
     ? arrDisplayUsers.map(obj => {
         const objDisplayBody = arrActiveColumns.reduce((newObj, key) => {
@@ -114,8 +101,6 @@ const EnhancedTableBody = props => {
       })
     : [];
 
-  // console.log(arrDisplayBody);
-  // <TableCell align="right">{row.id}</TableCell>
   const rows = arrDisplayBody
     ? arrDisplayBody.map(obj => {
         return {
@@ -124,8 +109,6 @@ const EnhancedTableBody = props => {
         };
       })
     : [];
-
-  // console.log(rows);
 
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -201,18 +184,6 @@ const EnhancedTableBody = props => {
               />
             </TableCell>
             {setColumns(row, index)}
-            {/* <TableCell align="right">{row.id}</TableCell>
-            <TableCell align="right">{row.name}</TableCell>
-            <TableCell align="right">{row.email}</TableCell>
-            <TableCell align="right">{row.phone}</TableCell>
-            <TableCell align="right">{row.homePhone}</TableCell>
-            <TableCell align="right">{row.createdAt}</TableCell>
-            <TableCell align="right">{row.hireDate}</TableCell>
-            <TableCell align="right">{row.dateOfBirth}</TableCell>
-            <TableCell align="right">{row.lastLoginAt}</TableCell>
-            <TableCell align="right">{row.blocked}</TableCell>
-            <TableCell align="right">{row.role}</TableCell>
-            <TableCell align="right">{row.edit}</TableCell> */}
           </TableRow>
         );
       })}
@@ -233,7 +204,6 @@ const mapState = state => {
   return {
     arrDisplayUsers: getArrDisplayUsers(state),
     valueSearch: getValueSearch(state),
-    // arrActiveColumns: getArrActiveColumns(state),
   };
 };
 const mapDispath = {

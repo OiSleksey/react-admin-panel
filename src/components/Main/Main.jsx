@@ -12,9 +12,9 @@ import ToggleColorBtn from '../ui/ToggleColorBtn/ToggleColorBtn';
 
 import Box from '@mui/material/Box';
 import SettingPage from '../../views/SettingPage/SettingPage';
-import AvatarPage from '../../views/AvatarPage/AvatarPage';
+import ProfilePage from '../../views/ProfilePage/ProfilePage';
 
-const Main = ({ propsSnake, handleClick, stateMode }) => {
+const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
   return (
     <div className="main">
       <Box
@@ -28,17 +28,18 @@ const Main = ({ propsSnake, handleClick, stateMode }) => {
       <Box>
         <SnakeBar {...propsSnake} />
         <Routes>
-          <Route exact path="/" element={<PanelPage />} />
-          <Route exact path="/login" element={<LoginPage />} />
-          <Route exact path="/error" element={<ErrorServerPage />} />
           <Route
             exact
-            path="/setting"
+            path="/"
             element={
-              <SettingPage handleClick={handleClick} stateMode={stateMode} />
+              <PanelPage
+                handleClickTheme={handleClickTheme}
+                stateMode={stateMode}
+              />
             }
           />
-          <Route exact path="/avatar" element={<AvatarPage />} />
+          <Route exact path="/login" element={<LoginPage />} />
+          <Route exact path="/error" element={<ErrorServerPage />} />
           <Route exact path="/*" element={<NotFoundPage />} />
         </Routes>
       </Box>

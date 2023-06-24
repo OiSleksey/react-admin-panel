@@ -70,7 +70,7 @@ function Component() {
   return (
     <Box sx={styleBody}>
       <DrawerAppBar />
-      <Main handleClick={handleClick} stateMode={theme.palette.mode} />
+      <Main handleClickTheme={handleClick} stateMode={theme.palette.mode} />
     </Box>
   );
 }

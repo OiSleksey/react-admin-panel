@@ -16,6 +16,8 @@ import {
   typeModalWindow,
   openModalWindow,
 } from '../../store/actions/ui.actions';
+import ProfileControl from '../../components/profile/ProfileControl/ProfileControl';
+import SettingControl from '../../components/setting/SettingControl/SettingControl';
 
 const PanelPage = ({
   loggedIn,
@@ -26,10 +28,22 @@ const PanelPage = ({
   setTypeModalWindow,
   setOpenModalWindow,
   modalType,
+  handleClickTheme,
+  stateMode,
 }) => {
-  const titleModal =
-    modalType === 'createUser' ? 'Create user' : 'Change user data';
-  // console.log(modalType);
+  const [titleModal, setTitleModal] = React.useState('');
+
+  React.useEffect(() => {
+    setTitleModalWinsow();
+  }, [modalType]);
+
+  const setTitleModalWinsow = () => {
+    if (modalType === 'createUser') setTitleModal('Create user');
+    if (modalType === 'createUser') setTitleModal('Change user data');
+    if (modalType === 'profile') setTitleModal('Profile control');
+    if (modalType === 'setting') setTitleModal('Setting');
+  };
+
   const navigate = useNavigate();
   const handleRedirect = () => {
     if (!loggedIn) {
@@ -52,6 +66,13 @@ const PanelPage = ({
         )}
         {modalType === 'createUser' && (
           <CreateUserForm changeUserData={getChangeUserData} />
+        )}
+        {modalType === 'profile' && <ProfileControl />}
+        {modalType === 'setting' && (
+          <SettingControl
+            handleClickTheme={handleClickTheme}
+            stateMode={stateMode}
+          />
         )}
       </ModalWindow>
     </section>

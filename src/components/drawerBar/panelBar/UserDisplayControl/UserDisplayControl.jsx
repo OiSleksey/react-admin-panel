@@ -97,7 +97,6 @@ const UserDisplayControl = ({
     // console.log(value);
     setActiveBtnDisplay(value);
     if (value === namesBtn[0]) {
-      console.log(token);
       getAllUser(token);
       // console.log(namesBtn[0]);
     }

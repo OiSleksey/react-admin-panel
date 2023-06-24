@@ -6,7 +6,7 @@ import './ToggleColorBtn.scss';
 import { connect } from 'react-redux';
 import { setThemeMode } from '../../../store/actions/ui.actions';
 
-const ToggleColorBtn = ({ handleClick, stateMode, setThemeModeColor }) => {
+const ToggleColorBtn = ({ handleClickTheme, stateMode, setThemeModeColor }) => {
   React.useEffect(() => {
     setThemeModeColor(stateMode);
   }, [stateMode]);
@@ -14,7 +14,7 @@ const ToggleColorBtn = ({ handleClick, stateMode, setThemeModeColor }) => {
   return (
     <div className="change-theme">
       {stateMode} mode
-      <IconButton sx={{ ml: 1 }} onClick={handleClick} color="inherit">
+      <IconButton sx={{ ml: 1 }} onClick={handleClickTheme} color="inherit">
         {stateMode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
     </div>

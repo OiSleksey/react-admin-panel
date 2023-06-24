@@ -43,3 +43,9 @@ export const getThemeMode = state => {
   const themeMode = state.ui.themeMode;
   return themeMode;
 };
+
+export const getOpenModalWindow = state => {
+  if (!state || !state.ui || state.ui.openModalWindow) return null;
+  const openModalWindow = state.ui.openModalWindow;
+  return openModalWindow;
+};

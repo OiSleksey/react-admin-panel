@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import './AvatarPage.scss';
+import './ProfilePage.scss';
 import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import { getLoggedIn } from '../../store/selectors/ui.selector';
+// import ProfileForm from '../../components/forms/ProfileForm/ProfileForm';
+import ProfileControl from '../../components/profile/ProfileControl/ProfileControl';
 
-const AvatarPage = ({ loggedIn }) => {
+const ProfilePage = ({ loggedIn }) => {
   const navigate = useNavigate();
   const handleRedirect = () => {
     if (!loggedIn) {
@@ -18,8 +20,8 @@ const AvatarPage = ({ loggedIn }) => {
   }, [loggedIn]);
 
   return (
-    <div className="avatar-page">
-      <h1> Avatar Page</h1>
+    <div className="profile-page">
+      <ProfileControl />
     </div>
   );
 };
@@ -42,4 +44,4 @@ const mapState = state => {
 //   getAllUserChallenge: getAllUsersDispath,
 // };
 
-export default connect(mapState, null)(AvatarPage);
+export default connect(mapState, null)(ProfilePage);

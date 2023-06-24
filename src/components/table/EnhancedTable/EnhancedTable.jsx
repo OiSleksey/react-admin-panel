@@ -1,12 +1,9 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import './EnhancedTable.scss';
 import EnhancedTableHead from '../EnhancedTableHead/EnhancedTableHead';
 import EnhancedTableToolbar from '../EnhancedTableToolbar/EnhancedTableToolbar';
@@ -142,15 +139,6 @@ const EnhancedTable = ({ displayUsers, arrActiveColumns }) => {
   );
 
   activeHeadCell.push(headCells[headCells.length - 1]);
-
-  // console.log(activeHeadCell);
-  // let orderActiveCell = [];
-
-  // for (const prop in activeHeadCell[0]) {
-  //   orderActiveCell.push(prop);
-  // }
-
-  // console.log(arrActiveColumns);
 
   const rows = displayUsers ? displayUsers : [];
   const [order, setOrder] = React.useState('asc');
