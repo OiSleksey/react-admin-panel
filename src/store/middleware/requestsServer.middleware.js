@@ -88,6 +88,8 @@ export const getAllUsersDispath = code => {
         dispatch(uiActions.serverWork(true));
         dispatch(uiActions.loggedIn(false));
         dispatch(authActions.authData(null));
+        dispatch(uiActions.errorMessage('Error in token'));
+        dispatch(uiActions.incorrectFunction('Error in getAllUsers'));
       });
   };
 };

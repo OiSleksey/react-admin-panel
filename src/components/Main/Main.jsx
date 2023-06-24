@@ -13,6 +13,7 @@ import ToggleColorBtn from '../ui/ToggleColorBtn/ToggleColorBtn';
 import Box from '@mui/material/Box';
 import SettingPage from '../../views/SettingPage/SettingPage';
 import ProfilePage from '../../views/ProfilePage/ProfilePage';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
   return (
@@ -24,25 +25,26 @@ const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
           width: { xs: '100%', sm: '0' },
         }}
       ></Box>
-
-      <Box>
-        <SnakeBar {...propsSnake} />
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <PanelPage
-                handleClickTheme={handleClickTheme}
-                stateMode={stateMode}
-              />
-            }
-          />
-          <Route exact path="/login" element={<LoginPage />} />
-          <Route exact path="/error" element={<ErrorServerPage />} />
-          <Route exact path="/*" element={<NotFoundPage />} />
-        </Routes>
-      </Box>
+      <StyledEngineProvider injectFirst maxSnack={3} onClickDismiss={true}>
+        <Box>
+          <SnakeBar {...propsSnake} />
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <PanelPage
+                  handleClickTheme={handleClickTheme}
+                  stateMode={stateMode}
+                />
+              }
+            />
+            <Route exact path="/login" element={<LoginPage />} />
+            <Route exact path="/error" element={<ErrorServerPage />} />
+            <Route exact path="/*" element={<NotFoundPage />} />
+          </Routes>
+        </Box>
+      </StyledEngineProvider>
     </div>
   );
 };
