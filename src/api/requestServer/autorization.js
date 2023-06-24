@@ -4,16 +4,15 @@ const url = process.env.REACT_APP_API_LOGIN;
 
 export function autorization(formData, cors) {
   console.trace();
-  return fetch(url, {
-    mode: cors,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json;utc-8' },
-    body: JSON.stringify(formData),
-  })
+  return axios
+    .post(url, formData, {
+      headers: { 'Content-Type': 'application/json;utc-8' },
+      mode: cors,
+    })
     .then(res => {
       console.log(res);
-      if (res.ok) {
-        return res.json();
+      if (res.status === 200) {
+        return res.data;
       }
       if (res.status === 400) {
         const message = 'status 400';
@@ -35,6 +34,40 @@ export function autorization(formData, cors) {
       return null;
     });
 }
+
+// export function autorization(formData, cors) {
+//   console.trace();
+//   return fetch(url, {
+//     mode: cors,
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json;utc-8' },
+//     body: JSON.stringify(formData),
+//   })
+//     .then(res => {
+//       console.log(res);
+//       if (res.ok) {
+//         return res.json();
+//       }
+//       if (res.status === 400) {
+//         const message = 'status 400';
+//         return message;
+//       }
+//       if (res.status === 404) {
+//         console.error('status - 404');
+//         const message = 'status 404';
+//         return message;
+//       }
+//       if (res.status === 0) {
+//         const message = 'status 0';
+//         return message;
+//       }
+//       return res;
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       return null;
+//     });
+// }
 
 // Without server
 // CORS

@@ -7,31 +7,27 @@ const bearer = process.env.REACT_APP_BEARER;
 export function getAllUsers(code, cors) {
   console.log('get request');
   const authorizationCode = `${bearer} ${code}`;
-  //   console.log(cors);
-  return fetch(url, {
-    //   mode: isCorse ? 'cors' : 'no-cors',
-    mode: cors,
-    method: 'GET',
-    params: {
-      offset: 0,
-      limit: 50,
-    },
-    headers: {
-      accept: '*/*',
-      Authorization: authorizationCode,
-    },
-  })
+
+  return axios
+    .get(url, {
+      mode: cors,
+      params: {
+        offset: 0,
+        limit: 50,
+      },
+      headers: {
+        accept: '*/*',
+        Authorization: authorizationCode,
+      },
+    })
     .then(res => {
-      //   console.log(res);
-      if (res.ok) {
-        return res.json();
+      if (res.status === 200) {
+        return res.data;
       }
       if (res.status === 0) {
-        //сервер працює, це значить що треба показати логін 403
         const message = 'status 403';
         return message;
       }
-
       if (res.status === 404) {
         console.error('status - 404');
         const message = 'status 404';
@@ -39,7 +35,6 @@ export function getAllUsers(code, cors) {
       }
     })
     .then(res => {
-      //   console.log(res);
       return res;
     })
     .catch(error => {
@@ -47,6 +42,50 @@ export function getAllUsers(code, cors) {
       return null;
     });
 }
+
+// export function getAllUsers(code, cors) {
+//   console.log('get request');
+//   const authorizationCode = `${bearer} ${code}`;
+//   //   console.log(cors);
+//   return fetch(url, {
+//     //   mode: isCorse ? 'cors' : 'no-cors',
+//     mode: cors,
+//     method: 'GET',
+//     params: {
+//       offset: 0,
+//       limit: 50,
+//     },
+//     headers: {
+//       accept: '*/*',
+//       Authorization: authorizationCode,
+//     },
+//   })
+//     .then(res => {
+//       //   console.log(res);
+//       if (res.ok) {
+//         return res.json();
+//       }
+//       if (res.status === 0) {
+//         //сервер працює, це значить що треба показати логін 403
+//         const message = 'status 403';
+//         return message;
+//       }
+
+//       if (res.status === 404) {
+//         console.error('status - 404');
+//         const message = 'status 404';
+//         return message;
+//       }
+//     })
+//     .then(res => {
+//       //   console.log(res);
+//       return res;
+//     })
+//     .catch(error => {
+//       console.error(error.message);
+//       return null;
+//     });
+// }
 
 // let quantityErrData = 0;
 
