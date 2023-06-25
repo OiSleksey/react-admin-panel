@@ -11,6 +11,7 @@ import EnhancedTableBody from '../EnhancedTableBody/EnhancedTableBody';
 import { getArrDisplayUsers } from '../../../store/selectors/dataUsers.selector';
 import { connect } from 'react-redux';
 import { getArrActiveColumns } from '../../../store/selectors/filterTable.selector';
+import Card from '@mui/material/Card';
 
 const headCells = [
   {
@@ -202,7 +203,7 @@ const EnhancedTable = ({ displayUsers, arrActiveColumns }) => {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2, position: 'relative' }}>
+      <Card sx={{ width: '100%', mb: 2, position: 'relative' }} elevation={3}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer
           sx={{ maxHeight: 1440, overflowX: 'auto' }}
@@ -211,10 +212,13 @@ const EnhancedTable = ({ displayUsers, arrActiveColumns }) => {
           // onClick={scrollToTop}
         >
           <Table
-            sx={{ minWidth: 750 }}
+            sx={{
+              minWidth: 750,
+              borderCollapse: 'separate',
+            }}
             // aria-labelledby="tableTitle"
             size={dense ? 'small' : 'medium'}
-            stickyHeader
+            // stickyHeader
             aria-label="sticky table"
           >
             <EnhancedTableHead
@@ -253,7 +257,7 @@ const EnhancedTable = ({ displayUsers, arrActiveColumns }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
           sx={{ alignItems: 'center' }}
         />
-      </Paper>
+      </Card>
     </Box>
   );
 };

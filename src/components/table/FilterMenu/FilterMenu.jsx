@@ -101,7 +101,7 @@ const FilterMenu = ({ buttonRef, objStateSwitch, setStateSwitch }) => {
   const objState = objStateSwitch === {} ? {} : objStateSwitch;
 
   const items = namesDataServer.map((value, index) => (
-    <MenuItem key={value} sx={{ padding: '0 16px' }}>
+    <MenuItem key={value} sx={{ padding: '0 20px' }}>
       <SwitchFilter
         dataName={value}
         labelName={namesLabel[index]}
@@ -133,8 +133,8 @@ const FilterMenu = ({ buttonRef, objStateSwitch, setStateSwitch }) => {
         open={open}
         onClose={handleClose}
       >
-        <Box sx={{ display: 'flex' }}>
-          <Box sx={{ margin: '0 auto', textAlign: 'center' }}>
+        <Box sx={{ display: 'flex', padding: '4px 10px 0 10px' }}>
+          <Box sx={{ margin: '0 10px 0 0 ', textAlign: 'center' }}>
             Show table columns
           </Box>
           <Box>
@@ -145,8 +145,8 @@ const FilterMenu = ({ buttonRef, objStateSwitch, setStateSwitch }) => {
                 minWidth: '24px',
                 minHeight: '24px',
                 position: 'absolute',
-                right: 0,
-                top: '6px',
+                right: '10px',
+                top: '9px',
                 // color: theme => theme.palette.grey[500],
               }}
             />

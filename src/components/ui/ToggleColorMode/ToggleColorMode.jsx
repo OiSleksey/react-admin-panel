@@ -13,7 +13,20 @@ import { getThemeMode } from '../../../store/selectors/ui.selector';
 import { setThemeMode } from '../../../store/actions/ui.actions';
 import './ToggleColorMode.scss';
 import { connect } from 'react-redux';
-import { purple, amber, grey, deepOrange } from '@mui/material/colors';
+import {
+  purple,
+  amber,
+  grey,
+  deepOrange,
+  deepPurple,
+  indigo,
+  blue,
+} from '@mui/material/colors';
+
+const colorDarkGrey = '#1a1c22';
+const colorLightGrey = '#3d3a50';
+const colorBlue = '#580ef6';
+const colorWhite = '#f7f7f7';
 
 const getDesignTokens = mode => ({
   palette: {
@@ -21,28 +34,47 @@ const getDesignTokens = mode => ({
     ...(mode === 'light'
       ? {
           // palette values for light mode
-          primary: amber,
-          divider: amber[200],
+          primary: blue,
+          divider: 'rgba(0, 0, 0, 0.12)',
           background: {
-            default: deepOrange[900],
-            paper: deepOrange[900],
+            default: colorWhite,
+            paper: '#fff',
           },
           text: {
-            primary: grey[900],
-            secondary: grey[800],
+            primary: 'rgba(0, 0, 0, 0.87)',
+            secondary: 'rgba(0, 0, 0, 0.6)',
+            disabled: 'rgba(0, 0, 0, 0.38)',
+          },
+          action: {
+            active: 'rgba(0, 0, 0, 0.54)',
+            hover: 'rgba(0, 0, 0, 0.04)',
+            selected: 'rgba(0, 0, 0, 0.08)',
+            disabled: 'rgba(0, 0, 0, 0.26)',
+            disabledBackground: 'rgba(0, 0, 0, 0.12)',
           },
         }
       : {
           // palette values for dark mode
-          primary: deepOrange,
-          divider: deepOrange[700],
+          // primary: 'rgba(88, 14, 246, 1.0)',
+          // primary: '#570ef6',
+          // primary: deepPurple[500],
+          primary: blue,
+          divider: 'rgba(255, 255, 255, 0.12)',
           background: {
-            default: deepOrange[900],
-            paper: deepOrange[900],
+            default: '#121212',
+            paper: '#121212',
           },
           text: {
             primary: '#fff',
-            secondary: grey[500],
+            secondary: 'rgba(255, 255, 255, 0.7)',
+            disabled: 'rgba(255, 255, 255, 0.5)',
+          },
+          action: {
+            active: '#fff',
+            hover: 'rgba(255, 255, 255, 0.08)',
+            selected: 'rgba(255, 255, 255, 0.16)',
+            disabled: 'rgba(255, 255, 255, 0.3)',
+            disabledBackground: 'rgba(255, 255, 255, 0.12)',
           },
         }),
   },
@@ -103,17 +135,17 @@ const ToggleColorMode = ({ themeModeColor, setThemeModeColor }) => {
   //   );
 
   // Update the theme only if the mode changes
-  // const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode]
-  );
+  // const theme = React.useMemo(
+  //   () =>
+  //     createTheme({
+  //       palette: {
+  //         mode,
+  //       },
+  //     }),
+  //   [mode]
+  // );
 
   return (
     <ColorModeContext.Provider value={colorMode}>

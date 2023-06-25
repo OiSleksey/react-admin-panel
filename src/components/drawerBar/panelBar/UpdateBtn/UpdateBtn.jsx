@@ -6,13 +6,13 @@ import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 const UpdateBtn = ({ handleClick }) => {
   return (
-    <Box sx={{ cursor: 'pointer' }} onClick={handleClick}>
+    <Box sx={{ cursor: 'pointer', margin: '0 3px' }} onClick={handleClick}>
       <AutorenewIcon
         size="large"
         edge="start"
         color="inherit"
         aria-label="open drawer"
-        sx={{ fontSize: '35px', mr: 2, ml: 2 }}
+        sx={{ fontSize: '40px' }}
       >
         <MenuIcon />
       </AutorenewIcon>

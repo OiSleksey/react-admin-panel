@@ -38,25 +38,20 @@ export default function ResponsiveDatePickers({
   return (
     <div className="input-box">
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'en-gb'}>
-        <DemoContainer
-          components={['DatePicker', 'DatePicker', 'DatePicker']}
-          sx={{ paddingTop: '0' }}
-        >
-          <MobileDatePicker
-            format="M/D/YYYY"
-            defaultValue={dayjs(dateValue)}
-            sx={{ m: 1, width: `${width}ch` }}
-            label={label}
-            slotProps={{
-              textField: { variant: 'filled' },
-            }}
-            onChange={handleChange}
-          />
-          {/* <DatePicker
+        <MobileDatePicker
+          format="D/M/YYYY"
+          defaultValue={dayjs(dateValue)}
+          sx={{ m: 1, width: `${width}ch` }}
+          label={label}
+          slotProps={{
+            textField: { variant: 'filled' },
+          }}
+          onChange={handleChange}
+        />
+        {/* <DatePicker
           label="Filled picker"
           slotProps={{ textField: { variant: 'filled' } }}
         /> */}
-        </DemoContainer>
         <div className="error-validation" style={{ width: `${width}ch` }}>
           {/* <p className="error-validation__message">{properties.info}</p> */}
         </div>

@@ -15,6 +15,8 @@ import { activePanel } from '../../../../store/actions/ui.actions';
 import { Link } from 'react-router-dom';
 import StorageIcon from '@mui/icons-material/Storage';
 import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
+import { useTheme } from '@mui/material/styles';
+
 // const drawerWidth = '4rem';
 
 const MobileAppBar = ({
@@ -26,6 +28,8 @@ const MobileAppBar = ({
   handleClickSetModal,
   // handleGetAllUsers,
 }) => {
+  const theme = useTheme();
+  console.log(theme.palette.primary[500]);
   return (
     <Box
       onClick={handleDrawerToggle}
@@ -48,14 +52,22 @@ const MobileAppBar = ({
           }}
         />
       </Box>
-      <Link to="/">
+      <Link to="/" style={{ display: isLoggin ? 'block' : 'none' }}>
         <Box
           className="sidebar-icons"
           data-value="users"
           onClick={handleClick}
           sx={{
+            padding: '5px 0',
             width: { sm: '100%' },
-            background: activePanel === 'users' ? 'grey' : '#08c',
+            color:
+              activePanel === 'users'
+                ? theme.palette.primary[500]
+                : theme.palette.text.primary,
+            background:
+              activePanel === 'users'
+                ? theme => theme.palette.background.default
+                : 'rgba(255, 255, 255, 0)',
             display: isLoggin
               ? { xs: 'block', sm: 'none' }
               : { xs: 'none', sm: 'none' },
@@ -71,14 +83,22 @@ const MobileAppBar = ({
           />
         </Box>
       </Link>
-      <Link to="/login">
+      <Link to="/login" style={{ display: !isLoggin ? 'block' : 'none' }}>
         <Box
           className="sidebar-icons"
           data-value="login"
           onClick={handleClick}
           sx={{
+            padding: '5px 0',
             width: { sm: '100%' },
-            background: activePanel === 'login' ? 'grey' : '#08c',
+            color:
+              activePanel === 'login'
+                ? theme.palette.primary[500]
+                : theme.palette.text.primary,
+            background:
+              activePanel === 'login'
+                ? theme => theme.palette.background.default
+                : 'rgba(255, 255, 255, 0)',
             display: !isLoggin
               ? { xs: 'block', sm: 'none' }
               : { xs: 'none', sm: 'none' },

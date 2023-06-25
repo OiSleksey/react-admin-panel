@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import FilterMenu from '../FilterMenu/FilterMenu';
+import Paper from '@mui/material/Paper';
 
 export default function EnhancedTableToolbar({ numSelected }) {
   const buttonRef = React.useRef(null);
@@ -16,47 +17,54 @@ export default function EnhancedTableToolbar({ numSelected }) {
     }
   };
   return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: theme =>
-            alpha(
-              theme.palette.primary.main,
-              theme.palette.action.activatedOpacity
-            ),
-        }),
-      }}
+    <Paper
+    // sx={{
+    //   mb: 0.1,
+    // }}
+    // elevation={10}
     >
-      {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          Users
-        </Typography>
-      )}
-      <Tooltip
-        onClick={handleClick}
-        // title="Filter list"
+      <Toolbar
+        sx={{
+          pl: { sm: 2 },
+          pr: { xs: 1, sm: 1 },
+          ...(numSelected > 0 && {
+            bgcolor: theme =>
+              alpha(
+                theme.palette.primary.main,
+                theme.palette.action.activatedOpacity
+              ),
+          }),
+        }}
       >
-        <IconButton>
-          <FilterListIcon />
-        </IconButton>
-      </Tooltip>
-      <FilterMenu buttonRef={buttonRef} />
-    </Toolbar>
+        {numSelected > 0 ? (
+          <Typography
+            sx={{ flex: '1 1 100%' }}
+            color="inherit"
+            variant="subtitle1"
+            component="div"
+          >
+            {numSelected} selected
+          </Typography>
+        ) : (
+          <Typography
+            sx={{ flex: '1 1 100%' }}
+            variant="h6"
+            id="tableTitle"
+            component="div"
+          >
+            Users
+          </Typography>
+        )}
+        <Tooltip
+          onClick={handleClick}
+          // title="Filter list"
+        >
+          <IconButton>
+            <FilterListIcon />
+          </IconButton>
+        </Tooltip>
+        <FilterMenu buttonRef={buttonRef} />
+      </Toolbar>
+    </Paper>
   );
 }

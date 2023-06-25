@@ -62,15 +62,6 @@ export const autorizationDispatch = data => {
       })
       .catch(rej => {
         console.log(rej);
-        // if (!errAutorization) {
-        //   console.log('First error');
-        //   dispatch(uiActions.serverWork(true));
-        //   dispatch(uiActions.incorrectFunction('Error in autorization'));
-        //   dispatch(uiActions.errorMessage('Error in autorization'));
-        //   dispatch(autorizationDispatch(data, noCors));
-        //   return;
-        // }
-        // if (errAutorization === 'Error in autorization') {
         console.log('Second error');
         dispatch(
           uiActions.incorrectFunction(
@@ -80,8 +71,6 @@ export const autorizationDispatch = data => {
         dispatch(uiActions.errorMessage('Server don`t work'));
         dispatch(uiActions.serverWork(false));
         closeBackDropLoading(dispatch);
-        //   return;
-        // }
       });
   };
 };

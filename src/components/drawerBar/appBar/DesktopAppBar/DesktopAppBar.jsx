@@ -16,6 +16,7 @@ import {
 import { activePanel } from '../../../../store/actions/ui.actions';
 import { Link } from 'react-router-dom';
 import StorageIcon from '@mui/icons-material/Storage';
+import { useTheme } from '@mui/material/styles';
 
 const drawerWidth = '4rem';
 
@@ -26,8 +27,11 @@ const DesktopAppBar = ({
   handleClick,
   handleDrawerToggle,
   handleClickSetModal,
+
   // handleGetAllUsers,
 }) => {
+  const theme = useTheme();
+  console.log(theme.palette.primary[500]);
   return (
     <Toolbar
       sx={{
@@ -66,23 +70,29 @@ const DesktopAppBar = ({
           }}
         />
       </Box>
-
-      <Box
-        className="sidebar-icons"
-        data-value="users"
-        onClick={event => {
-          // handleGetAllUsers();
-          handleClick(event);
-        }}
-        sx={{
-          width: { sm: '100%' },
-          background: activePanel === 'users' ? 'grey' : 'transparent',
-          display: isLoggin
-            ? { xs: 'none', sm: 'block' }
-            : { xs: 'none', sm: 'none' },
-        }}
-      >
-        <Link to="/">
+      <Link to="/" style={{ width: '100%' }}>
+        <Box
+          className="sidebar-icons"
+          data-value="users"
+          onClick={event => {
+            // handleGetAllUsers();
+            handleClick(event);
+          }}
+          sx={{
+            width: { sm: '100%' },
+            color:
+              activePanel === 'users'
+                ? theme.palette.primary[500]
+                : theme.palette.text.primary,
+            background:
+              activePanel === 'users'
+                ? theme.palette.background.default
+                : '#FFFFFF00',
+            display: isLoggin
+              ? { xs: 'none', sm: 'block' }
+              : { xs: 'none', sm: 'none' },
+          }}
+        >
           <StorageIcon
             sx={{
               fontSize: '40px',
@@ -91,17 +101,23 @@ const DesktopAppBar = ({
               margin: '10px auto',
             }}
           />
-        </Link>
-      </Box>
+        </Box>
+      </Link>
 
-      <Link to="/login">
+      <Link to="/login" style={{ width: '100%' }}>
         <Box
           className="sidebar-icons"
           data-value="login"
           onClick={handleClick}
           sx={{
-            width: { sm: '100%' },
-            background: activePanel === 'login' ? 'grey' : 'transparent',
+            color:
+              activePanel === 'login'
+                ? theme.palette.primary[500]
+                : theme.palette.text.primary,
+            background:
+              activePanel === 'login'
+                ? theme.palette.background.default
+                : '#FFFFFF00',
             display: !isLoggin
               ? { xs: 'none', sm: 'block' }
               : { xs: 'none', sm: 'none' },

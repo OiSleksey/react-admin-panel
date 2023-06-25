@@ -19,6 +19,8 @@ import {
   getActiveBtnDisplay,
   getPrevActiveBtnDisplay,
 } from '../../../../store/selectors/filterTable.selector';
+import { useTheme } from '@mui/material/styles';
+import { getThemeMode } from '../../../../store/selectors/ui.selector';
 
 const nameKind = [<UpdateBtn />, <DisplayUsersBtn />, <SearchField />];
 // const nameKind = ['hours', 'time of day'];
@@ -47,14 +49,25 @@ const nameKind = [<UpdateBtn />, <DisplayUsersBtn />, <SearchField />];
 //   toggleTimesOfDay: PropTypes.func.isRequired,
 // };
 
-const ToggleItem = ({ item, isSelected, handleClick = Function.prototype }) => {
+const ToggleItem = ({
+  item,
+  isSelected,
+  handleClick = Function.prototype,
+  theme,
+  themeMode,
+}) => {
+  const activeBackground =
+    themeMode === 'light'
+      ? theme.palette.text.primary
+      : theme.palette.primary[500];
+  const notActiveBackground = 'rgba(255, 255, 255, 0)';
   return (
     <motion.div
-      // className="kind-time__time-box"
       onClick={handleClick}
       animate={{
-        // color: isSelected ? '#F2E205' : '#5DD3BD',
-        backgroundColor: isSelected ? '#96908E' : '#964031',
+        backgroundColor: isSelected ? activeBackground : notActiveBackground,
+        borderRadius: '4px',
+        marginRight: '5px',
       }}
     >
       {/* <AnimatePresence>
@@ -77,38 +90,30 @@ const ActiveLine = () => {
 };
 
 const UserDisplayControl = ({
-  setTypeModalWindow,
-  setOpenModalWindow,
   getAllUser,
   token,
-
   activeBtnDisplay,
-  prevActiveBtnDisplay,
   setDisplayDataUsers,
-  setShowAllUsers,
   setActiveBtnDisplay,
   arrAllUsers,
+  themeMode,
 }) => {
-  // const [indexKindWeather, setIndexKindWeather] = React.useState(0);
+  const theme = useTheme();
   const namesBtn = ['updateData', 'allUsers', 'usersFound'];
 
   const handleOptions = value => {
     if (value === activeBtnDisplay) return;
-    // console.log(value);
     setActiveBtnDisplay(value);
     if (value === namesBtn[0]) {
       getAllUser(token);
-      // console.log(namesBtn[0]);
     }
     if (value === namesBtn[1]) {
       setDisplayDataUsers(arrAllUsers);
-      // console.log(namesBtn[1]);
     }
     if (value === namesBtn[2]) {
-      // setDisplayDataUsers('Improved');
-      // console.log(namesBtn[2]);
     }
   };
+
   React.useEffect(() => {
     if (activeBtnDisplay === namesBtn[1]) setDisplayDataUsers(arrAllUsers);
   }, [arrAllUsers]);
@@ -117,6 +122,8 @@ const UserDisplayControl = ({
     <div className="kind-time">
       {nameKind.map((item, index) => (
         <ToggleItem
+          themeMode={themeMode}
+          theme={theme}
           key={index}
           item={item}
           isSelected={activeBtnDisplay === namesBtn[index]}
@@ -133,6 +140,7 @@ const mapState = state => {
     activeBtnDisplay: getActiveBtnDisplay(state),
     prevActiveBtnDisplay: getPrevActiveBtnDisplay(state),
     arrAllUsers: getArrConvertedAllUsers(state),
+    themeMode: getThemeMode(state),
   };
 };
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
@@ -8,6 +8,9 @@ import Checkbox from '@mui/material/Checkbox';
 import { visuallyHidden } from '@mui/utils';
 import { connect } from 'react-redux';
 import { getArrActiveColumns } from '../../../store/selectors/filterTable.selector';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+import Card from '@mui/material/Card';
 
 const headCells = [
   {
@@ -130,6 +133,13 @@ const headCells = [
   },
 ];
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+}));
+
 const EnhancedTableHead = props => {
   const {
     onSelectAllClick,
@@ -158,10 +168,18 @@ const EnhancedTableHead = props => {
     };
     return style;
   };
+
+  const colorLightGrey = '#3d3a50';
+  const colorBlue = '#580ef6';
+  const colorWhite = '#f7f7f7';
   return (
     <TableHead
-    // sx={{ position: 'sticky', top: '20px' }}
+      component={Card}
+      elevation={1}
+      // sx={{ background: ' #f7f7f7' }}
+      // sx={{ position: 'sticky', top: '20px' }}
     >
+      {' '}
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox

@@ -4,15 +4,24 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
 const DisplayAllUsers = ({ handleClick }) => {
   return (
-    <Box sx={{ cursor: 'pointer' }} onClick={handleClick}>
+    <Box
+      sx={{
+        cursor: 'pointer',
+        borderRadius: '4px',
+        overflow: 'hidden',
+      }}
+      onClick={handleClick}
+    >
       <PeopleAltIcon
         size="large"
         edge="start"
         color="inherit"
         aria-label="open drawer"
         sx={{
-          fontSize: '35px',
-          mr: 2,
+          borderRadius: '4px',
+          fontSize: '40px',
+          margin: '0 3px',
+          // padding: '5px',
           //   flexGrow: 1,
           //   display: { xs: 'none', sm: 'block' },
           justifySelf: 'end',

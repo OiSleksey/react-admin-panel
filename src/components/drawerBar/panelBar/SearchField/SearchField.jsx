@@ -8,16 +8,9 @@ import { getArrConvertedAllUsers } from '../../../../store/selectors/dataUsers.s
 import { getSearchUser } from '../../../../utils/searchUser';
 import { displayDataUsers } from '../../../../store/actions/dataUsers.actions';
 import { valueSearch } from '../../../../store/actions/filterTable.actions';
-// import Btn from '../../forms/Btn/Btn';
-// import CreateBtn from '../../ui/CreateBtn/CreateBtn';
-// import UpdateBtn from '../../ui/UpdateBtn/UpdateBtn';
-// import {
-//   typeModalWindow,
-//   openModalWindow,
-// } from '../../../store/actions/ui.actions';
-// import { connect } from 'react-redux';
-// import { getAllUsersDispath } from '../../../store/middleware/requestsServer.middleware';
-// import DisplayAllUsers from '../../ui/DisplayAllUsers/DisplayAllUsers';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { getThemeMode } from '../../../../store/selectors/ui.selector';
+import { useTheme } from '@mui/material/styles';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -29,7 +22,7 @@ const Search = styled('div')(({ theme }) => ({
   marginLeft: 0,
   width: '100%',
   [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
+    // marginLeft: theme.spacing(1),
     width: 'auto',
   },
 }));
@@ -47,7 +40,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
+    padding: theme.spacing(1, 1, 1, 1),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
@@ -60,12 +53,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
 const SearchField = ({
-  handleClick,
   arrAllUsers,
   setDisplayDataUsers,
   setValueSearch,
+  themeMode,
 }) => {
+  const theme = useTheme();
+
   const handleChange = e => {
     const value = e.target.value;
     setValueSearch(value);
@@ -77,11 +73,19 @@ const SearchField = ({
   return (
     <Box
       sx={{ cursor: 'pointer' }}
-      // onClick={handleClick}
       onChange={handleChange}
       onFocus={handleChange}
     >
-      <Search>
+      <Search
+        sx={{
+          backgroundColor: 'rgba(255, 255, 255, 0.33)',
+          fontWeight: 900,
+          color:
+            themeMode === 'dark'
+              ? theme.palette.background.default
+              : theme.palette.background.default,
+        }}
+      >
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
@@ -89,9 +93,6 @@ const SearchField = ({
           placeholder="
           Search by id, name, email…"
           inputProps={{ 'aria-label': 'search' }}
-          sx={{
-            justifySelf: 'end',
-          }}
         />
       </Search>
     </Box>
@@ -101,6 +102,7 @@ const SearchField = ({
 const mapState = state => {
   return {
     arrAllUsers: getArrConvertedAllUsers(state),
+    themeMode: getThemeMode(state),
   };
 };
 
