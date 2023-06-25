@@ -19,23 +19,27 @@ export const createUser = (formData, code) => {
       if (res.status === 200) {
         return res.data;
       }
-      if (res.status === 0) {
-        const message = 'status 403';
-        return message;
-      }
-      if (res.status === 404) {
-        console.error('status - 404');
-        const message = 'status 404';
-        return message;
-      }
+      return res;
     })
     .then(res => {
       console.log(res);
       return res;
     })
     .catch(error => {
-      console.error(error.message);
-      return null;
+      console.log(error);
+      if (error.response?.status === 401) {
+        const message = 'status 404';
+        return message;
+      }
+      if (error.response?.status === 404) {
+        const message = 'status 404';
+        return message;
+      }
+      if (error.response?.status === 400) {
+        const message = 'status 400';
+        return message;
+      }
+      return error.message;
     });
 };
 

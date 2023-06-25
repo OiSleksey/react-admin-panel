@@ -11,13 +11,19 @@ import { autorizationDispatch } from '../../../store/middleware/requestsServer.m
 import { rememberAuthorized } from '../../../store/actions/authorization.actions';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import { backDropLoading } from '../../../store/actions/ui.actions';
 
 // export let beAutorized = true;
 
-const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
+const LoginForm = ({
+  logIn,
+  setRememberToken,
+  loggedIn,
+  setBackDropLoading,
+}) => {
   const initialValues = {
-    email: '',
-    password: '',
+    email: 'admin@admin.com',
+    password: 'admin123',
     acceptedTerms: true,
   };
   const userSchema = Yup.object().shape({
@@ -38,13 +44,13 @@ const LoginForm = ({ logIn, setRememberToken, loggedIn }) => {
   const onSubmit = (values, { resetForm }) => {
     // beAutorized = values.acceptedTerms;
     const beAutorized = values.acceptedTerms;
-
     const user = {
       email: values.email,
       password: values.password,
     };
     logIn(user);
     setRememberToken(beAutorized);
+    setBackDropLoading(true);
     // dispatch(logIn(user));
     resetForm();
   };
@@ -104,6 +110,7 @@ const mapState = state => {
 const mapDispath = {
   logIn: autorizationDispatch,
   setRememberToken: rememberAuthorized,
+  setBackDropLoading: backDropLoading,
 };
 
 export default connect(mapState, mapDispath)(LoginForm);

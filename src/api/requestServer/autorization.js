@@ -7,30 +7,30 @@ export function autorization(formData, cors) {
   return axios
     .post(url, formData, {
       headers: { 'Content-Type': 'application/json;utc-8' },
-      mode: cors,
+      // mode: cors,
     })
     .then(res => {
       console.log(res);
       if (res.status === 200) {
         return res.data;
       }
-      if (res.status === 400) {
-        const message = 'status 400';
-        return message;
-      }
-      if (res.status === 404) {
+      // if (res.status === 0) {
+      //   const message = 'status 0';
+      //   return message;
+      // }
+      return res;
+    })
+    .catch(error => {
+      console.error(error);
+      if (error.response?.status === 404) {
         const message = 'status 404';
         return message;
       }
-      if (res.status === 0) {
-        const message = 'status 0';
+      if (error.response?.status === 400) {
+        const message = 'status 400';
         return message;
       }
-      return res;
-    })
-    .catch(err => {
-      console.error(err);
-      return null;
+      return error.message;
     });
 }
 

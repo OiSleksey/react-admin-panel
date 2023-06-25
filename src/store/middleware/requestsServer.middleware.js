@@ -2,27 +2,38 @@ import { autorization } from '../../api/requestServer/autorization';
 import { getAllUsers } from '../../api/requestServer/getAllUsers';
 import { putUser } from '../../api/requestServer/putUser';
 import { createUser } from '../../api/requestServer/createUser';
-// import { getDateCurrency } from '../../api/getTime';
 import * as authActions from '../actions/authorization.actions';
 import * as uiActions from '../actions/ui.actions';
 import * as dataUsersActions from '../actions/dataUsers.actions';
 import * as filterTableActions from '../actions/filterTable.actions';
 
-// import { quantityErr } from '../../utils/globalVariable';
-
 const cors = 'cors';
 const noCors = 'no-cors';
+
+const closeBackDropLoading = dispatch => {
+  setTimeout(() => {
+    dispatch(uiActions.backDropLoading(false));
+  }, 1000);
+};
+
+const serverDontWork = dispatch => {
+  dispatch(uiActions.serverWork(false));
+  dispatch(uiActions.incorrectFunction('Server don`t work'));
+  dispatch(uiActions.errorMessage('Server don`t work'));
+};
 
 export const autorizationDispatch = data => {
   return function (dispatch, getState) {
     const state = getState();
     const errAutorization = state.ui.incorrectFunction;
-    autorization(data, cors)
+    autorization(data)
       .then(res => {
+        console.log(res);
         if (res === 'status 400') {
           dispatch(uiActions.loggedIn(false));
           dispatch(uiActions.serverWork(true));
           dispatch(uiActions.errorMessage('autorization status 400'));
+          closeBackDropLoading(dispatch);
           return;
         }
         if (res === 'status 404') {
@@ -32,16 +43,12 @@ export const autorizationDispatch = data => {
           dispatch(
             uiActions.incorrectFunction('Incorrect autorization status 404')
           );
+          closeBackDropLoading(dispatch);
           return;
         }
-        if (res === 'status 0') {
-          dispatch(uiActions.serverWork(true));
-          dispatch(uiActions.errorMessage('autorization status 0'));
-          dispatch(
-            uiActions.incorrectFunction(
-              'Incorrect autorization status 0 "no-cors"'
-            )
-          );
+        if (res === 'Network Error') {
+          serverDontWork(dispatch);
+          closeBackDropLoading(dispatch);
           return;
         }
         dispatch(uiActions.incorrectFunction(null));
@@ -49,21 +56,32 @@ export const autorizationDispatch = data => {
         dispatch(authActions.authData(res));
         dispatch(uiActions.loggedIn(true));
         dispatch(uiActions.serverWork(true));
-        dispatch(getAllUsersDispath(res.code));
+        dispatch(getAllUsersDispath(res.code, cors));
         dispatch(filterTableActions.activeBtnDisplay('allUsers'));
+        closeBackDropLoading(dispatch);
       })
       .catch(rej => {
-        if (!errAutorization) {
-          dispatch(uiActions.serverWork(true));
-          dispatch(uiActions.incorrectFunction('Error in autorization'));
-          dispatch(uiActions.errorMessage('Error in autorization'));
-          dispatch(autorizationDispatch(data, noCors));
-        }
-        if (errAutorization === 'Error in autorization') {
-          dispatch(uiActions.incorrectFunction('Server don`t work'));
-          dispatch(uiActions.errorMessage('Server don`t work'));
-          dispatch(uiActions.serverWork(false));
-        }
+        console.log(rej);
+        // if (!errAutorization) {
+        //   console.log('First error');
+        //   dispatch(uiActions.serverWork(true));
+        //   dispatch(uiActions.incorrectFunction('Error in autorization'));
+        //   dispatch(uiActions.errorMessage('Error in autorization'));
+        //   dispatch(autorizationDispatch(data, noCors));
+        //   return;
+        // }
+        // if (errAutorization === 'Error in autorization') {
+        console.log('Second error');
+        dispatch(
+          uiActions.incorrectFunction(
+            'Error in autorization: Server don`t work'
+          )
+        );
+        dispatch(uiActions.errorMessage('Server don`t work'));
+        dispatch(uiActions.serverWork(false));
+        closeBackDropLoading(dispatch);
+        //   return;
+        // }
       });
   };
 };
@@ -76,13 +94,23 @@ export const getAllUsersDispath = code => {
     const activeBtnDisplay = state.filterTable.activeBtnDisplay;
     const prevActiveBtnDisplay = state.filterTable.prevActiveBtnDisplay;
     const errGetAllUsers = state.ui.incorrectFunction;
-    getAllUsers(code, cors)
+    getAllUsers(code)
       .then(res => {
+        console.log(res);
+        if (res === 'Network Error') {
+          dispatch(filterTableActions.activeBtnDisplay(prevActiveBtnDisplay));
+          dispatch(uiActions.errorMessage('getAllUsers status 401'));
+          dispatch(uiActions.incorrectFunction('getAllUsers status 401'));
+          dispatch(uiActions.loggedIn(false));
+          dispatch(authActions.authData(null));
+          return;
+        }
         if (res === 'status 404') {
           // dispatch(uiActions.loggedIn(false));
           dispatch(uiActions.serverWork(true));
           dispatch(uiActions.errorMessage('getAllUsers status 404'));
           dispatch(uiActions.incorrectFunction('Incorrect getAllUsers'));
+          dispatch(filterTableActions.activeBtnDisplay(prevActiveBtnDisplay));
           return;
         }
         dispatch(dataUsersActions.dataUsers(res.data));
@@ -93,6 +121,7 @@ export const getAllUsersDispath = code => {
           dispatch(filterTableActions.activeBtnDisplay(prevActiveBtnDisplay));
       })
       .catch(rej => {
+        console.log(rej);
         dispatch(uiActions.serverWork(true));
         dispatch(uiActions.loggedIn(false));
         dispatch(authActions.authData(null));

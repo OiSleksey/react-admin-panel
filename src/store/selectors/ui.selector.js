@@ -55,3 +55,9 @@ export const getTypeModalWindow = state => {
   const typeModalWindow = state.ui.typeModalWindow;
   return typeModalWindow;
 };
+
+export const getBackDropLoading = state => {
+  if (!state || !state.ui || !state.ui.backDropLoading) return false;
+  const backDropLoading = state.ui.backDropLoading;
+  return backDropLoading;
+};

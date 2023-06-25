@@ -15,6 +15,8 @@ import CardContent from '@mui/material/CardContent';
 // import { isoInIsoPlusOneDay } from '../../../utils/convertData';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
 // import AvatarPicture from '../AvatarPicture/AvatarIcon';
 
 const DescriptionOwn = ({ handleClickLogout }) => {
@@ -48,7 +50,24 @@ const DescriptionOwn = ({ handleClickLogout }) => {
         padding: '20px',
       }}
     >
-      <Box
+      <Paper
+        elevation={3}
+        className="not-found-page__return"
+        onClick={handleClickLogout}
+        sx={{
+          padding: '2px 15px 2px 15px',
+          borderRadius: '20px !important',
+          // display: 'inline',
+          width: 'fit-content',
+          margin: '0 auto',
+        }}
+      >
+        <Typography style={{ margin: '0 10px 0 0', display: 'inline-block' }}>
+          Log out
+        </Typography>
+        <LogoutSharpIcon />
+      </Paper>
+      {/* <Box
         sx={{
           display: 'inline-block',
           justifyContent: 'start',
@@ -57,10 +76,9 @@ const DescriptionOwn = ({ handleClickLogout }) => {
           bgcolor: 'background.paper',
         }}
         onClick={handleClickLogout}
-      >
-        <p style={{ margin: '0 10px 0 0', display: 'inline-block' }}>Log out</p>
-        <LogoutSharpIcon />
-      </Box>
+      > */}
+
+      {/* </Box> */}
     </Box>
   );
 };

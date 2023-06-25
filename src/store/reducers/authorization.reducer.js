@@ -12,7 +12,7 @@ export const authorizationReducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTH_DATA: {
       const data = action.payload.data;
-      console.log(data);
+      // console.log(data);
       if (!data)
         return {
           beAuthorized: true,

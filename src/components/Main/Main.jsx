@@ -14,6 +14,7 @@ import Box from '@mui/material/Box';
 import SettingPage from '../../views/SettingPage/SettingPage';
 import ProfilePage from '../../views/ProfilePage/ProfilePage';
 import { StyledEngineProvider } from '@mui/material/styles';
+import Loading from '../ui/Loading/Loading';
 
 const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
   return (
@@ -28,6 +29,7 @@ const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
       <StyledEngineProvider injectFirst maxSnack={3} onClickDismiss={true}>
         <Box>
           <SnakeBar {...propsSnake} />
+          <Loading />
           <Routes>
             <Route
               exact
@@ -39,7 +41,16 @@ const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
                 />
               }
             />
-            <Route exact path="/login" element={<LoginPage />} />
+            <Route
+              exact
+              path="/login"
+              element={
+                <LoginPage
+                  handleClickTheme={handleClickTheme}
+                  stateMode={stateMode}
+                />
+              }
+            />
             <Route exact path="/error" element={<ErrorServerPage />} />
             <Route exact path="/*" element={<NotFoundPage />} />
           </Routes>

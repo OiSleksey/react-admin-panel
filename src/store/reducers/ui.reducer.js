@@ -8,6 +8,7 @@ import {
   SET_THEME_MODE,
   OPEN_MODAL_WINDOW,
   TYPE_MODAL_WINDOW,
+  BACK_DROP_LOADING,
 } from '../actions/ui.actions';
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   themeMode: 'dark',
   openModalWindow: false,
   typeModalWindow: 'changeUserData',
+  backDropLoading: false,
 };
 
 export const uiReducer = (state = initialState, action) => {
@@ -76,6 +78,12 @@ export const uiReducer = (state = initialState, action) => {
       return {
         ...state,
         typeModalWindow: action.payload.data,
+      };
+    }
+    case BACK_DROP_LOADING: {
+      return {
+        ...state,
+        backDropLoading: action.payload.data,
       };
     }
     default:
