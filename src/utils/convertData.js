@@ -32,6 +32,11 @@ export const setConvertedArrData = data => {
   return convertedArr;
 };
 
+export const convertExpiredTime = isoDate => {
+  const date = new Date(isoDate);
+  // console.log(date);
+};
+
 // const convertDateMui = date => {
 //   const parts = date.split('.');
 //   const dateForMui = `${parts[2]}-${parts[1]}-${parts[0]}`;

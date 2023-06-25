@@ -57,9 +57,13 @@ const ProfileControl = ({
       }}
     >
       <AvatarPicture nameProfile={name} />
-      <ProfileDescription nameProfile={name} roleProfile={role} />
+      <ProfileDescription
+        nameProfile={name}
+        roleProfile={role}
+        expiredTime={expiredTime}
+      />
       <ProfileLogout handleClickLogout={handleClickLogout} />
-      <DescriptionOwner />
+      {/* <DescriptionOwner /> */}
     </Box>
   );
 };

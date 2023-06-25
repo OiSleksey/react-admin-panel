@@ -1,30 +1,20 @@
 import * as React from 'react';
-// import Btn from '../Btn/Btn';
-// import './LoginForm.scss';
-
 import { connect } from 'react-redux';
-// import { autorizationDispatch } from '../../../store/middleware/requestsServer.middleware';
-// import { rememberAuthorized } from '../../../store/actions/authorization.actions';
 import Box from '@mui/material/Box';
-// import InputTextField from '../InputTextField/InputTextField';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-// import { openModalWindow } from '../../../store/actions/ui.actions';
-// import { putUserDispath } from '../../../store/middleware/requestsServer.middleware';
-// import { isoInIsoPlusOneDay } from '../../../utils/convertData';
 import useMediaQuery from '@mui/material/useMediaQuery';
-// import AvatarPicture from '../AvatarPicture/AvatarIcon';
-// import ProfileDescription from '../ProfileDescription/ProfileDescription';
-// import ProfileLogout from '../ProfileLogout/ProfileLogout';
-// import DescriptionOwn from '../../ui/DescriptionOwn/DescriptionOwn';
-// import ModalWindow from '../../ui/ModalWindow/ModalWindow';
 import { activePanel } from '../../../store/actions/ui.actions';
 import {
   typeModalWindow,
   openModalWindow,
 } from '../../../store/actions/ui.actions';
 import ToggleColorBtn from '../../ui/ToggleColorBtn/ToggleColorBtn';
+import Paper from '@mui/material/Paper';
+import { Typography } from '@mui/material';
+import Switch from '@mui/material/Switch';
+import Version from '../../ui/Version/Version';
 
 const SettingControl = ({ handleClickTheme, stateMode }) => {
   return (
@@ -36,11 +26,113 @@ const SettingControl = ({ handleClickTheme, stateMode }) => {
         alignItems: 'center',
       }}
     >
-      <h1>Setting</h1>
-      <ToggleColorBtn
-        handleClickTheme={handleClickTheme}
-        stateMode={stateMode}
-      />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          marginBottom: '10px',
+          justifyContent: 'space-between',
+          minWidth: '100%',
+        }}
+      >
+        <Typography
+          sx={{
+            marginRight: '10px',
+          }}
+        >
+          Change theme:{' '}
+        </Typography>
+        <Paper
+          elevation={3}
+          sx={{ padding: '2px 5px 2px 14px', borderRadius: '20px !important' }}
+        >
+          {' '}
+          <ToggleColorBtn
+            handleClickTheme={handleClickTheme}
+            stateMode={stateMode}
+          />
+        </Paper>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          minWidth: '100%',
+          marginBottom: '20px',
+        }}
+      >
+        <Typography
+          sx={{
+            marginRight: '10px',
+          }}
+        >
+          Work from the server:{' '}
+        </Typography>
+        <Paper
+          elevation={3}
+          sx={{
+            padding: '2px 5px 2px 5px',
+            borderRadius: '20px !important',
+          }}
+        >
+          {' '}
+          <Switch
+            // checked={isChecked}
+            // onChange={event => {
+            //   handleChange(event, dataName);
+            // }}
+            name="gilad"
+          />
+        </Paper>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          minWidth: '100%',
+          marginBottom: '20px',
+        }}
+      >
+        <Paper
+          elevation={3}
+          sx={{
+            padding: '10px 20px',
+            // borderRadius: '20px !important',
+            minWidth: '100%',
+            // display: 'flex',
+          }}
+        >
+          <Typography
+            sx={{
+              // marginRight: '10px',
+              marginBottom: '10px',
+            }}
+            variant="h5"
+            // component="h2"
+          >
+            Data for entering the Admin panel:
+          </Typography>
+          <Typography
+            sx={{
+              marginBottom: '10px',
+              paddingTop: '10px',
+              borderTop: '1px solid rgba(255, 255, 255, 0.12)',
+            }}
+          >
+            Email: admin@admin.com
+          </Typography>
+          <Typography
+            sx={{
+              margin: '0 auto',
+            }}
+          >
+            Password: admin123
+          </Typography>
+        </Paper>
+      </Box>
+      <Version />
     </Box>
   );
 };

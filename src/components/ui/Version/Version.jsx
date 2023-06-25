@@ -10,7 +10,7 @@ const Version = () => {
     <Box>
       <p
         className="version"
-        style={{ textAlign: 'center', color: 'rgb(186, 195, 200)' }}
+        style={{ textAlign: 'center', color: 'rgb(186, 195, 200)', margin: 0 }}
       >
         version: {version}
       </p>

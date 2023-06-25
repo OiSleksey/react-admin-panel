@@ -29,13 +29,19 @@ export const autorizationDispatch = data => {
           dispatch(uiActions.loggedIn(false));
           dispatch(uiActions.serverWork(true));
           dispatch(uiActions.errorMessage('autorization status 404'));
-          dispatch(uiActions.incorrectFunction('Incorrect autorization'));
+          dispatch(
+            uiActions.incorrectFunction('Incorrect autorization status 404')
+          );
           return;
         }
         if (res === 'status 0') {
           dispatch(uiActions.serverWork(true));
           dispatch(uiActions.errorMessage('autorization status 0'));
-          dispatch(uiActions.incorrectFunction('Incorrect autorization'));
+          dispatch(
+            uiActions.incorrectFunction(
+              'Incorrect autorization status 0 "no-cors"'
+            )
+          );
           return;
         }
         dispatch(uiActions.incorrectFunction(null));
@@ -50,10 +56,12 @@ export const autorizationDispatch = data => {
         if (!errAutorization) {
           dispatch(uiActions.serverWork(true));
           dispatch(uiActions.incorrectFunction('Error in autorization'));
+          dispatch(uiActions.errorMessage('Error in autorization'));
           dispatch(autorizationDispatch(data, noCors));
         }
         if (errAutorization === 'Error in autorization') {
-          dispatch(uiActions.incorrectFunction(null));
+          dispatch(uiActions.incorrectFunction('Server don`t work'));
+          dispatch(uiActions.errorMessage('Server don`t work'));
           dispatch(uiActions.serverWork(false));
         }
       });
