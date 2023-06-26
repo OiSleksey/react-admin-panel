@@ -1,23 +1,26 @@
 import * as React from 'react';
-// import Btn from '../Btn/Btn';
-// import './LoginForm.scss';
-
 import { connect } from 'react-redux';
-// import { autorizationDispatch } from '../../../store/middleware/requestsServer.middleware';
-// import { rememberAuthorized } from '../../../store/actions/authorization.actions';
-import Box from '@mui/material/Box';
-// import InputTextField from '../InputTextField/InputTextField';
+import { Box, styled } from '@mui/system';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-// import { openModalWindow } from '../../../store/actions/ui.actions';
-// import { putUserDispath } from '../../../store/middleware/requestsServer.middleware';
-// import { isoInIsoPlusOneDay } from '../../../utils/convertData';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-// import AvatarPicture from '../AvatarPicture/AvatarIcon';
+import { useTheme } from '@mui/material/styles';
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  padding: '2px 15px 2px 15px',
+  borderRadius: '20px !important',
+  width: 'fit-content',
+  margin: '0 auto',
+  cursor: 'pointer',
+  backgroundColor: theme.palette.background.default,
+  boxShadow: '0 0 10px #1a1c22',
+  transition: 'background-color 0.3s ease',
+  '&:hover': {
+    backgroundColor: theme.palette.divider,
+  },
+}));
 
 const DescriptionOwn = ({ handleClickLogout }) => {
   const [widthInput, setWidthInput] = React.useState(35);
@@ -26,59 +29,35 @@ const DescriptionOwn = ({ handleClickLogout }) => {
   const matchesDesktop = useMediaQuery('(min-width:900px)');
 
   function setWidthMedia() {
-    // console.log('matchesDesktop', matchesDesktop);
     if (matchesDesktop) return setWidthInput(35);
-    // console.log('matchesHorPhone', matchesHorPhone);
     if (matchesHorPhone) return setWidthInput(20);
-    // console.log('matchesHorPhone', matchesVerPhone);
     if (matchesVerPhone) return setWidthInput(35);
   }
 
   React.useEffect(() => {
     setWidthMedia();
-    // console.log(widthInput);
   }, [matchesVerPhone, matchesHorPhone, matchesDesktop]);
+  // const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <Box
       sx={{
         minWidth: '100%',
-        // display: 'flex',
-        // flexDirection: { xs: 'column', sm: 'column' },
-        // justifyContent: 'center',
-        // alignItems: 'center',
         padding: '20px',
       }}
     >
-      <Paper
+      <StyledBox
         elevation={3}
-        className="not-found-page__return"
+        // className="not-found-page__return"
+        // onHover={handleHover}
         onClick={handleClickLogout}
-        sx={{
-          padding: '2px 15px 2px 15px',
-          borderRadius: '20px !important',
-          // display: 'inline',
-          width: 'fit-content',
-          margin: '0 auto',
-        }}
       >
         <Typography style={{ margin: '0 10px 0 0', display: 'inline-block' }}>
           Log out
         </Typography>
         <LogoutSharpIcon />
-      </Paper>
-      {/* <Box
-        sx={{
-          display: 'inline-block',
-          justifyContent: 'start',
-          cursor: 'pointer',
-          padding: '10px 20px',
-          bgcolor: 'background.paper',
-        }}
-        onClick={handleClickLogout}
-      > */}
-
-      {/* </Box> */}
+      </StyledBox>
     </Box>
   );
 };

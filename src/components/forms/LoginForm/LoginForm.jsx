@@ -60,7 +60,7 @@ const LoginForm = ({
   const widthBtn = 25;
 
   return (
-    <Box sx={{ minWidth: 275 }}>
+    <Box sx={{ minWidth: 275, margin: '20px 0' }}>
       <Card elevation={10}>
         <div className="login-form">
           <h1 className="login-form__header">Sign In</h1>

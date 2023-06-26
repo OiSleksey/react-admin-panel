@@ -16,6 +16,8 @@ import { Link } from 'react-router-dom';
 import StorageIcon from '@mui/icons-material/Storage';
 import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import { useTheme } from '@mui/material/styles';
+import OiLogo from '../../../../assets/Images/OI-logo.svg';
+import Avatar from '@mui/material/Avatar';
 
 // const drawerWidth = '4rem';
 
@@ -41,14 +43,20 @@ const MobileAppBar = ({
         height: '100%',
         width: { sm: '100%' },
         padding: { xs: '50px 0' },
+        background: theme.palette.primary[500],
       }}
     >
       <Box>
-        <EmojiObjectsIcon
-          fontSize="large"
+        <Avatar
+          alt="logo"
+          src={OiLogo}
           sx={{
-            display: { sm: 'none' },
-            opacity: { xs: '0' },
+            position: 'absolute',
+            right: 14,
+            display: { sm: 'none', sx: 'block' },
+            width: '30px',
+            height: '30px',
+            marginTop: '-33px',
           }}
         />
       </Box>
@@ -60,10 +68,7 @@ const MobileAppBar = ({
           sx={{
             padding: '5px 0',
             width: { sm: '100%' },
-            color:
-              activePanel === 'users'
-                ? theme.palette.primary[500]
-                : theme.palette.text.primary,
+            color: theme.palette.text.primary,
             background:
               activePanel === 'users'
                 ? theme => theme.palette.background.default
@@ -91,10 +96,7 @@ const MobileAppBar = ({
           sx={{
             padding: '5px 0',
             width: { sm: '100%' },
-            color:
-              activePanel === 'login'
-                ? theme.palette.primary[500]
-                : theme.palette.text.primary,
+            color: theme.palette.text.primary,
             background:
               activePanel === 'login'
                 ? theme => theme.palette.background.default

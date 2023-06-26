@@ -17,6 +17,8 @@ import { activePanel } from '../../../../store/actions/ui.actions';
 import { Link } from 'react-router-dom';
 import StorageIcon from '@mui/icons-material/Storage';
 import { useTheme } from '@mui/material/styles';
+import OiLogo from '../../../../assets/Images/OI-logo.svg';
+import Avatar from '@mui/material/Avatar';
 
 const drawerWidth = '4rem';
 
@@ -36,10 +38,11 @@ const DesktopAppBar = ({
     <Toolbar
       sx={{
         padding: { sm: '10px 0 10px 0' },
-        flexDirection: { sm: 'column' },
-        alignItems: { sm: 'center' },
-        justifyContent: { sm: 'space-between' },
+        flexDirection: { sm: 'column', xs: 'row' },
+        alignItems: { sm: 'space-between' },
+        justifyContent: { sm: 'space-between', xs: 'space-between' },
         minHeight: { sm: '100vh' },
+        width: '100%',
       }}
     >
       <IconButton
@@ -52,23 +55,32 @@ const DesktopAppBar = ({
         <MenuIcon />
       </IconButton>
 
-      <EmojiObjectsIcon
-        fontSize="large"
+      <Avatar
+        alt="logo"
+        src={OiLogo}
         sx={{
           position: 'absolute',
-          right: '10px',
-          display: { sm: 'none' },
+          right: 14,
+          display: { sm: 'none', sx: 'block' },
+          width: '30px',
+          height: '30px',
         }}
       />
 
       <Box>
-        <EmojiObjectsIcon
+        <Avatar
+          alt="logo"
+          src={OiLogo}
+          sx={{ width: '40px', display: { xs: 'none', sm: 'block' } }}
+        />
+
+        {/* <EmojiObjectsIcon
           sx={{
             fontSize: '60px',
             // display: { sm: 'none' },
             display: { xs: 'none', sm: 'block' },
           }}
-        />
+        /> */}
       </Box>
       <Link to="/" style={{ width: '100%' }}>
         <Box

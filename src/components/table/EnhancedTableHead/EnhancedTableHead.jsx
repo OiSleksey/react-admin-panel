@@ -11,127 +11,8 @@ import { getArrActiveColumns } from '../../../store/selectors/filterTable.select
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-
-const headCells = [
-  {
-    id: 'id',
-    label: 'Id',
-    numeric: true,
-    disablePadding: true,
-    sorted: true,
-    paddingRight: 10,
-    // minWidth: 170
-  },
-
-  {
-    id: 'name',
-    label: 'Name',
-    numeric: true,
-    disablePadding: false,
-    sorted: true,
-    // minWidth: 170,
-    // align: 'right',
-    // format: value => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'email',
-    label: 'Email',
-    numeric: true,
-    disablePadding: false,
-    sorted: true,
-    // minWidth: 170,
-    // align: 'right',
-    // format: value => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'phone',
-    label: 'Phone',
-    numeric: true,
-    disablePadding: false,
-    sorted: true,
-    // minWidth: 170,
-    // align: 'right',
-    // format: value => value.toFixed(2),
-  },
-  {
-    id: 'homePhone',
-    label: 'Home phone',
-    numeric: true,
-    disablePadding: false,
-    minWidth: 150,
-    sorted: true,
-    // align: 'right',
-    // format: value => value.toFixed(2),
-  },
-  {
-    id: 'createdAt',
-    label: 'Created',
-    numeric: true,
-    disablePadding: false,
-    sorted: true,
-    // minWidth: 100
-  },
-  {
-    id: 'hireDate',
-    label: 'Date of hire',
-    numeric: true,
-    disablePadding: false,
-    minWidth: 140,
-    sorted: true,
-    // align: 'right',
-    // format: value => value.toFixed(2),
-  },
-  {
-    id: 'dateOfBirth',
-    label: 'Birthday',
-    numeric: true,
-    disablePadding: false,
-    sorted: true,
-    // minWidth: 170,
-    // align: 'right',
-    // format: value => value.toFixed(2),
-  },
-  {
-    id: 'lastLoginAt',
-    label: 'Last entry',
-    numeric: true,
-    disablePadding: false,
-    minWidth: 130,
-    sorted: true,
-    // align: 'right',
-    // format: value => value.toFixed(2),
-  },
-  {
-    id: 'blocked',
-    label: 'Blocked',
-    numeric: true,
-    disablePadding: false,
-    sorted: true,
-    // minWidth: 170,
-    // align: 'right',
-    // format: value => value.toFixed(2),
-  },
-  {
-    id: 'role',
-    label: 'Role',
-    numeric: true,
-    disablePadding: false,
-    sorted: true,
-    // minWidth: 170,
-    // align: 'right',
-    // format: value => value.toFixed(2),
-  },
-  {
-    id: 'change',
-    label: 'Change',
-    numeric: true,
-    disablePadding: false,
-    sorted: false,
-    // minWidth: 170,
-    // align: 'right',
-    // format: value => value.toFixed(2),
-  },
-];
+import { useTheme } from '@mui/material/styles';
+// import { getThemeMode } from '../../../../store/selectors/ui.selector';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -172,14 +53,15 @@ const EnhancedTableHead = props => {
   const colorLightGrey = '#3d3a50';
   const colorBlue = '#580ef6';
   const colorWhite = '#f7f7f7';
+  const theme = useTheme();
   return (
     <TableHead
-      component={Card}
-      elevation={1}
-      // sx={{ background: ' #f7f7f7' }}
+      sx={{
+        background: theme.palette.action.selected,
+        // background: theme.palette.background.paper
+      }}
       // sx={{ position: 'sticky', top: '20px' }}
     >
-      {' '}
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox

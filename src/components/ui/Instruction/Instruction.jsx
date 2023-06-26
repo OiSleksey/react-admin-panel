@@ -1,26 +1,13 @@
 import * as React from 'react';
-// import Btn from '../Btn/Btn';
-// import './LoginForm.scss';
-
 import { connect } from 'react-redux';
-// import { autorizationDispatch } from '../../../store/middleware/requestsServer.middleware';
-// import { rememberAuthorized } from '../../../store/actions/authorization.actions';
 import Box from '@mui/material/Box';
-// import InputTextField from '../InputTextField/InputTextField';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-// import { openModalWindow } from '../../../store/actions/ui.actions';
-// import { putUserDispath } from '../../../store/middleware/requestsServer.middleware';
-// import { isoInIsoPlusOneDay } from '../../../utils/convertData';
 import useMediaQuery from '@mui/material/useMediaQuery';
-// import AvatarPicture from '../AvatarPicture/AvatarIcon';
-import './DescriptionOwner.scss';
 import Version from '../Version/Version';
 import { Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-const DescriptionOwn = ({
+const Instruction = ({
   logIn,
   setRememberToken,
   loggedIn,
@@ -63,31 +50,14 @@ const DescriptionOwn = ({
             borderBottom: `1px solid ${theme.palette.text.secondary}`,
           }}
         >
-          This pet project was created to implement an admin control panel.
-          Instructions for entering and working with control panel in settings.
+          The data for logging into the admin control panel are indicated above.
+          If the server is not working, then switch "Work from the server:" to
+          another position. In this position, the Admin panel works with a fake
+          server and data stored in localStorage. Thank you for choosing our
+          product!
         </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-around',
-            textAlign: 'center',
-          }}
-        >
-          <Typography>
-            Write to the e-mail address of{' '}
-            <a
-              style={{
-                color: theme.palette.primary[500],
-                textDecoration: 'none',
-              }}
-              href="mailto:schokk8193@gmail.com"
-            >
-              Oleksii
-            </a>
-            .
-          </Typography>
-          <Version />
-        </Box>
+
+        <Version />
       </Box>
     </Box>
   );
@@ -108,4 +78,4 @@ const DescriptionOwn = ({
 //   setPutUserDispath: putUserDispath,
 // };
 
-export default connect(null, null)(DescriptionOwn);
+export default connect(null, null)(Instruction);

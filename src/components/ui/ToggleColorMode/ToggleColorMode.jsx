@@ -50,7 +50,7 @@ const getDesignTokens = mode => ({
             hover: 'rgba(0, 0, 0, 0.04)',
             selected: 'rgba(0, 0, 0, 0.08)',
             disabled: 'rgba(0, 0, 0, 0.26)',
-            disabledBackground: 'rgba(0, 0, 0, 0.12)',
+            disabledBackground: 'rgba(0, 0, 0, 0.52)',
           },
         }
       : {

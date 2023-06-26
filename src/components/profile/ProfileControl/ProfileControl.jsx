@@ -31,6 +31,7 @@ import {
 } from '../../../store/selectors/authorization.selector';
 import { authData } from '../../../store/actions/authorization.actions';
 import { getLoggedIn } from '../../../store/selectors/ui.selector';
+import Version from '../../ui/Version/Version';
 
 const ProfileControl = ({
   name,
@@ -64,6 +65,7 @@ const ProfileControl = ({
       />
       <ProfileLogout handleClickLogout={handleClickLogout} />
       {/* <DescriptionOwner /> */}
+      <Version />
     </Box>
   );
 };

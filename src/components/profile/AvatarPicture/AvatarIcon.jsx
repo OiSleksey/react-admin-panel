@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
 
 function stringToColor(string) {
   let hash = 0;
@@ -33,14 +34,18 @@ function stringAvatar(name) {
 }
 
 export default function AvatarPicture({ nameProfile }) {
+  const theme = useTheme();
+
   return (
     <Stack spacing={2}>
       <Avatar
         {...stringAvatar(nameProfile)}
         sx={{
-          minWidth: { xs: '100px', sm: '100px' },
-          minHeight: { xs: '100px', sm: '100px' },
-          fontSize: { xs: '50px', sm: '50px' },
+          backgroundColor: theme.palette.text.primary,
+          fontWeight: 500,
+          minWidth: { xs: '100px', sm: '130px' },
+          minHeight: { xs: '100px', sm: '130px' },
+          fontSize: { xs: '50px', sm: '70px' },
         }}
       />
     </Stack>

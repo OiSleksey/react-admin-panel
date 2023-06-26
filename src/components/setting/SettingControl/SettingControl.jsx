@@ -15,6 +15,7 @@ import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
 import Switch from '@mui/material/Switch';
 import Version from '../../ui/Version/Version';
+import Instruction from '../../ui/Instruction/Instruction';
 
 const SettingControl = ({ handleClickTheme, stateMode }) => {
   return (
@@ -96,7 +97,7 @@ const SettingControl = ({ handleClickTheme, stateMode }) => {
         }}
       >
         <Paper
-          elevation={3}
+          elevation={10}
           sx={{
             padding: '10px 20px',
             // borderRadius: '20px !important',
@@ -132,7 +133,7 @@ const SettingControl = ({ handleClickTheme, stateMode }) => {
           </Typography>
         </Paper>
       </Box>
-      <Version />
+      <Instruction />
     </Box>
   );
 };

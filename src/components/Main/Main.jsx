@@ -15,6 +15,7 @@ import SettingPage from '../../views/SettingPage/SettingPage';
 import ProfilePage from '../../views/ProfilePage/ProfilePage';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Loading from '../ui/Loading/Loading';
+import Footer from '../ui/Footer/Footer';
 
 const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
   return (
@@ -54,6 +55,7 @@ const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
             <Route exact path="/error" element={<ErrorServerPage />} />
             <Route exact path="/*" element={<NotFoundPage />} />
           </Routes>
+          <Footer />
         </Box>
       </StyledEngineProvider>
     </div>

@@ -72,7 +72,7 @@ const ModalWindow = ({
   };
 
   return (
-    <Box elevation={10}>
+    <Box elevation={10} sx={{ maxHeight: '90vh !important' }}>
       {/* <Button variant="outlined" onClick={handleClickOpen}>
         Open dialog
       </Button> */}
@@ -87,7 +87,9 @@ const ModalWindow = ({
         >
           {titleModal}
         </BootstrapDialogTitle>
-        <DialogContent dividers>{children}</DialogContent>
+        <DialogContent dividers sx={{ maxHeight: '75vh ' }}>
+          {children}
+        </DialogContent>
       </BootstrapDialog>
     </Box>
   );
