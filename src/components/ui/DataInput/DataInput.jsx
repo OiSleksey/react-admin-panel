@@ -2,32 +2,58 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
-import Instruction from '../../ui/Instruction/Instruction';
-import DataInput from '../../ui/DataInput/DataInput';
-import ChangeTheme from '../ChangeTheme/ChangeTheme';
-import ChangeServer from '../ChangeServer/ChangeServer';
 
-const SettingControl = ({ handleClickTheme, stateMode }) => {
+const DataInput = () => {
   return (
     <Box
       sx={{
         display: 'flex',
-        flexDirection: { xs: 'column', sm: 'column' },
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        minWidth: '100%',
+        marginBottom: '20px',
       }}
     >
-      <ChangeTheme handleClickTheme={handleClickTheme} stateMode={stateMode} />
-      <ChangeServer />
-      <DataInput />
-      <Instruction />
+      <Paper
+        elevation={10}
+        sx={{
+          padding: '10px 20px',
+          minWidth: '100%',
+        }}
+      >
+        <Typography
+          sx={{
+            marginBottom: '10px',
+          }}
+          variant="h5"
+        >
+          Data for entering the Admin panel:
+        </Typography>
+        <Typography
+          sx={{
+            marginBottom: '10px',
+            paddingTop: '10px',
+            borderTop: '1px solid rgba(255, 255, 255, 0.12)',
+          }}
+        >
+          Email: admin@admin.com
+        </Typography>
+        <Typography
+          sx={{
+            margin: '0 auto',
+          }}
+        >
+          Password: admin123
+        </Typography>
+      </Paper>
     </Box>
   );
 };
 
-export default connect(null, null)(SettingControl);
+export default DataInput;
 
 // const [widthInput, setWidthInput] = React.useState(35);
 // const matchesVerPhone = useMediaQuery('(min-width:0px)');

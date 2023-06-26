@@ -51,10 +51,10 @@ const Instruction = ({
           }}
         >
           The data for logging into the admin control panel are indicated above.
-          If the server is not working, then switch "Work from the server:" to
-          another position. In this position, the Admin panel works with a fake
-          server and data stored in localStorage. Thank you for choosing our
-          product!
+          If the server is not working, then switch " Work from a real server:"
+          to another position. In this position, the Admin panel works with a
+          fake server and data stored in localStorage. Thank you for choosing
+          our product!
         </Typography>
 
         <Version />

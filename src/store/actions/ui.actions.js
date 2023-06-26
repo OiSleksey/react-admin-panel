@@ -8,6 +8,7 @@ export const SET_THEME_MODE = 'SET_THEME_MODE';
 export const OPEN_MODAL_WINDOW = 'OPEN_MODAL_WINDOW';
 export const TYPE_MODAL_WINDOW = 'TYPE_MODAL_WINDOW';
 export const BACK_DROP_LOADING = 'BACK_DROP_LOADING';
+export const FAKE_SERVER = 'FAKE_SERVER';
 
 export const loggedIn = data => {
   return {
@@ -88,6 +89,14 @@ export const typeModalWindow = data => {
 export const backDropLoading = data => {
   return {
     type: BACK_DROP_LOADING,
+    payload: {
+      data,
+    },
+  };
+};
+export const fakeServer = data => {
+  return {
+    type: FAKE_SERVER,
     payload: {
       data,
     },

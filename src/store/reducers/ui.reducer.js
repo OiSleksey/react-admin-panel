@@ -9,6 +9,7 @@ import {
   OPEN_MODAL_WINDOW,
   TYPE_MODAL_WINDOW,
   BACK_DROP_LOADING,
+  FAKE_SERVER,
 } from '../actions/ui.actions';
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   openModalWindow: false,
   typeModalWindow: 'changeUserData',
   backDropLoading: false,
+  fakeServer: false,
 };
 
 export const uiReducer = (state = initialState, action) => {
@@ -84,6 +86,12 @@ export const uiReducer = (state = initialState, action) => {
       return {
         ...state,
         backDropLoading: action.payload.data,
+      };
+    }
+    case FAKE_SERVER: {
+      return {
+        ...state,
+        fakeServer: action.payload.data,
       };
     }
     default:

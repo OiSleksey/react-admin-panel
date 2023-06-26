@@ -2,32 +2,44 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import ToggleColorBtn from '../../ui/ToggleColorBtn/ToggleColorBtn';
 import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
-import Instruction from '../../ui/Instruction/Instruction';
-import DataInput from '../../ui/DataInput/DataInput';
-import ChangeTheme from '../ChangeTheme/ChangeTheme';
-import ChangeServer from '../ChangeServer/ChangeServer';
 
-const SettingControl = ({ handleClickTheme, stateMode }) => {
+const ChangeTheme = ({ handleClickTheme, stateMode }) => {
   return (
     <Box
       sx={{
         display: 'flex',
-        flexDirection: { xs: 'column', sm: 'column' },
-        justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: '10px',
+        justifyContent: 'space-between',
+        minWidth: '100%',
       }}
     >
-      <ChangeTheme handleClickTheme={handleClickTheme} stateMode={stateMode} />
-      <ChangeServer />
-      <DataInput />
-      <Instruction />
+      <Typography
+        sx={{
+          marginRight: '10px',
+        }}
+      >
+        Change theme:{' '}
+      </Typography>
+      <Paper
+        elevation={3}
+        sx={{ padding: '2px 5px 2px 14px', borderRadius: '20px !important' }}
+      >
+        {' '}
+        <ToggleColorBtn
+          handleClickTheme={handleClickTheme}
+          stateMode={stateMode}
+        />
+      </Paper>
     </Box>
   );
 };
 
-export default connect(null, null)(SettingControl);
+export default connect(null, null)(ChangeTheme);
 
 // const [widthInput, setWidthInput] = React.useState(35);
 // const matchesVerPhone = useMediaQuery('(min-width:0px)');

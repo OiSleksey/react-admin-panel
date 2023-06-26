@@ -61,3 +61,8 @@ export const getBackDropLoading = state => {
   const backDropLoading = state.ui.backDropLoading;
   return backDropLoading;
 };
+export const getIsFakeServer = state => {
+  if (!state || !state.ui || !state.ui.fakeServer) return false;
+  const fakeServer = state.ui.fakeServer;
+  return fakeServer;
+};
