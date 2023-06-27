@@ -13,7 +13,7 @@ import {
 import { activePanel } from '../../../../store/actions/ui.actions';
 import MobileAppBar from '../MobileAppBar/MobileAppBar';
 import DesktopAppBar from '../DesktopAppBar/DesktopAppBar';
-import { getAllUsersDispath } from '../../../../store/middleware/requestsServer.middleware';
+import { getAllUsersDispath } from '../../../../store/middleware/getAllUser.middleware';
 import {
   typeModalWindow,
   openModalWindow,

@@ -66,3 +66,8 @@ export const getIsFakeServer = state => {
   const fakeServer = state.ui.fakeServer;
   return fakeServer;
 };
+export const getIsProgress = state => {
+  if (!state || !state.ui || !state.ui.progress) return false;
+  const progress = state.ui.progress;
+  return progress;
+};

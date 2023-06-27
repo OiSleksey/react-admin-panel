@@ -9,6 +9,7 @@ export const OPEN_MODAL_WINDOW = 'OPEN_MODAL_WINDOW';
 export const TYPE_MODAL_WINDOW = 'TYPE_MODAL_WINDOW';
 export const BACK_DROP_LOADING = 'BACK_DROP_LOADING';
 export const FAKE_SERVER = 'FAKE_SERVER';
+export const STATE_PROGRESS = 'STATE_PROGRESS';
 
 export const loggedIn = data => {
   return {
@@ -97,6 +98,14 @@ export const backDropLoading = data => {
 export const fakeServer = data => {
   return {
     type: FAKE_SERVER,
+    payload: {
+      data,
+    },
+  };
+};
+export const stateProgress = data => {
+  return {
+    type: STATE_PROGRESS,
     payload: {
       data,
     },

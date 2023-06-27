@@ -6,7 +6,7 @@ import {
   openModalWindow,
 } from '../../../../store/actions/ui.actions';
 import { connect } from 'react-redux';
-import { getAllUsersDispath } from '../../../../store/middleware/requestsServer.middleware';
+import { getAllUsersDispath } from '../../../../store/middleware/getAllUser.middleware';
 import DisplayUsersBtn from '../DisplayUsersBtn/DisplayUsersBtn';
 import SearchField from '../SearchField/SearchField';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -115,7 +115,8 @@ const UserDisplayControl = ({
   };
 
   React.useEffect(() => {
-    if (activeBtnDisplay === namesBtn[1]) setDisplayDataUsers(arrAllUsers);
+    // if (activeBtnDisplay === namesBtn[1])
+    setDisplayDataUsers(arrAllUsers);
   }, [arrAllUsers]);
 
   return (

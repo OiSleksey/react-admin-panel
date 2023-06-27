@@ -9,7 +9,7 @@ import {
   openModalWindow,
 } from '../../../../store/actions/ui.actions';
 import { connect } from 'react-redux';
-import { getAllUsersDispath } from '../../../../store/middleware/requestsServer.middleware';
+import { getAllUsersDispath } from '../../../../store/middleware/getAllUser.middleware';
 import UserDisplayControl from '../UserDisplayControl/UserDisplayControl';
 import { getToken } from '../../../../store/selectors/authorization.selector';
 
@@ -35,7 +35,7 @@ const DrawerPanelBar = ({
       sx={{
         flexGrow: 1,
         display: 'flex',
-        marginBottom: '1rem',
+        // marginBottom: '1rem',
       }}
     >
       <AppBar position="static">

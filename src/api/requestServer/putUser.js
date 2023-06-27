@@ -1,4 +1,10 @@
 import axios from 'axios';
+import {
+  setCreateUser,
+  responseLogin,
+  allUsersArr,
+  setPutUser,
+} from '../../utils/fakeDataUsers';
 // const url = 'http://91.196.52.61:8080/api_v1/Admin/Update';
 
 const url = process.env.REACT_APP_API_UPDATE;
@@ -38,6 +44,19 @@ export function putUser(formData, code) {
       return error.message;
     });
 }
+
+export const putUserFake = (formData, code) => {
+  return new Promise(function (res, rej) {
+    const correctCode = responseLogin.code;
+    if (correctCode === code) {
+      console.log(formData);
+      setPutUser(formData);
+      setTimeout(() => res('Update user'), 500);
+      return;
+    }
+    setTimeout(() => res('status 400'), 500);
+  });
+};
 
 // export function putUser(formData, code) {
 //   const authorizationCode = `${bearer} ${code}`;

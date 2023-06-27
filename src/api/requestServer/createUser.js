@@ -1,4 +1,9 @@
 import axios from 'axios';
+import {
+  setCreateUser,
+  responseLogin,
+  allUsersArr,
+} from '../../utils/fakeDataUsers';
 // const url = 'http://91.196.52.61:8080/api_v1/Admin/Create';
 
 const url = process.env.REACT_APP_API_CREATE;
@@ -41,6 +46,18 @@ export const createUser = (formData, code) => {
       }
       return error.message;
     });
+};
+
+export const createUserFake = (formData, code) => {
+  return new Promise(function (res, rej) {
+    const correctCode = responseLogin.code;
+    if (correctCode === code) {
+      setCreateUser(formData);
+      setTimeout(() => res('Create user'), 500);
+      return;
+    }
+    setTimeout(() => res('Network Error'), 500);
+  });
 };
 
 // export const createUser = (formData, code) => {

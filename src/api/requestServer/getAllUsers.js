@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { allUsersArr, responseLogin } from '../../utils/fakeDataUsers';
 const url = 'http://91.196.52.61:8080/api_v1/Admin/All';
 
 // const url = process.env.REACT_APP_API_ALL;
@@ -30,7 +31,7 @@ export function getAllUsers(code) {
     .catch(error => {
       console.log(error);
       if (error.response?.status === 401) {
-        const message = 'status 404';
+        const message = 'status 401';
         return message;
       }
       if (error.response?.status === 404) {
@@ -44,6 +45,18 @@ export function getAllUsers(code) {
       return error.message;
     });
 }
+
+export const getAllUsersFake = code => {
+  return new Promise(function (res, rej) {
+    const correctCode = responseLogin.code;
+    if (correctCode === code) {
+      const data = allUsersArr;
+      setTimeout(() => res({ data }), 500);
+      return;
+    }
+    setTimeout(() => res('Network Error'), 500);
+  });
+};
 
 // export function getAllUsers(code, cors) {
 //   console.log('get request');

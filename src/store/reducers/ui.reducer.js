@@ -1,3 +1,4 @@
+import { FormatAlignLeftSharp } from '@mui/icons-material';
 import {
   LOGGED_IN,
   SERVER_WORK,
@@ -10,6 +11,7 @@ import {
   TYPE_MODAL_WINDOW,
   BACK_DROP_LOADING,
   FAKE_SERVER,
+  STATE_PROGRESS,
 } from '../actions/ui.actions';
 
 const initialState = {
@@ -24,6 +26,7 @@ const initialState = {
   typeModalWindow: 'changeUserData',
   backDropLoading: false,
   fakeServer: false,
+  progress: false,
 };
 
 export const uiReducer = (state = initialState, action) => {
@@ -92,6 +95,12 @@ export const uiReducer = (state = initialState, action) => {
       return {
         ...state,
         fakeServer: action.payload.data,
+      };
+    }
+    case STATE_PROGRESS: {
+      return {
+        ...state,
+        progress: action.payload.data,
       };
     }
     default:

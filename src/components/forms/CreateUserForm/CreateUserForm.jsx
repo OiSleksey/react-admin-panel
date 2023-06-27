@@ -7,7 +7,7 @@ import { Formik, Form } from 'formik';
 // import './LoginForm.scss';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
-import { autorizationDispatch } from '../../../store/middleware/requestsServer.middleware';
+import { autorizationDispatch } from '../../../store/middleware/authorization.middleware';
 import { rememberAuthorized } from '../../../store/actions/authorization.actions';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -17,7 +17,7 @@ import CalendarField from '../CalendarField/CalendarField';
 import InputRadioGroup from '../InputRadioGroup/InputRadioGroup';
 import ModalWindow from '../../ui/ModalWindow/ModalWindow';
 import { openModalWindow } from '../../../store/actions/ui.actions';
-import { createUserDispath } from '../../../store/middleware/requestsServer.middleware';
+import { createUserDispath } from '../../../store/middleware/createUser.middleware';
 import { isoInIsoPlusOneDay } from '../../../utils/convertData';
 
 const CreateUserForm = ({
@@ -78,9 +78,8 @@ const CreateUserForm = ({
       driverCategory: 'string',
     };
 
-    console.log(user);
-    setCreateUserDispath(user, token);
     setOpenModalWindow(false);
+    setCreateUserDispath(user, token);
     resetForm();
   };
   const widthInput = 35;

@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { responseLogin } from '../../utils/fakeDataUsers';
 // const url = 'http://91.196.52.61:8080/api_v1/Security/Login';
 const url = process.env.REACT_APP_API_LOGIN;
 
-export function autorization(formData, cors) {
+export function authorization(formData, cors) {
   console.trace();
   return axios
     .post(url, formData, {
@@ -44,23 +45,23 @@ export function autorization(formData, cors) {
 // res.status === 0 !!!! То я я щось роблю не так
 // catch ErrorServerPage 501 Server dont work
 // let count = 0;
-// export const getToken = data => {
-//   console.log(data);
-//   return new Promise(function (res, rej) {
-//     //good token
-//     setTimeout(() => res('fmplementatio09of325432hatGpt234response'), 500);
-//     // //status 400
-//     // setTimeout(() => res('status 400'), 500);
-//     //catch 1
-//     // if (count === 0)
-//     //   setTimeout(() => {
-//     //     console.log(count);
-//     //     count++;
-//     //     rej('error');
-//     //   }, 500);
-//     // if (count === 1) setTimeout(() => res('status 0'), 500);
-//   });
-// };
+export const authorizationFake = data => {
+  console.log(data);
+  console.log('authorizationFake');
+  return new Promise(function (res, rej) {
+    const email = data?.email;
+    const password = data?.password;
+    if (email === 'admin@admin.com' && password === 'admin123') {
+      setTimeout(() => res(responseLogin), 500);
+      return;
+    }
+    if (email !== 'admin@admin.com' || password !== 'admin123') {
+      setTimeout(() => res('status 400'), 500);
+      return;
+    }
+    setTimeout(() => res('Network Error'), 500);
+  });
+};
 
 // export function autorization(formData, cors) {
 //   console.trace();

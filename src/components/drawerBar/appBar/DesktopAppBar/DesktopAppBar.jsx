@@ -33,7 +33,6 @@ const DesktopAppBar = ({
   // handleGetAllUsers,
 }) => {
   const theme = useTheme();
-  console.log(theme.palette.primary[500]);
   return (
     <Toolbar
       sx={{

@@ -49,22 +49,6 @@ export const dataUsersReducer = (state = initialState, action) => {
         arrDisplayUsers: action.payload.data,
       };
     }
-    // case SHOW_ALL_USERS: {
-    //   // console.log(changeUserData);
-    //   return {
-    //     ...state,
-    //     showAllUsers: action.payload.data,
-    //   };
-    // }
-    // case ACTIVE_BTN_DISPLAY: {
-    //   // console.log(changeUserData);
-    //   const prevValue = state.activeBtnDisplay;
-    //   return {
-    //     ...state,
-    //     prevActiveBtnDisplay: prevValue,
-    //     activeBtnDisplay: action.payload.data,
-    //   };
-    // }
     default:
       return state;
   }

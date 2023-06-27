@@ -3,7 +3,7 @@ import './PanelPage.scss';
 import { connect } from 'react-redux';
 import { getChangeUserDataObj } from '../../store/selectors/dataUsers.selector';
 import { useNavigate } from 'react-router-dom';
-import { getAllUsersDispath } from '../../store/middleware/requestsServer.middleware';
+import { getAllUsersDispath } from '../../store/middleware/getAllUser.middleware';
 import {
   getLoggedIn,
   getTypeModalWindow,
@@ -22,6 +22,8 @@ import {
 import ProfileControl from '../../components/profile/ProfileControl/ProfileControl';
 import SettingControl from '../../components/setting/SettingControl/SettingControl';
 import { getToken } from '../../store/selectors/authorization.selector';
+import LinearProgress from '../../components/ui/Progress/Progress';
+import Progress from '../../components/ui/Progress/Progress';
 
 const PanelPage = ({
   loggedIn,
@@ -43,7 +45,7 @@ const PanelPage = ({
 
   const setTitleModalWinsow = () => {
     if (modalType === 'createUser') setTitleModal('Create user');
-    if (modalType === 'createUser') setTitleModal('Change user data');
+    if (modalType === 'changeUserData') setTitleModal('Change user data');
     if (modalType === 'profile') setTitleModal('Profile control');
     if (modalType === 'setting') setTitleModal('Setting');
   };
@@ -63,14 +65,13 @@ const PanelPage = ({
   return (
     <section className="panel-page">
       <DrawerPanelBar />
+      <Progress />
       <EnhancedTable />
       <ModalWindow modalType={modalType} titleModal={titleModal}>
         {modalType === 'changeUserData' && (
           <ChangeUserDataForm changeUserData={getChangeUserData} />
         )}
-        {modalType === 'createUser' && (
-          <CreateUserForm changeUserData={getChangeUserData} />
-        )}
+        {modalType === 'createUser' && <CreateUserForm />}
         {modalType === 'profile' && <ProfileControl />}
         {modalType === 'setting' && (
           <SettingControl

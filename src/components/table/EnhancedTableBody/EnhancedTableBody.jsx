@@ -13,34 +13,6 @@ import { сhangeDataUserId } from '../../../store/actions/dataUsers.actions';
 import { getValueSearch } from '../../../store/selectors/filterTable.selector';
 import HighlightText from '../../ui/HighlightText/HighlightText';
 
-// function createData(
-//   id,
-//   createdAt,
-//   name,
-//   email,
-//   phone,
-//   homePhone,
-//   hireDate,
-//   dateOfBirth,
-//   lastLoginAt,
-//   blocked,
-//   role
-// ) {
-//   return {
-//     id,
-//     createdAt,
-//     name,
-//     email,
-//     phone,
-//     homePhone,
-//     hireDate,
-//     dateOfBirth,
-//     lastLoginAt,
-//     blocked,
-//     role,
-//   };
-// }
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -155,6 +127,8 @@ const EnhancedTableBody = props => {
     }
     return arrColumns;
   };
+
+  console.log(arrDisplayUsers);
 
   return (
     <TableBody>
