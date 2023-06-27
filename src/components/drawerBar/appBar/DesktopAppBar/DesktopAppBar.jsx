@@ -1,36 +1,29 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
-import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import HdrAutoIcon from '@mui/icons-material/HdrAuto';
-import SettingsIcon from '@mui/icons-material/Settings';
 import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences';
 import LoginIcon from '@mui/icons-material/Login';
-import { connect } from 'react-redux';
+import Avatar from '@mui/material/Avatar';
+import StorageIcon from '@mui/icons-material/Storage';
+import { useTheme } from '@mui/material/styles';
 import {
   getActivePanel,
   getLoggedIn,
 } from '../../../../store/selectors/ui.selector';
 import { activePanel } from '../../../../store/actions/ui.actions';
-import { Link } from 'react-router-dom';
-import StorageIcon from '@mui/icons-material/Storage';
-import { useTheme } from '@mui/material/styles';
 import OiLogo from '../../../../assets/Images/OI-logo.svg';
-import Avatar from '@mui/material/Avatar';
-
-const drawerWidth = '4rem';
 
 const DesktopAppBar = ({
   activePanel,
   isLoggin,
-  setActivePanel,
   handleClick,
   handleDrawerToggle,
   handleClickSetModal,
-
-  // handleGetAllUsers,
 }) => {
   const theme = useTheme();
   return (
@@ -65,28 +58,18 @@ const DesktopAppBar = ({
           height: '30px',
         }}
       />
-
       <Box>
         <Avatar
           alt="logo"
           src={OiLogo}
           sx={{ width: '40px', display: { xs: 'none', sm: 'block' } }}
         />
-
-        {/* <EmojiObjectsIcon
-          sx={{
-            fontSize: '60px',
-            // display: { sm: 'none' },
-            display: { xs: 'none', sm: 'block' },
-          }}
-        /> */}
       </Box>
       <Link to="/" style={{ width: '100%' }}>
         <Box
           className="sidebar-icons"
           data-value="users"
           onClick={event => {
-            // handleGetAllUsers();
             handleClick(event);
           }}
           sx={{
@@ -107,7 +90,6 @@ const DesktopAppBar = ({
           <StorageIcon
             sx={{
               fontSize: '40px',
-              // display: { sm: 'none' },
               display: { xs: 'none', sm: 'block' },
               margin: '10px auto',
             }}
@@ -137,7 +119,6 @@ const DesktopAppBar = ({
           <LoginIcon
             sx={{
               fontSize: '40px',
-              // display: { sm: 'none' },
               display: { xs: 'none', sm: 'block' },
               margin: '10px auto',
             }}
@@ -150,7 +131,6 @@ const DesktopAppBar = ({
           width: { sm: '100%' },
         }}
       >
-        {/* <Link to="/profile"> */}
         <Box
           className="sidebar-icons"
           data-value="profile"
@@ -175,8 +155,6 @@ const DesktopAppBar = ({
             }}
           />
         </Box>
-        {/* </Link> */}
-
         <Box
           className="sidebar-icons"
           data-value="setting"
@@ -191,7 +169,6 @@ const DesktopAppBar = ({
           <RoomPreferencesIcon
             sx={{
               fontSize: '40px',
-              // display: { sm: 'none' },
               display: { xs: 'none', sm: 'block' },
               margin: '0 auto',
             }}
@@ -214,15 +191,3 @@ const mapDispath = {
 };
 
 export default connect(mapState, mapDispath)(DesktopAppBar);
-
-// import { connect } from 'react-redux';
-
-//   const handleClick = () => {
-//     getAllUserChallenge(token);
-//   };
-// const mapDispatch = {
-//   setActivePanel: activePanel,
-//   getAllUserChallenge: getAllUsersDispath,
-// };
-
-// export default connect(mapState, mapDispatch)(PanelPage);

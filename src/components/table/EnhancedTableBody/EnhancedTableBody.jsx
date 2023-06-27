@@ -1,23 +1,33 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
-import { getArrDisplayUsers } from '../../../store/selectors/dataUsers.selector';
-import { connect } from 'react-redux';
-import { getArrActiveColumns } from '../../../store/selectors/filterTable.selector';
-import EditBtn from '../EditBtn/EditBtn';
 import MenuBtn from '../MenuBtn/MenuBtn';
+import HighlightText from '../../ui/HighlightText/HighlightText';
+import { getArrDisplayUsers } from '../../../store/selectors/dataUsers.selector';
 import { сhangeDataUserId } from '../../../store/actions/dataUsers.actions';
 import { getValueSearch } from '../../../store/selectors/filterTable.selector';
-import HighlightText from '../../ui/HighlightText/HighlightText';
+
+function valueCheckForDate(value) {
+  const dateRegex = /^\d{2}\.\d{2}\.\d{4}$/;
+  if (dateRegex.test(value)) {
+    console.log("Це дата у форматі 'dd.mm.yyyy'");
+    const dateObjects = new Date(value.split('.').reverse().join('-'));
+    return dateObjects;
+  } else {
+    return value;
+  }
+}
 
 function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
+  const aChecked = valueCheckForDate(a);
+  const bChecked = valueCheckForDate(b);
+  if (bChecked[orderBy] < aChecked[orderBy]) {
     return -1;
   }
-  if (b[orderBy] > a[orderBy]) {
+  if (bChecked[orderBy] > aChecked[orderBy]) {
     return 1;
   }
   return 0;
@@ -53,7 +63,6 @@ const EnhancedTableBody = props => {
     arrDisplayUsers,
     setChangeDataUserId,
     arrActiveColumns,
-    activeHeadCell,
     valueSearch,
   } = props;
 
@@ -127,8 +136,6 @@ const EnhancedTableBody = props => {
     }
     return arrColumns;
   };
-
-  console.log(arrDisplayUsers);
 
   return (
     <TableBody>

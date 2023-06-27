@@ -1,37 +1,28 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import HdrAutoIcon from '@mui/icons-material/HdrAuto';
-import SettingsIcon from '@mui/icons-material/Settings';
 import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-// import './DrawerAppBar.scss';
 import LoginIcon from '@mui/icons-material/Login';
-import { connect } from 'react-redux';
+import StorageIcon from '@mui/icons-material/Storage';
+import Avatar from '@mui/material/Avatar';
+import { useTheme } from '@mui/material/styles';
 import {
   getActivePanel,
   getLoggedIn,
 } from '../../../../store/selectors/ui.selector';
 import { activePanel } from '../../../../store/actions/ui.actions';
-import { Link } from 'react-router-dom';
-import StorageIcon from '@mui/icons-material/Storage';
-import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
-import { useTheme } from '@mui/material/styles';
 import OiLogo from '../../../../assets/Images/OI-logo.svg';
-import Avatar from '@mui/material/Avatar';
-
-// const drawerWidth = '4rem';
 
 const MobileAppBar = ({
   handleDrawerToggle,
   handleClick,
   activePanel,
   isLoggin,
-  setActivePanel,
   handleClickSetModal,
-  // handleGetAllUsers,
 }) => {
   const theme = useTheme();
-  console.log(theme.palette.primary[500]);
   return (
     <Box
       onClick={handleDrawerToggle}
@@ -81,7 +72,6 @@ const MobileAppBar = ({
           <StorageIcon
             sx={{
               fontSize: '40px',
-              // display: { sm: 'none' },
               display: { sm: 'none', xs: 'block' },
               margin: '10px auto',
             }}
@@ -109,7 +99,6 @@ const MobileAppBar = ({
           <LoginIcon
             sx={{
               fontSize: '40px',
-              // display: { sm: 'none' },
               display: { sm: 'none', xs: 'block' },
               margin: '10px auto',
             }}
@@ -135,7 +124,6 @@ const MobileAppBar = ({
           <HdrAutoIcon
             sx={{
               fontSize: '40px',
-              // display: { sm: 'none' },
               display: { sm: 'none', xs: 'block' },
               margin: { xs: '0 auto ' },
             }}
@@ -155,7 +143,6 @@ const MobileAppBar = ({
           <RoomPreferencesIcon
             sx={{
               fontSize: '40px',
-              // display: { sm: 'none' },
               display: { sm: 'none', xs: 'block' },
               margin: '0 auto',
             }}
@@ -178,15 +165,3 @@ const mapDispath = {
 };
 
 export default connect(mapState, mapDispath)(MobileAppBar);
-
-// import { connect } from 'react-redux';
-
-//   const handleClick = () => {
-//     getAllUserChallenge(token);
-//   };
-// const mapDispatch = {
-//   setActivePanel: activePanel,
-//   getAllUserChallenge: getAllUsersDispath,
-// };
-
-// export default connect(mapState, mapDispatch)(PanelPage);

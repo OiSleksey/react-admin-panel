@@ -1,18 +1,17 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
-import './DrawerAppBar.scss';
-import { connect } from 'react-redux';
+import MobileAppBar from '../MobileAppBar/MobileAppBar';
+import DesktopAppBar from '../DesktopAppBar/DesktopAppBar';
 import { getToken } from '../../../../store/selectors/authorization.selector';
 import {
   getActivePanel,
   getLoggedIn,
 } from '../../../../store/selectors/ui.selector';
 import { activePanel } from '../../../../store/actions/ui.actions';
-import MobileAppBar from '../MobileAppBar/MobileAppBar';
-import DesktopAppBar from '../DesktopAppBar/DesktopAppBar';
 import { getAllUsersDispath } from '../../../../store/middleware/getAllUser.middleware';
 import {
   typeModalWindow,
@@ -22,12 +21,8 @@ import {
 const drawerWidth = '4rem';
 
 const DrawerAppBar = ({
-  activePanel,
   setActivePanel,
-  isLoggin,
   window,
-  getAllUser,
-  token,
   setTypeModalWindow,
   setOpenModalWindow,
 }) => {
@@ -52,9 +47,6 @@ const DrawerAppBar = ({
     const dataset = activeParent.dataset.value;
     setActivePanel(dataset);
   };
-  // const handleGetAllUsers = () => {
-  //   getAllUser(token);
-  // };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -77,7 +69,6 @@ const DrawerAppBar = ({
           handleDrawerToggle={handleDrawerToggle}
           handleClick={handleClick}
           handleClickSetModal={handleClickSetModal}
-          // handleGetAllUsers={handleGetAllUsers}
         />
       </AppBar>
       <Box component="nav">
@@ -101,8 +92,6 @@ const DrawerAppBar = ({
             handleDrawerToggle={handleDrawerToggle}
             handleClick={handleClick}
             handleClickSetModal={handleClickSetModal}
-            // handleGetAllUsers={handleGetAllUsers}
-            // isLoggin={isLoggin}
           />
         </Drawer>
       </Box>
@@ -132,15 +121,3 @@ const mapDispath = {
 };
 
 export default connect(mapState, mapDispath)(DrawerAppBar);
-
-// import { connect } from 'react-redux';
-
-//   const handleClick = () => {
-//     getAllUserChallenge(token);
-//   };
-// const mapDispatch = {
-//   setActivePanel: activePanel,
-//   getAllUserChallenge: getAllUsersDispath,
-// };
-
-// export default connect(mapState, mapDispatch)(PanelPage);

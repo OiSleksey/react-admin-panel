@@ -6,7 +6,6 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { getIsProgress } from '../../../store/selectors/ui.selector';
 
 const Progress = ({ isProgress }) => {
-  console.log(isProgress);
   return (
     <motion.div
       animate={{
