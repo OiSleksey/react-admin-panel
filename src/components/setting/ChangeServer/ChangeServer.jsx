@@ -15,10 +15,13 @@ import Switch from '@mui/material/Switch';
 // import Version from '../../ui/Version/Version';
 import Instruction from '../../ui/Instruction/Instruction';
 import { fakeServer } from '../../../store/actions/ui.actions';
-import { getIsFakeServer } from '../../../store/selectors/ui.selector';
+import {
+  getIsFakeServer,
+  getLoggedIn,
+} from '../../../store/selectors/ui.selector';
 import { useTheme } from '@mui/material';
 
-const ChangeServer = ({ isFakeServer, setFakeServer }) => {
+const ChangeServer = ({ isFakeServer, setFakeServer, isLoggedIn }) => {
   const handleChange = e => {
     const isChecked = e.target.checked;
     setFakeServer(isChecked);
@@ -60,7 +63,12 @@ const ChangeServer = ({ isFakeServer, setFakeServer }) => {
         }}
       >
         {' '}
-        <Switch checked={isFakeServer} onChange={handleChange} name="gilad" />
+        <Switch
+          checked={isFakeServer}
+          disabled={isLoggedIn}
+          onChange={handleChange}
+          name="gilad"
+        />
       </Paper>
     </Box>
   );
@@ -69,6 +77,7 @@ const ChangeServer = ({ isFakeServer, setFakeServer }) => {
 const mapState = state => {
   return {
     isFakeServer: getIsFakeServer(state),
+    isLoggedIn: getLoggedIn(state),
   };
 };
 

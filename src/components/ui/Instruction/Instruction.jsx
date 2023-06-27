@@ -44,17 +44,22 @@ const Instruction = ({
       }}
     >
       <Box>
+        <Typography>
+          The admin control panel login details are above. If the server is not
+          working, then you need to go to "Work from a real server": to another
+          position in "FAKE SERVER". In this position, the admin panel works
+          with a fake server and the data is stored in localStorage.
+        </Typography>
         <Typography
           sx={{
             marginBottom: '10px',
             borderBottom: `1px solid ${theme.palette.text.secondary}`,
+            textAlign: 'center',
           }}
         >
-          The data for logging into the admin control panel are indicated above.
-          If the server is not working, then switch " Work from a real server:"
-          to another position. In this position, the Admin panel works with a
-          fake server and data stored in localStorage. Thank you for choosing
-          our product!
+          <span style={{ color: '#e8bb49' }}>WARNING!</span> The server can be
+          switched only during authorization. Thank you for choosing our
+          product!
         </Typography>
 
         <Version />

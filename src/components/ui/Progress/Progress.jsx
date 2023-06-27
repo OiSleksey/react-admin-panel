@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { motion } from 'framer-motion';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import { connect } from 'react-redux';
 import { getIsProgress } from '../../../store/selectors/ui.selector';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const Progress = ({ isProgress }) => {
   console.log(isProgress);
