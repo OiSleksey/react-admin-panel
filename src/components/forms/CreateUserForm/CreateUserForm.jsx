@@ -1,41 +1,24 @@
 import * as React from 'react';
-import InputEmailField from '../InputEmailField/InputEmailField';
-import PasswordField from '../PasswordField/PasswordField';
-import CheckboxLabels from '../ChackboxLabel/ChackboxLabel';
-import Btn from '../Btn/Btn';
-import { Formik, Form } from 'formik';
-// import './LoginForm.scss';
-import * as Yup from 'yup';
 import { connect } from 'react-redux';
-import { autorizationDispatch } from '../../../store/middleware/authorization.middleware';
-import { rememberAuthorized } from '../../../store/actions/authorization.actions';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import InputEmailField from '../InputEmailField/InputEmailField';
+import CheckboxLabels from '../ChackboxLabel/ChackboxLabel';
+import Btn from '../Btn/Btn';
 import InputTextField from '../InputTextField/InputTextField';
-import NumberField from '../---NumberField/NumberField';
 import CalendarField from '../CalendarField/CalendarField';
 import InputRadioGroup from '../InputRadioGroup/InputRadioGroup';
-import ModalWindow from '../../ui/ModalWindow/ModalWindow';
 import { openModalWindow } from '../../../store/actions/ui.actions';
 import { createUserDispath } from '../../../store/middleware/createUser.middleware';
-import { isoInIsoPlusOneDay } from '../../../utils/convertData';
+import { getToken } from '../../../store/selectors/authorization.selector';
 
 const CreateUserForm = ({
-  logIn,
-  setRememberToken,
-  loggedIn,
   setOpenModalWindow,
-  openModalWindow,
-  changeUserData,
   setCreateUserDispath,
   token,
 }) => {
-  // console.log(changeUserData);
-  // const checkOutValue = (obj, value) => {
-  //   if (!obj) return '';
-  //   const correctValue = obj[value] ? obj[value] : '';
-  //   return correctValue;
-  // };
   const [dateOfBirth, setDateOfBiryh] = React.useState('');
 
   const initialValues = {
@@ -47,11 +30,7 @@ const CreateUserForm = ({
   };
   const userSchema = Yup.object().shape({
     email: Yup.string()
-      .matches(
-        /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-        'Please enter a valid email address with letters, @ symbol, and numbers. For example, goo@test.com'
-        // 'Email may contain letters, @, numbers. For example goo@test.co'
-      )
+      .matches(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Invalid email')
       .required('Is a required field'),
     name: Yup.string().required('Is a required field'),
     phone: Yup.string()
@@ -62,7 +41,6 @@ const CreateUserForm = ({
       .required('Is a required field'),
   });
   const onSubmit = (values, { resetForm }) => {
-    console.log(dateOfBirth);
     if (dateOfBirth === '') return;
     const roleId = values.role === 'admin' ? 1 : 2;
     const nowDate = new Date();
@@ -74,7 +52,7 @@ const CreateUserForm = ({
       homePhone: values.homePhone,
       roleId,
       hireDate: isoDate,
-      dateOfBirth: isoInIsoPlusOneDay(dateOfBirth),
+      dateOfBirth,
       driverCategory: 'string',
     };
 
@@ -83,17 +61,10 @@ const CreateUserForm = ({
     resetForm();
   };
   const widthInput = 35;
-  // const widthPassword = 35;
-  // const widthCheked = 35;
   const widthBtn = 25;
-
-  // const handleClickOpen = () => {
-  //   setOpenModalWindow(true);
-  // };
   return (
     <Box sx={{ minWidth: 275 }}>
       <div className="change-data-user">
-        {/* <h1 className="login-form__header">Sign In</h1> */}
         <Formik
           validateOnBlur={true}
           validateOnChange={false}
@@ -181,15 +152,11 @@ const CreateUserForm = ({
 
 const mapState = state => {
   return {
-    loggedIn: state.ui.loggedIn,
-    token: state.authorization.code,
-    openModalWindow: state.ui.openModalWindow,
+    token: getToken(state),
   };
 };
 
 const mapDispath = {
-  logIn: autorizationDispatch,
-  setRememberToken: rememberAuthorized,
   setOpenModalWindow: openModalWindow,
   setCreateUserDispath: createUserDispath,
 };

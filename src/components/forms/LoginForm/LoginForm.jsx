@@ -1,26 +1,18 @@
 import * as React from 'react';
-import InputEmailField from '../InputEmailField/InputEmailField';
-import PasswordField from '../PasswordField/PasswordField';
-import CheckboxLabels from '../ChackboxLabel/ChackboxLabel';
-import Btn from '../Btn/Btn';
-import { Formik, Form } from 'formik';
-import './LoginForm.scss';
-import * as Yup from 'yup';
 import { connect } from 'react-redux';
-import { autorizationDispatch } from '../../../store/middleware/authorization.middleware';
-import { rememberAuthorized } from '../../../store/actions/authorization.actions';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import InputEmailField from '../InputEmailField/InputEmailField';
+import PasswordField from '../PasswordField/PasswordField';
+import Btn from '../Btn/Btn';
+// import CheckboxLabels from '../ChackboxLabel/ChackboxLabel';
 import { backDropLoading } from '../../../store/actions/ui.actions';
+import { autorizationDispatch } from '../../../store/middleware/authorization.middleware';
+import { rememberAuthorized } from '../../../store/actions/authorization.actions';
 
-// export let beAutorized = true;
-
-const LoginForm = ({
-  logIn,
-  setRememberToken,
-  loggedIn,
-  setBackDropLoading,
-}) => {
+const LoginForm = ({ logIn, setRememberToken, setBackDropLoading }) => {
   const initialValues = {
     email: 'admin@admin.com',
     password: 'admin123',
@@ -28,21 +20,13 @@ const LoginForm = ({
   };
   const userSchema = Yup.object().shape({
     email: Yup.string()
-      .matches(
-        /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-        'Please enter a valid email address with letters, @ symbol, and numbers. For example, goo@test.com'
-        // 'Email may contain letters, @, numbers. For example goo@test.co'
-      )
+      .matches(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Invalid email')
       .required('Email is a required field'),
     password: Yup.string()
-      .matches(
-        /^.{6,12}$/,
-        'Password must contain minimum 6 to 12 include symbols.'
-      )
+      .matches(/^.{6,12}$/, 'Invalid password')
       .required('Password is a required field'),
   });
   const onSubmit = (values, { resetForm }) => {
-    // beAutorized = values.acceptedTerms;
     const beAutorized = values.acceptedTerms;
     const user = {
       email: values.email,
@@ -51,13 +35,9 @@ const LoginForm = ({
     logIn(user);
     setRememberToken(beAutorized);
     setBackDropLoading(true);
-    // dispatch(logIn(user));
     resetForm();
   };
   const widthInput = 35;
-  const widthPassword = 35;
-  const widthCheked = 35;
-  const widthBtn = 25;
 
   return (
     <Box sx={{ minWidth: 275, margin: '20px 0' }}>
@@ -84,7 +64,8 @@ const LoginForm = ({
                 type="password"
                 width={widthInput}
               />
-              <CheckboxLabels name="acceptedTerms" width={widthCheked} />
+              {/* <CheckboxLabels name="acceptedTerms" width={widthCheked} /> */}
+              <Box sx={{ marginBottom: '8px' }}></Box>
               <div className="login-form__submit">
                 <Btn
                   variant="contained"

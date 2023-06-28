@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { getActiveBtnDisplay } from '../../../store/selectors/filterTable.selector';
 
 const escapeRegExp = string => {
   return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
@@ -30,8 +32,16 @@ const getHighlightedText = (text, higlight) => {
   ));
 };
 
-const HighlightText = ({ higlight, value }) => {
+const HighlightText = ({ higlight, value, activeBtnDisplay }) => {
+  if (activeBtnDisplay === 'allUsers')
+    return <React.Fragment>{value}</React.Fragment>;
   return <React.Fragment>{getHighlightedText(value, higlight)}</React.Fragment>;
 };
 
-export default HighlightText;
+const mapState = state => {
+  return {
+    activeBtnDisplay: getActiveBtnDisplay(state),
+  };
+};
+
+export default connect(mapState)(HighlightText);

@@ -1,20 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import './ModalWindow.scss';
-
 import { connect } from 'react-redux';
 import { openModalWindow } from '../../../store/actions/ui.actions';
-import ChangeUserDataForm from '../../forms/ChangeUserDataForm/ChangeUserDataForm';
+import { getOpenModalWindow } from '../../../store/selectors/ui.selector';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -62,20 +58,12 @@ const ModalWindow = ({
   children,
   titleModal,
 }) => {
-  //   const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpenModalWindow(true);
-  };
   const handleClose = () => {
     setOpenModalWindow(false);
   };
 
   return (
     <Box elevation={10} sx={{ maxHeight: '90vh !important' }}>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
-      </Button> */}
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -97,7 +85,7 @@ const ModalWindow = ({
 
 const mapState = state => {
   return {
-    openModalWindow: state.ui.openModalWindow,
+    openModalWindow: getOpenModalWindow(state),
   };
 };
 

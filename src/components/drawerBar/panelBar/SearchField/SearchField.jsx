@@ -1,16 +1,16 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import Box from '@mui/material/Box';
-import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { connect } from 'react-redux';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { styled, alpha } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import { getArrConvertedAllUsers } from '../../../../store/selectors/dataUsers.selector';
 import { getSearchUser } from '../../../../utils/searchUser';
 import { displayDataUsers } from '../../../../store/actions/dataUsers.actions';
 import { valueSearch } from '../../../../store/actions/filterTable.actions';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { getThemeMode } from '../../../../store/selectors/ui.selector';
-import { useTheme } from '@mui/material/styles';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',

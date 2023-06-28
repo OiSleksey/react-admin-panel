@@ -1,43 +1,12 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Card from '@mui/material/Card';
 import Paper from '@mui/material/Paper';
 import { useTheme } from '@mui/material/styles';
 import DescriptionOwner from '../../ui/DescriptionOwner/DescriptionOwner';
-// import AvatarPicture from '../AvatarPicture/AvatarIcon';
-// import ProfileDescription from '../ProfileDescription/ProfileDescription';
-// import ProfileLogout from '../ProfileLogout/ProfileLogout';
 
-// import { activePanel, loggedIn } from '../../../store/actions/ui.actions';
-// import {
-//   typeModalWindow,
-//   openModalWindow,
-// } from '../../../store/actions/ui.actions';
-// import {
-//   getExpiredTime,
-//   getName,
-//   getRole,
-// } from '../../../store/selectors/authorization.selector';
-// import { authData } from '../../../store/actions/authorization.actions';
-// import { getLoggedIn } from '../../../store/selectors/ui.selector';
-// import Version from '../../ui/Version/Version';
-
-const Footer = ({
-  name,
-  expiredTime,
-  role,
-  setLogout,
-  setLoggedIn,
-  setOpenModalWindow,
-}) => {
-  const handleClickLogout = () => {
-    setLogout(null);
-    setLoggedIn(false);
-    setOpenModalWindow(false);
-  };
-
+export default function Footer() {
   return (
     <Paper
       elevation={4}
@@ -52,27 +21,7 @@ const Footer = ({
       <DescriptionOwner />
     </Paper>
   );
-};
-
-// const mapState = state => {
-//   return {
-//     modalType: state.ui.typeModalWindow,
-//     name: getName(state),
-//     expiredTime: getExpiredTime(state),
-//     role: getRole(state),
-//   };
-// };
-
-// const mapDispatch = {
-//   setActivePanel: activePanel,
-//   setTypeModalWindow: typeModalWindow,
-//   setOpenModalWindow: openModalWindow,
-//   setLogout: authData,
-//   setLoggedIn: loggedIn,
-//   setOpenModalWindow: openModalWindow,
-// };
-
-export default connect(null, null)(Footer);
+}
 
 // const [widthInput, setWidthInput] = React.useState(35);
 // const matchesVerPhone = useMediaQuery('(min-width:0px)');

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import useMediaQuery from '@mui/material/useMediaQuery';

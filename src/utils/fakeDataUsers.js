@@ -227,7 +227,7 @@ export const setCreateUser = data => {
   const lastUser = allUsersArr[allUsersArr.length - 1];
   const lastId = lastUser.id;
   const newId = lastId + 1;
-  const dateOfBirth = isoInIsoPlusOneDay(data.dateOfBirth);
+  const dateOfBirth = dateInIso(data.dateOfBirth);
   const newUser = {
     ...data,
     dateOfBirth,

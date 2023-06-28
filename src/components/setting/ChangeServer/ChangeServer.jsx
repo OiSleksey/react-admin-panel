@@ -3,23 +3,15 @@ import { connect } from 'react-redux';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import useMediaQuery from '@mui/material/useMediaQuery';
-// import { activePanel } from '../../../store/actions/ui.actions';
-// import {
-//   typeModalWindow,
-//   openModalWindow,
-// } from '../../../store/actions/ui.actions';
-import ToggleColorBtn from '../../ui/ToggleColorBtn/ToggleColorBtn';
 import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
 import Switch from '@mui/material/Switch';
-// import Version from '../../ui/Version/Version';
-import Instruction from '../../ui/Instruction/Instruction';
+import { useTheme } from '@mui/material';
 import { fakeServer } from '../../../store/actions/ui.actions';
 import {
   getIsFakeServer,
   getLoggedIn,
 } from '../../../store/selectors/ui.selector';
-import { useTheme } from '@mui/material';
 
 const ChangeServer = ({ isFakeServer, setFakeServer, isLoggedIn }) => {
   const handleChange = e => {

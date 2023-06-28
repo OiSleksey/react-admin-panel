@@ -39,7 +39,7 @@ const ChangeTheme = ({ handleClickTheme, stateMode }) => {
   );
 };
 
-export default connect(null, null)(ChangeTheme);
+export default ChangeTheme;
 
 // const [widthInput, setWidthInput] = React.useState(35);
 // const matchesVerPhone = useMediaQuery('(min-width:0px)');

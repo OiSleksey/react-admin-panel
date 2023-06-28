@@ -1,41 +1,29 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import './DrawerPanelBar.scss';
 import CreateBtn from '../CreateBtn/CreateBtn';
+import UserDisplayControl from '../UserDisplayControl/UserDisplayControl';
 import {
   typeModalWindow,
   openModalWindow,
 } from '../../../../store/actions/ui.actions';
-import { connect } from 'react-redux';
 import { getAllUsersDispath } from '../../../../store/middleware/getAllUser.middleware';
-import UserDisplayControl from '../UserDisplayControl/UserDisplayControl';
 import { getToken } from '../../../../store/selectors/authorization.selector';
 
-const widthBtn = 12;
-
-const DrawerPanelBar = ({
-  setTypeModalWindow,
-  setOpenModalWindow,
-  getAllUser,
-  token,
-}) => {
+const DrawerPanelBar = ({ setTypeModalWindow, setOpenModalWindow }) => {
   const handleClickCreate = () => {
     setTypeModalWindow('createUser');
     setOpenModalWindow(true);
   };
-
-  // const handleClickUpdate = () => {
-  //   getAllUser(token);
-  // };
 
   return (
     <Box
       sx={{
         flexGrow: 1,
         display: 'flex',
-        // marginBottom: '1rem',
       }}
     >
       <AppBar position="static">
@@ -46,7 +34,6 @@ const DrawerPanelBar = ({
         >
           <Box
             sx={{
-              //   flexGrow: 1,
               display: 'flex',
               justifyContent: 'space-between',
               minWidth: '100%',

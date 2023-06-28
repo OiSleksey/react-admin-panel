@@ -51,34 +51,8 @@ const MobileAppBar = ({
           }}
         />
       </Box>
-      <Link to="/" style={{ display: isLoggin ? 'block' : 'none' }}>
-        <Box
-          className="sidebar-icons"
-          data-value="users"
-          onClick={handleClick}
-          sx={{
-            padding: '5px 0',
-            width: { sm: '100%' },
-            color: theme.palette.text.primary,
-            background:
-              activePanel === 'users'
-                ? theme => theme.palette.background.default
-                : 'rgba(255, 255, 255, 0)',
-            display: isLoggin
-              ? { xs: 'block', sm: 'none' }
-              : { xs: 'none', sm: 'none' },
-          }}
-        >
-          <StorageIcon
-            sx={{
-              fontSize: '40px',
-              display: { sm: 'none', xs: 'block' },
-              margin: '10px auto',
-            }}
-          />
-        </Box>
-      </Link>
-      <Link to="/login" style={{ display: !isLoggin ? 'block' : 'none' }}>
+
+      {/* <Link to="/login" style={{ display: !isLoggin ? 'block' : 'none' }}>
         <Box
           className="sidebar-icons"
           data-value="login"
@@ -104,9 +78,36 @@ const MobileAppBar = ({
             }}
           />
         </Box>
-      </Link>
+      </Link> */}
 
       <Box>
+        <Link to="/" style={{ display: isLoggin ? 'block' : 'none' }}>
+          <Box
+            className="sidebar-icons"
+            data-value="users"
+            onClick={handleClick}
+            sx={{
+              padding: '5px 0',
+              width: { sm: '100%' },
+              color: theme.palette.text.primary,
+              background:
+                activePanel === 'users'
+                  ? theme => theme.palette.background.default
+                  : 'rgba(255, 255, 255, 0)',
+              display: isLoggin
+                ? { xs: 'block', sm: 'none' }
+                : { xs: 'none', sm: 'none' },
+            }}
+          >
+            <StorageIcon
+              sx={{
+                fontSize: '40px',
+                display: { sm: 'none', xs: 'block' },
+                margin: '10px auto',
+              }}
+            />
+          </Box>
+        </Link>
         <Box
           className="sidebar-icons"
           data-value="profile"
@@ -114,7 +115,7 @@ const MobileAppBar = ({
           sx={{
             cursor: 'pointer',
             width: { xs: '100%' },
-            marginBottom: { xs: '20px ' },
+            // marginBottom: { xs: '5px ' },
             padding: { xs: '7px 0' },
             display: isLoggin
               ? { xs: 'block', sm: 'none' }

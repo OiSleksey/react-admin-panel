@@ -1,33 +1,19 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import { Formik, Form, useField } from 'formik';
 // import Box from '@mui/material/Box';
-// import IconButton from '@mui/material/IconButton';
-// import Input from '@mui/material/Input';
-// import FilledInput from '@mui/material/FilledInput';
-// import OutlinedInput from '@mui/material/OutlinedInput';
-// import InputLabel from '@mui/material/InputLabel';
-// import InputAdornment from '@mui/material/InputAdornment';
-// import FormHelperText from '@mui/material/FormHelperText';
-// import FormControl from '@mui/material/FormControl';
-// import Visibility from '@mui/icons-material/Visibility';
-// import VisibilityOff from '@mui/icons-material/VisibilityOff';
-// import * as Yup from 'yup';
+import TextField from '@mui/material/TextField';
+import { useField } from 'formik';
 
 export default function InputEmailField({ width, label, ...props }) {
-  // console.log(width);
   //controled
   const [field, meta] = useField(props);
   const defaultProperties = {
     error: null,
-    sx: { m: 1, width: `${width}ch` },
-    // id: 'filled-search',
+    sx: { margin: '0 8px 8px 8px', width: `${width}ch` },
     label,
     type: 'email',
     variant: 'filled',
     info: null,
     color: 'primary',
-    // focused: false,
   };
 
   const [properties, setProperties] = React.useState(defaultProperties);
@@ -35,7 +21,7 @@ export default function InputEmailField({ width, label, ...props }) {
   const changeProperties = (touched, error) => {
     if ((touched && error) === false) {
       setProperties({
-        sx: { m: 1, width: `${width}ch` },
+        sx: { margin: '0 8px 8px 8px', width: `${width}ch` },
         id: 'filled-search',
         label,
         type: 'email',

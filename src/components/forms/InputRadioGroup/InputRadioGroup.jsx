@@ -5,17 +5,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Box from '@mui/material/Box';
-import { Formik, Form, useField } from 'formik';
+import { useField } from 'formik';
 
 export default function InputRadioGroup({ label, ...props }) {
   const [field, meta] = useField(props);
-
-  const [value, setValue] = React.useState('manager');
-
-  const handleChange = event => {
-    setValue(event.target.value);
-    console.log(event.target.value);
-  };
 
   return (
     <div className="input-box">
@@ -36,9 +29,6 @@ export default function InputRadioGroup({ label, ...props }) {
           <RadioGroup
             aria-labelledby="demo-controlled-radio-buttons-group"
             name="controlled-radio-buttons-group"
-            // value={value}
-            // onChange={handleChange}
-
             {...field}
             {...props}
           >

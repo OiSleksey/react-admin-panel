@@ -25,7 +25,7 @@ const initialState = {
   openModalWindow: false,
   typeModalWindow: 'changeUserData',
   backDropLoading: false,
-  fakeServer: false,
+  fakeServer: true,
   progress: false,
 };
 

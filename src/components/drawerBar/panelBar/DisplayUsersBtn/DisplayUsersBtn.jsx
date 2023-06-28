@@ -21,9 +21,6 @@ const DisplayAllUsers = ({ handleClick }) => {
           borderRadius: '4px',
           fontSize: '40px',
           margin: '0 3px',
-          // padding: '5px',
-          //   flexGrow: 1,
-          //   display: { xs: 'none', sm: 'block' },
           justifySelf: 'end',
         }}
       />

@@ -1,37 +1,20 @@
 import * as React from 'react';
-// import Btn from '../Btn/Btn';
-// import './LoginForm.scss';
-
 import { connect } from 'react-redux';
-// import { autorizationDispatch } from '../../../store/middleware/requestsServer.middleware';
-// import { rememberAuthorized } from '../../../store/actions/authorization.actions';
 import Box from '@mui/material/Box';
-// import InputTextField from '../InputTextField/InputTextField';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-// import { openModalWindow } from '../../../store/actions/ui.actions';
-// import { putUserDispath } from '../../../store/middleware/requestsServer.middleware';
-// import { isoInIsoPlusOneDay } from '../../../utils/convertData';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AvatarPicture from '../AvatarPicture/AvatarIcon';
 import ProfileDescription from '../ProfileDescription/ProfileDescription';
 import ProfileLogout from '../ProfileLogout/ProfileLogout';
-import DescriptionOwner from '../../ui/DescriptionOwner/DescriptionOwner';
-import ModalWindow from '../../ui/ModalWindow/ModalWindow';
-import { activePanel, loggedIn } from '../../../store/actions/ui.actions';
-import {
-  typeModalWindow,
-  openModalWindow,
-} from '../../../store/actions/ui.actions';
+import Version from '../../ui/Version/Version';
+import { loggedIn } from '../../../store/actions/ui.actions';
+import { openModalWindow } from '../../../store/actions/ui.actions';
 import {
   getExpiredTime,
   getName,
   getRole,
 } from '../../../store/selectors/authorization.selector';
 import { authData } from '../../../store/actions/authorization.actions';
-import { getLoggedIn } from '../../../store/selectors/ui.selector';
-import Version from '../../ui/Version/Version';
 
 const ProfileControl = ({
   name,
@@ -64,7 +47,6 @@ const ProfileControl = ({
         expiredTime={expiredTime}
       />
       <ProfileLogout handleClickLogout={handleClickLogout} />
-      {/* <DescriptionOwner /> */}
       <Version />
     </Box>
   );
@@ -72,7 +54,6 @@ const ProfileControl = ({
 
 const mapState = state => {
   return {
-    modalType: state.ui.typeModalWindow,
     name: getName(state),
     expiredTime: getExpiredTime(state),
     role: getRole(state),
@@ -80,9 +61,6 @@ const mapState = state => {
 };
 
 const mapDispatch = {
-  setActivePanel: activePanel,
-  setTypeModalWindow: typeModalWindow,
-  setOpenModalWindow: openModalWindow,
   setLogout: authData,
   setLoggedIn: loggedIn,
   setOpenModalWindow: openModalWindow,

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import FilterMenu from '../FilterMenu/FilterMenu';
-import Paper from '@mui/material/Paper';
 
 export default function EnhancedTableToolbar({ numSelected }) {
   const buttonRef = React.useRef(null);
@@ -18,9 +18,6 @@ export default function EnhancedTableToolbar({ numSelected }) {
   };
   return (
     <Paper
-    // sx={{
-    //   mb: 0.1,
-    // }}
     // elevation={10}
     >
       <Toolbar

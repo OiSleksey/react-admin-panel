@@ -1,22 +1,13 @@
-.container {
-  text-align: center;
-  min-height: calc(100vh - 4rem);
-  width: 100%;
-  // color: rgba(255, 255, 255, 0)
-}
 .main {
   width: 100%;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 600px) {
   .main {
     width: calc(100% - 4rem);
+    min-height: 100vh;
   }
 }
-// .panel-page {
-//   min-height: 100%;
-//   padding: 1rem 0;
-//   background-color: aqua;
-//   width: 100%;
-//   overflow-x: hidden;
-// }

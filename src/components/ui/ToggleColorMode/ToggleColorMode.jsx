@@ -1,27 +1,17 @@
+import * as React from 'react';
+import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import * as React from 'react';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Main from '../../Main/Main';
-import './ToggleColorMode.scss';
 import DrawerAppBar from '../../drawerBar/appBar/DrawerAppBar/DrawerAppBar';
+import { blue } from '@mui/material/colors';
 import { getThemeMode } from '../../../store/selectors/ui.selector';
 import { setThemeMode } from '../../../store/actions/ui.actions';
-import './ToggleColorMode.scss';
-import { connect } from 'react-redux';
-import {
-  purple,
-  amber,
-  grey,
-  deepOrange,
-  deepPurple,
-  indigo,
-  blue,
-} from '@mui/material/colors';
 
 const colorDarkGrey = '#1a1c22';
 const colorLightGrey = '#3d3a50';
@@ -54,10 +44,6 @@ const getDesignTokens = mode => ({
           },
         }
       : {
-          // palette values for dark mode
-          // primary: 'rgba(88, 14, 246, 1.0)',
-          // primary: '#570ef6',
-          // primary: deepPurple[500],
           primary: blue,
           divider: 'rgba(255, 255, 255, 0.12)',
           background: {
@@ -85,8 +71,6 @@ const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 const styleBody = {
   display: 'flex',
   width: '100%',
-  // alignItems: 'center',
-  // justifyContent: 'center',
   bgcolor: 'background.default',
   color: 'text.primary',
   borderRadius: 1,
@@ -107,45 +91,19 @@ function Component() {
   );
 }
 
-const ToggleColorMode = ({ themeModeColor, setThemeModeColor }) => {
+const ToggleColorMode = ({ themeModeColor }) => {
   const [mode, setMode] = React.useState(themeModeColor);
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
         setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
-        console.log(mode);
-        // console.log(typeof mode);
-        // setThemeModeColor(mode);
       },
     }),
     []
   );
 
-  //  const [mode, setMode] = React.useState<PaletteMode>('light');
-  //   const colorMode = React.useMemo(
-  //     () => ({
-  //       // The dark mode switch would invoke this method
-  //       toggleColorMode: () => {
-  //         setMode((prevMode: PaletteMode) =>
-  //           prevMode === 'light' ? 'dark' : 'light',
-  //         );
-  //       },
-  //     }),
-  //     [],
-  //   );
-
   // Update the theme only if the mode changes
   const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
-
-  // const theme = React.useMemo(
-  //   () =>
-  //     createTheme({
-  //       palette: {
-  //         mode,
-  //       },
-  //     }),
-  //   [mode]
-  // );
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -162,8 +120,4 @@ const mapState = state => {
   };
 };
 
-const mapDispath = {
-  setThemeModeColor: setThemeMode,
-};
-
-export default connect(mapState, mapDispath)(ToggleColorMode);
+export default connect(mapState)(ToggleColorMode);

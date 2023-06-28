@@ -1,15 +1,15 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { styled, alpha } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import SwitchFilter from '../SwitchFilter/SwitchFilter';
-import { Box } from '@mui/material';
-import { filterSwitchState } from '../../../store/actions/filterTable.actions';
-import { getObjStateSwitch } from '../../../store/selectors/filterTable.selector';
-import { connect } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { filterSwitchState } from '../../../store/actions/filterTable.actions';
+import { getObjStateSwitch } from '../../../store/selectors/filterTable.selector';
 
 const StyledMenu = styled(props => (
   <Menu
@@ -147,7 +147,6 @@ const FilterMenu = ({ buttonRef, objStateSwitch, setStateSwitch }) => {
                 position: 'absolute',
                 right: '10px',
                 top: '9px',
-                // color: theme => theme.palette.grey[500],
               }}
             />
             <CloseIcon />

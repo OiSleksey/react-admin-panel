@@ -1,9 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import Paper from '@mui/material/Paper';
+
 import './EnhancedTable.scss';
 import EnhancedTableHead from '../EnhancedTableHead/EnhancedTableHead';
 import EnhancedTableToolbar from '../EnhancedTableToolbar/EnhancedTableToolbar';
@@ -11,7 +13,6 @@ import EnhancedTableBody from '../EnhancedTableBody/EnhancedTableBody';
 import { getArrDisplayUsers } from '../../../store/selectors/dataUsers.selector';
 import { connect } from 'react-redux';
 import { getArrActiveColumns } from '../../../store/selectors/filterTable.selector';
-import Card from '@mui/material/Card';
 
 const headCells = [
   {

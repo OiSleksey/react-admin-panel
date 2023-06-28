@@ -1,22 +1,13 @@
 import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-import Button from '@mui/material/Button';
 import { connect } from 'react-redux';
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import { getBackDropLoading } from '../../../store/selectors/ui.selector';
 
 const Loading = ({ stateLoading }) => {
-  // const [open, setOpen] = React.useState(false);
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
-
   return (
-    <div>
-      {/* <Button onClick={handleOpen}>Show backdrop</Button> */}
+    <Box>
       <Backdrop
         sx={{
           color: '#fff',
@@ -28,7 +19,7 @@ const Loading = ({ stateLoading }) => {
       >
         <CircularProgress color="inherit" />
       </Backdrop>
-    </div>
+    </Box>
   );
 };
 

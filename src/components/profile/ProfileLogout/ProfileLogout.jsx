@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { Box, styled } from '@mui/system';
 import Card from '@mui/material/Card';
+import Paper from '@mui/material/Paper';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
 import { useTheme } from '@mui/material/styles';
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -23,23 +22,6 @@ const StyledBox = styled(Box)(({ theme }) => ({
 }));
 
 const DescriptionOwn = ({ handleClickLogout }) => {
-  const [widthInput, setWidthInput] = React.useState(35);
-  const matchesVerPhone = useMediaQuery('(min-width:0px)');
-  const matchesHorPhone = useMediaQuery('(min-width:500px)');
-  const matchesDesktop = useMediaQuery('(min-width:900px)');
-
-  function setWidthMedia() {
-    if (matchesDesktop) return setWidthInput(35);
-    if (matchesHorPhone) return setWidthInput(20);
-    if (matchesVerPhone) return setWidthInput(35);
-  }
-
-  React.useEffect(() => {
-    setWidthMedia();
-  }, [matchesVerPhone, matchesHorPhone, matchesDesktop]);
-  // const classes = useStyles();
-  const theme = useTheme();
-
   return (
     <Box
       sx={{
@@ -62,19 +44,21 @@ const DescriptionOwn = ({ handleClickLogout }) => {
   );
 };
 
-// const mapState = state => {
-//   return {
-//     loggedIn: state.ui.loggedIn,
-//     token: state.authorization.code,
-//     openModalWindow: state.ui.openModalWindow,
-//   };
-// };
+export default DescriptionOwn;
 
-// const mapDispath = {
-//   logIn: autorizationDispatch,
-//   setRememberToken: rememberAuthorized,
-//   setOpenModalWindow: openModalWindow,
-//   setPutUserDispath: putUserDispath,
-// };
+// const [widthInput, setWidthInput] = React.useState(35);
+// const matchesVerPhone = useMediaQuery('(min-width:0px)');
+// const matchesHorPhone = useMediaQuery('(min-width:500px)');
+// const matchesDesktop = useMediaQuery('(min-width:900px)');
 
-export default connect(null, null)(DescriptionOwn);
+// function setWidthMedia() {
+//   if (matchesDesktop) return setWidthInput(35);
+//   if (matchesHorPhone) return setWidthInput(20);
+//   if (matchesVerPhone) return setWidthInput(35);
+// }
+
+// React.useEffect(() => {
+//   setWidthMedia();
+// }, [matchesVerPhone, matchesHorPhone, matchesDesktop]);
+// // const classes = useStyles();
+// const theme = useTheme();

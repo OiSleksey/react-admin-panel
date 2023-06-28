@@ -3,6 +3,7 @@ import './LoginPage.scss';
 import LoginForm from '../../components/forms/LoginForm/LoginForm';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
 import {
   getLoggedIn,
   getTypeModalWindow,
@@ -48,19 +49,28 @@ const LoginPage = ({
   }, [loggedIn]);
 
   return (
-    <section className="login-page">
-      <div className="login-page__form">
-        <ModalWindow modalType={modalType} titleModal={titleModal}>
-          {modalType === 'setting' && (
-            <SettingControl
-              handleClickTheme={handleClickTheme}
-              stateMode={stateMode}
-            />
-          )}
-        </ModalWindow>
-        <LoginForm />
-      </div>
-    </section>
+    <Box
+      sx={{
+        width: '100%',
+        flexGrow: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        // flexGrow: 1,
+        // minHeight: 'calc(100vh - 4rem)',
+        minHeight: '100%',
+      }}
+    >
+      <ModalWindow modalType={modalType} titleModal={titleModal}>
+        {modalType === 'setting' && (
+          <SettingControl
+            handleClickTheme={handleClickTheme}
+            stateMode={stateMode}
+          />
+        )}
+      </ModalWindow>
+      <LoginForm />
+    </Box>
   );
 };
 
@@ -78,3 +88,22 @@ const mapDispatch = {
 };
 
 export default connect(mapState, mapDispatch)(LoginPage);
+
+// <div className='main'>
+//   <div classname='container'>
+//   Container
+//   </div>
+//   <div className='footer'>Footer</div>
+// </div>
+
+// .main{
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+
+// .container{
+//   //нужно что бы он занимал все оставшееся пространство страници по висоте (то что не занимает footer)
+// }

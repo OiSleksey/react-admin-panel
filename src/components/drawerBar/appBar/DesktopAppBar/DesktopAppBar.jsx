@@ -65,39 +65,8 @@ const DesktopAppBar = ({
           sx={{ width: '40px', display: { xs: 'none', sm: 'block' } }}
         />
       </Box>
-      <Link to="/" style={{ width: '100%' }}>
-        <Box
-          className="sidebar-icons"
-          data-value="users"
-          onClick={event => {
-            handleClick(event);
-          }}
-          sx={{
-            width: { sm: '100%' },
-            color:
-              activePanel === 'users'
-                ? theme.palette.primary[500]
-                : theme.palette.text.primary,
-            background:
-              activePanel === 'users'
-                ? theme.palette.background.default
-                : '#FFFFFF00',
-            display: isLoggin
-              ? { xs: 'none', sm: 'block' }
-              : { xs: 'none', sm: 'none' },
-          }}
-        >
-          <StorageIcon
-            sx={{
-              fontSize: '40px',
-              display: { xs: 'none', sm: 'block' },
-              margin: '10px auto',
-            }}
-          />
-        </Box>
-      </Link>
 
-      <Link to="/login" style={{ width: '100%' }}>
+      {/* <Link to="/login" style={{ width: '100%' }}>
         <Box
           className="sidebar-icons"
           data-value="login"
@@ -124,13 +93,44 @@ const DesktopAppBar = ({
             }}
           />
         </Box>
-      </Link>
+      </Link> */}
 
       <Box
         sx={{
           width: { sm: '100%' },
         }}
       >
+        <Link to="/" style={{ width: '100%' }}>
+          <Box
+            className="sidebar-icons"
+            data-value="users"
+            onClick={event => {
+              handleClick(event);
+            }}
+            sx={{
+              width: { sm: '100%' },
+              color:
+                activePanel === 'users'
+                  ? theme.palette.primary[500]
+                  : theme.palette.text.primary,
+              background:
+                activePanel === 'users'
+                  ? theme.palette.background.default
+                  : '#FFFFFF00',
+              display: isLoggin
+                ? { xs: 'none', sm: 'block' }
+                : { xs: 'none', sm: 'none' },
+            }}
+          >
+            <StorageIcon
+              sx={{
+                fontSize: '40px',
+                display: { xs: 'none', sm: 'block' },
+                margin: '10px auto',
+              }}
+            />
+          </Box>
+        </Link>
         <Box
           className="sidebar-icons"
           data-value="profile"

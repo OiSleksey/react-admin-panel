@@ -1,25 +1,21 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setPropsSnake } from '../../store/selectors/ui.selector';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Loading from '../ui/Loading/Loading';
+import Footer from '../ui/Footer/Footer';
 import SnakeBar from '../ui/SnakeBar/SnakeBar';
 import LoginPage from '../../views/LoginPage/LoginPage';
 import PanelPage from '../../views/PanelPage/PanelPage';
 import NotFoundPage from '../../views/NotFoundPage/NotFoundPage';
 import ErrorServerPage from '../../views/ErrorServerPage/ErrorServerPage';
 import './Main.scss';
-import ToggleColorBtn from '../ui/ToggleColorBtn/ToggleColorBtn';
-
-import Box from '@mui/material/Box';
-import SettingPage from '../../views/SettingPage/SettingPage';
-import ProfilePage from '../../views/ProfilePage/ProfilePage';
+import { setPropsSnake } from '../../store/selectors/ui.selector';
 import { StyledEngineProvider } from '@mui/material/styles';
-import Loading from '../ui/Loading/Loading';
-import Footer from '../ui/Footer/Footer';
 
 const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
   return (
-    <div className="main">
+    <Box className="main" sx={{ minHeight: '100vh' }}>
       <Box
         sx={{
           display: { xs: 'block', sm: 'none' },
@@ -27,8 +23,9 @@ const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
           width: { xs: '100%', sm: '0' },
         }}
       ></Box>
-      <StyledEngineProvider injectFirst maxSnack={3} onClickDismiss={true}>
-        <Box>
+
+      <Box sx={{ flexGrow: 1 }}>
+        <StyledEngineProvider injectFirst maxSnack={3} onClickDismiss={true}>
           <SnakeBar {...propsSnake} />
           <Loading />
           <Routes>
@@ -55,16 +52,16 @@ const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
             <Route exact path="/error" element={<ErrorServerPage />} />
             <Route exact path="/*" element={<NotFoundPage />} />
           </Routes>
-          <Footer />
-        </Box>
-      </StyledEngineProvider>
-    </div>
+        </StyledEngineProvider>
+      </Box>
+
+      <Footer />
+    </Box>
   );
 };
 
 const mapState = state => {
   return {
-    // loggedIn: state.ui.loggedIn,
     propsSnake: setPropsSnake(state),
   };
 };

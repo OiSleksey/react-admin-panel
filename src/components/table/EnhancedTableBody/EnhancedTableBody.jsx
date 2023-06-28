@@ -68,7 +68,6 @@ const EnhancedTableBody = props => {
 
   const handleClickEdit = event => {
     const idUpdateUser = parseInt(event.target.dataset.id);
-    // console.log(idUpdateUser);
     setChangeDataUserId(idUpdateUser);
   };
 

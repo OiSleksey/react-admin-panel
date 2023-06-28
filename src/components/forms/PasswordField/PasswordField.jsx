@@ -1,19 +1,13 @@
 import * as React from 'react';
+import { useField } from 'formik';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
 import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Formik, Form, useField } from 'formik';
-import * as Yup from 'yup';
-import './PasswordField.scss';
 
 export default function Password({ label, width, ...props }) {
   //Password
@@ -35,8 +29,7 @@ export default function Password({ label, width, ...props }) {
   const changeProperties = (touched, error) => {
     if ((touched && error) === false) {
       setProperties({
-        sx: { m: 1, width: `${width}ch` },
-        // id: 'filled-search',
+        sx: { margin: '0 8px 8px 8px', width: `${width}ch` },
         label,
         type: 'email',
         variant: 'filled',
@@ -58,7 +51,6 @@ export default function Password({ label, width, ...props }) {
         error: true,
         info: error,
       });
-      // console.log(error);
     }
   };
   React.useEffect(() => {
@@ -70,7 +62,7 @@ export default function Password({ label, width, ...props }) {
   return (
     <div className="input-box">
       <FormControl
-        sx={{ m: 1, width: `${width}ch` }}
+        sx={{ margin: '0 8px 8px 8px', width: `${width}ch` }}
         variant="filled"
         defaultValue="Normal"
         {...properties}

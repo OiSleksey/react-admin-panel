@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { connect } from 'react-redux';
 import { openModalWindow } from '../../../store/actions/ui.actions';
 import { typeModalWindow } from '../../../store/actions/ui.actions';
 
@@ -28,7 +28,6 @@ const MenuBtn = ({
   const handleClickOpen = event => {
     setTypeModalWindow('changeUserData');
     setOpenModalWindow(true);
-    // console.log(event.target.dataset.id);
   };
 
   return (
@@ -81,6 +80,5 @@ const MenuBtn = ({
 const mapDispath = {
   setOpenModalWindow: openModalWindow,
   setTypeModalWindow: typeModalWindow,
-  // setChangeDataUserId: сhangeDataUserId
 };
 export default connect(null, mapDispath)(MenuBtn);

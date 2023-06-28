@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Paper from '@mui/material/Paper';
-import { Typography } from '@mui/material';
 import Instruction from '../../ui/Instruction/Instruction';
 import DataInput from '../../ui/DataInput/DataInput';
 import ChangeTheme from '../ChangeTheme/ChangeTheme';
@@ -27,7 +26,7 @@ const SettingControl = ({ handleClickTheme, stateMode }) => {
   );
 };
 
-export default connect(null, null)(SettingControl);
+export default SettingControl;
 
 // const [widthInput, setWidthInput] = React.useState(35);
 // const matchesVerPhone = useMediaQuery('(min-width:0px)');

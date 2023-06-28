@@ -1,36 +1,20 @@
 import * as React from 'react';
-import InputEmailField from '../InputEmailField/InputEmailField';
-import PasswordField from '../PasswordField/PasswordField';
-import CheckboxLabels from '../ChackboxLabel/ChackboxLabel';
-import Btn from '../Btn/Btn';
-import { Formik, Form } from 'formik';
-// import './LoginForm.scss';
-import * as Yup from 'yup';
 import { connect } from 'react-redux';
-import { autorizationDispatch } from '../../../store/middleware/authorization.middleware';
-import { rememberAuthorized } from '../../../store/actions/authorization.actions';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import InputEmailField from '../InputEmailField/InputEmailField';
 import InputTextField from '../InputTextField/InputTextField';
-import NumberField from '../---NumberField/NumberField';
 import CalendarField from '../CalendarField/CalendarField';
 import InputRadioGroup from '../InputRadioGroup/InputRadioGroup';
-import ModalWindow from '../../ui/ModalWindow/ModalWindow';
+import Btn from '../Btn/Btn';
 import { openModalWindow } from '../../../store/actions/ui.actions';
 import { putUserDispath } from '../../../store/middleware/putUser.middleware';
-import { isoInIsoPlusOneDay } from '../../../utils/convertData';
 import { getToken } from '../../../store/selectors/authorization.selector';
-import {
-  getLoggedIn,
-  getOpenModalWindow,
-} from '../../../store/selectors/ui.selector';
 
 const ChangeUserDataForm = ({
-  logIn,
-  setRememberToken,
-  loggedIn,
   setOpenModalWindow,
-  openModalWindow,
   changeUserData,
   setPutUserDispath,
   token,
@@ -60,7 +44,7 @@ const ChangeUserDataForm = ({
     email: Yup.string()
       .matches(
         /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-        'Please enter a valid email address with letters, @ symbol, and numbers. For example, goo@test.com'
+        'Invalid email'
         // 'Email may contain letters, @, numbers. For example goo@test.co'
       )
       .required('Is a required field'),
@@ -92,18 +76,13 @@ const ChangeUserDataForm = ({
 
     resetForm();
   };
+
   const widthInput = 35;
-  // const widthPassword = 35;
-  // const widthCheked = 35;
   const widthBtn = 25;
 
-  const handleClickOpen = () => {
-    setOpenModalWindow(true);
-  };
   return (
     <Box sx={{ minWidth: 275 }}>
-      <div className="change-data-user">
-        {/* <h1 className="login-form__header">Sign In</h1> */}
+      <Box>
         <Formik
           validateOnBlur={true}
           validateOnChange={false}
@@ -190,22 +169,18 @@ const ChangeUserDataForm = ({
             </div>
           </Form>
         </Formik>
-      </div>
+      </Box>
     </Box>
   );
 };
 
 const mapState = state => {
   return {
-    loggedIn: getLoggedIn(state),
     token: getToken(state),
-    openModalWindow: getOpenModalWindow(state),
   };
 };
 
 const mapDispath = {
-  logIn: autorizationDispatch,
-  setRememberToken: rememberAuthorized,
   setOpenModalWindow: openModalWindow,
   setPutUserDispath: putUserDispath,
 };
