@@ -14,8 +14,8 @@ import { rememberAuthorized } from '../../../store/actions/authorization.actions
 
 const LoginForm = ({ logIn, setRememberToken, setBackDropLoading }) => {
   const initialValues = {
-    email: 'admin@admin.com',
-    password: 'admin123',
+    email: '',
+    password: '',
     acceptedTerms: true,
   };
   const userSchema = Yup.object().shape({
