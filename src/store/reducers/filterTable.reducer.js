@@ -37,7 +37,6 @@ export const filterTableReducer = (state = initialState, action) => {
       };
     }
     case ACTIVE_BTN_DISPLAY: {
-      // console.log(changeUserData);
       const prevValue = state.activeBtnDisplay;
       return {
         ...state,
@@ -46,7 +45,6 @@ export const filterTableReducer = (state = initialState, action) => {
       };
     }
     case VALUE_SEARCH: {
-      // console.log(changeUserData);
       return {
         ...state,
         valueSearch: action.payload.data,
@@ -57,10 +55,3 @@ export const filterTableReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-// const key = 'id';
-// const value = '22'
-
-// const obj = {
-//   id: 22,
-// }

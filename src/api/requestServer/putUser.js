@@ -1,10 +1,6 @@
 import axios from 'axios';
-import {
-  setCreateUser,
-  responseLogin,
-  allUsersArr,
-  setPutUser,
-} from '../../utils/fakeDataUsers';
+import { responseLogin } from '../../utils/fakeDataUsers';
+import { setPutUser } from '../../utils/fakeLogic';
 // const url = 'http://91.196.52.61:8080/api_v1/Admin/Update';
 
 const url = process.env.REACT_APP_API_UPDATE;

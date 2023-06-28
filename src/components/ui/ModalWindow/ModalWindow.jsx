@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -8,7 +9,6 @@ import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import './ModalWindow.scss';
-import { connect } from 'react-redux';
 import { openModalWindow } from '../../../store/actions/ui.actions';
 import { getOpenModalWindow } from '../../../store/selectors/ui.selector';
 

@@ -1,4 +1,3 @@
-import { FormatAlignLeftSharp } from '@mui/icons-material';
 import {
   LOGGED_IN,
   SERVER_WORK,

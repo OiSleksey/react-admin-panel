@@ -2,10 +2,7 @@ import {
   DATA_USERS,
   CHANGE_DATA_USER_ID,
   DISPLAY_DATA_USERS,
-  // SHOW_ALL_USERS,
-  // ACTIVE_BTN_DISPLAY,
 } from '../actions/dataUsers.actions';
-
 import { setConvertedArrData } from '../../utils/convertData';
 
 const initialState = {
@@ -13,10 +10,6 @@ const initialState = {
   arrConvertedAllUsers: null,
   arrDisplayUsers: null,
   changeUserData: null,
-
-  // showAllUsers: true,
-  // prevActiveBtnDisplay: null,
-  // activeBtnDisplay: 'allUsers',
 };
 
 export const dataUsersReducer = (state = initialState, action) => {
@@ -33,17 +26,12 @@ export const dataUsersReducer = (state = initialState, action) => {
       const searchId = action.payload.data;
       const arrAllUsers = state.arrAllUsers;
       const changeUserData = arrAllUsers.find(value => value.id === searchId);
-      // console.log(changeUserData);
       return {
         ...state,
         changeUserData,
       };
     }
     case DISPLAY_DATA_USERS: {
-      // const searchId = action.payload.data;
-      // const arrAllUsers = state.arrAllUsers;
-      // const changeUserData = arrAllUsers.find(value => value.id === searchId);
-      // console.log(changeUserData);
       return {
         ...state,
         arrDisplayUsers: action.payload.data,

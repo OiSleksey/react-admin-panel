@@ -8,7 +8,6 @@ import SnakeBar from '../ui/SnakeBar/SnakeBar';
 import LoginPage from '../../views/LoginPage/LoginPage';
 import PanelPage from '../../views/PanelPage/PanelPage';
 import NotFoundPage from '../../views/NotFoundPage/NotFoundPage';
-import ErrorServerPage from '../../views/ErrorServerPage/ErrorServerPage';
 import './Main.scss';
 import { setPropsSnake } from '../../store/selectors/ui.selector';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -49,7 +48,6 @@ const Main = ({ propsSnake, handleClickTheme, stateMode }) => {
                 />
               }
             />
-            <Route exact path="/error" element={<ErrorServerPage />} />
             <Route exact path="/*" element={<NotFoundPage />} />
           </Routes>
         </StyledEngineProvider>

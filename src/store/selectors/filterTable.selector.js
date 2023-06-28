@@ -11,8 +11,6 @@ export const getArrActiveColumns = state => {
   for (const prop in objSwitchFilter) {
     if (objSwitchFilter[prop]) arrActiveColumns.push(prop);
   }
-  //   console.log(arrActiveColumns);
-
   return arrActiveColumns;
 };
 
@@ -35,19 +33,20 @@ export const getValueSearch = state => {
     return null;
 
   const valueSearch = state.filterTable.valueSearch;
-
   return valueSearch;
 };
 
 export const getActiveBtnDisplay = state => {
   if (!state || !state.filterTable || !state.filterTable.activeBtnDisplay)
     return null;
+
   const activeBtnDisplay = state.filterTable.activeBtnDisplay;
   return activeBtnDisplay;
 };
 export const getPrevActiveBtnDisplay = state => {
   if (!state || !state.filterTable || !state.filterTable.prevActiveBtnDisplay)
     return null;
+
   const prevActiveBtnDisplay = state.filterTable.prevActiveBtnDisplay;
   return prevActiveBtnDisplay;
 };

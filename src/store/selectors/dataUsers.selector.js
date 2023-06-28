@@ -44,27 +44,3 @@ export const getChangeUserDataObj = state => {
   const changeUserData = state.dataUsers.changeUserData;
   return changeUserData;
 };
-
-// export const getAllUsersArr = state => {
-//   if (!state || !state.dataUsers || !state.dataUsers.arrAllUsers) return null;
-//   const arrAllUsers = state.dataUsers.arrAllUsers;
-//   return arrAllUsers;
-// };
-
-// const createDataUser = (data, i) => {
-//   const dataUsers = {
-//     id: data[i].id,
-//     name: data[i].name,
-//     role: data[i].role,
-//     email: data[i].email,
-//     phone: data[i].phone,
-//     homePhone: data[i].homePhone,
-//     dateOfBirth: convertDate(data[i].dateOfBirth),
-//     blocked: data[i].blocked,
-//     createdAt: convertDate(data[i].createdAt),
-//     lastLoginAt: convertDate(data[i].lastLoginAt),
-//     hireDate: convertDate(data[i].hireDate),
-//     roleId: data[i].roleId,
-//   };
-//   return dataUsers;
-// };

@@ -35,12 +35,11 @@ export const setConvertedArrData = data => {
     createdAt: convertDate(obj.createdAt),
     hireDate: convertDate(obj.hireDate),
     dateOfBirth: convertDate(obj.dateOfBirth),
-    lastLoginAt: convertDate(obj.lastLoginAt),
     blocked: obj.blocked + '',
   }));
   return convertedArr;
 };
 
-export const convertExpiredTime = isoDate => {
-  const date = new Date(isoDate);
-};
+// export const convertExpiredTime = isoDate => {
+//   const date = new Date(isoDate);
+// };

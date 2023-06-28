@@ -1,5 +1,3 @@
-import { convertExpiredTime } from '../../utils/convertData';
-
 export const getToken = state => {
   if (!state || !state.authorization || !state.authorization.code) return null;
   const token = state.authorization.code;
@@ -16,8 +14,6 @@ export const getExpiredTime = state => {
   if (!state || !state.authorization || !state.authorization.expiredTime)
     return null;
   const expiredTime = state.authorization.expiredTime;
-  const convertDate = convertExpiredTime(expiredTime);
-
   return expiredTime;
 };
 
